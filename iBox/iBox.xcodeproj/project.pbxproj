@@ -13,6 +13,7 @@
 		6ECAC6E119FF0C3700D94D6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECAC6DF19FF0C3700D94D6C /* LaunchScreen.xib */; };
 		6ECAC6ED19FF0C3700D94D6C /* iBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6EC19FF0C3700D94D6C /* iBoxTests.swift */; };
 		6ECAC6F719FF0E5900D94D6C /* ConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */; };
+		6ECAC6FA19FF0F7900D94D6C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6F819FF0F7900D94D6C /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +23,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6ECAC6D019FF0C3600D94D6C;
 			remoteInfo = iBox;
+		};
+		6ECAC72619FF107500D94D6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6ECAC70519FF107500D94D6C;
+			remoteInfo = BochsKit;
+		};
+		6ECAC72819FF107500D94D6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6ECAC71019FF107500D94D6C;
+			remoteInfo = BochsKitTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -36,6 +51,8 @@
 		6ECAC6EB19FF0C3700D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECAC6EC19FF0C3700D94D6C /* iBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBoxTests.swift; sourceTree = "<group>"; };
 		6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsViewController.swift; sourceTree = "<group>"; };
+		6ECAC6F919FF0F7900D94D6C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BochsKit.xcodeproj; path = BochsKit/BochsKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +76,7 @@
 		6ECAC6C819FF0C3600D94D6C = {
 			isa = PBXGroup;
 			children = (
+				6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */,
 				6ECAC6D319FF0C3600D94D6C /* iBox */,
 				6ECAC6E919FF0C3700D94D6C /* iBoxTests */,
 				6ECAC6D219FF0C3600D94D6C /* Products */,
@@ -78,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECAC6D619FF0C3600D94D6C /* AppDelegate.swift */,
+				6ECAC6F819FF0F7900D94D6C /* Model.xcdatamodeld */,
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
 				6ECAC6DA19FF0C3600D94D6C /* Main.storyboard */,
 				6ECAC6DD19FF0C3600D94D6C /* Images.xcassets */,
@@ -110,6 +129,15 @@
 				6ECAC6EB19FF0C3700D94D6C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6ECAC72219FF107500D94D6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6ECAC72719FF107500D94D6C /* BochsKit.framework */,
+				6ECAC72919FF107500D94D6C /* BochsKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +207,12 @@
 			mainGroup = 6ECAC6C819FF0C3600D94D6C;
 			productRefGroup = 6ECAC6D219FF0C3600D94D6C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6ECAC72219FF107500D94D6C /* Products */;
+					ProjectRef = 6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6ECAC6D019FF0C3600D94D6C /* iBox */,
@@ -186,6 +220,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6ECAC72719FF107500D94D6C /* BochsKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BochsKit.framework;
+			remoteRef = 6ECAC72619FF107500D94D6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6ECAC72919FF107500D94D6C /* BochsKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BochsKitTests.xctest;
+			remoteRef = 6ECAC72819FF107500D94D6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6ECAC6CF19FF0C3600D94D6C /* Resources */ = {
@@ -214,6 +265,7 @@
 			files = (
 				6ECAC6F719FF0E5900D94D6C /* ConfigurationsViewController.swift in Sources */,
 				6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */,
+				6ECAC6FA19FF0F7900D94D6C /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +469,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6ECAC6F819FF0F7900D94D6C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6ECAC6F919FF0F7900D94D6C /* Model.xcdatamodel */,
+			);
+			currentVersion = 6ECAC6F919FF0F7900D94D6C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6ECAC6C919FF0C3600D94D6C /* Project object */;
 }
