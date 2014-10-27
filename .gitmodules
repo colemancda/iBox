@@ -1,0 +1,3 @@
+[submodule "bochs"]
+	path = bochs
+	url = https://github.com/colemancda/bochs
