@@ -1,3 +1,6 @@
 [submodule "bochs"]
 	path = bochs
 	url = https://github.com/colemancda/bochs
+[submodule "bochs-iphone"]
+	path = bochs-iphone
+	url = https://github.com/colemancda/bochs-iphone
