@@ -10,6 +10,8 @@
 		6ECAC70B19FF107500D94D6C /* BochsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECAC70A19FF107500D94D6C /* BochsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ECAC71119FF107500D94D6C /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC70519FF107500D94D6C /* BochsKit.framework */; };
 		6ECAC71819FF107500D94D6C /* BochsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC71719FF107500D94D6C /* BochsKitTests.m */; };
+		6ECACD4B19FF196400D94D6C /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECACD4A19FF196400D94D6C /* config.h */; };
+		6ECACD4D19FF198800D94D6C /* bochs in Resources */ = {isa = PBXBuildFile; fileRef = 6ECACD4C19FF198800D94D6C /* bochs */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		6ECAC71019FF107500D94D6C /* BochsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BochsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC71619FF107500D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECAC71719FF107500D94D6C /* BochsKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BochsKitTests.m; sourceTree = "<group>"; };
+		6ECACD4A19FF196400D94D6C /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		6ECACD4C19FF198800D94D6C /* bochs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bochs; path = ../../../bochs/bochs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECAC70A19FF107500D94D6C /* BochsKit.h */,
+				6ECACD4A19FF196400D94D6C /* config.h */,
 				6ECAC72A19FF107E00D94D6C /* Source */,
 				6ECAC70819FF107500D94D6C /* Supporting Files */,
 			);
@@ -106,6 +111,7 @@
 		6ECAC72A19FF107E00D94D6C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6ECACD4C19FF198800D94D6C /* bochs */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -117,6 +123,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECACD4B19FF196400D94D6C /* config.h in Headers */,
 				6ECAC70B19FF107500D94D6C /* BochsKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECACD4D19FF198800D94D6C /* bochs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
