@@ -14,15 +14,19 @@
 		<string>https://github.com/colemancda/bochs</string>
 		<key>C8A5252DEA871148F9707A22B6332292DFED9A4A</key>
 		<string>https://github.com/colemancda/iBox.git</string>
+		<key>E276827A363ADE2ED71CE50DADAFE07C0E887F87</key>
+		<string>https://github.com/colemancda/bochs-iphone</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iBox/iBox.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>3A4C546CE4203EACA3F734FB11AAB186160D553C</key>
-		<string>../../..bochs/</string>
+		<string>../../..bochs</string>
 		<key>C8A5252DEA871148F9707A22B6332292DFED9A4A</key>
 		<string>../../..</string>
+		<key>E276827A363ADE2ED71CE50DADAFE07C0E887F87</key>
+		<string>../../../bochs-iphone</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/colemancda/iBox.git</string>
@@ -36,9 +40,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3A4C546CE4203EACA3F734FB11AAB186160D553C</string>
+			<string>E276827A363ADE2ED71CE50DADAFE07C0E887F87</string>
 			<key>IDESourceControlWCCName</key>
-			<string>bochs</string>
+			<string>bochs-iphone</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -47,6 +51,14 @@
 			<string>C8A5252DEA871148F9707A22B6332292DFED9A4A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iBox</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3A4C546CE4203EACA3F734FB11AAB186160D553C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iBoxbochs</string>
 		</dict>
 	</array>
 </dict>
