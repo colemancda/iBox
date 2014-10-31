@@ -12,7 +12,7 @@
     <entity name="Configuration" syncable="YES">
         <attribute name="boot" attributeType="String" defaultValueString="cdrom" syncable="YES"/>
         <attribute name="cpuCount" attributeType="Integer 16" minValueString="1" maxValueString="2" defaultValueString="1" syncable="YES"/>
-        <attribute name="cpuIps" attributeType="Integer 32" minValueString="1" defaultValueString="5555555" syncable="YES"/>
+        <attribute name="cpuIPS" attributeType="Integer 32" minValueString="1" defaultValueString="5555555" syncable="YES"/>
         <attribute name="dmaTimer" attributeType="Integer 32" minValueString="1" defaultValueString="600000" syncable="YES"/>
         <attribute name="i440fxsupport" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="keyboardPasteDelay" attributeType="Integer 32" minValueString="0" defaultValueString="100000" syncable="YES"/>
@@ -38,7 +38,7 @@
     </entity>
     <elements>
         <element name="CDRom" positionX="-54" positionY="9" width="128" height="58"/>
-        <element name="Configuration" positionX="-63" positionY="-18" width="128" height="268"/>
+        <element name="Configuration" positionX="-63" positionY="-18" width="128" height="28"/>
         <element name="Drive" positionX="-63" positionY="0" width="128" height="88"/>
         <element name="HardDiskDrive" positionX="-36" positionY="18" width="128" height="88"/>
         <element name="ATAInterface" positionX="-36" positionY="108" width="128" height="103"/>
