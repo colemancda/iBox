@@ -523,21 +523,20 @@
                             <outlet property="delegate" destination="MiS-9C-Oq0" id="L0c-HF-w0A"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Configuration" id="LWb-PT-wxk">
+                    <navigationItem key="navigationItem" title="Configuration Editor" id="LWb-PT-wxk">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="w4q-gZ-dZA">
                             <connections>
-                                <segue destination="tYr-Ew-GFa" kind="unwind" unwindAction="cancelConfigurationEditor:" id="Hxd-Nz-pJn"/>
+                                <action selector="cancel:" destination="MiS-9C-Oq0" id="1RI-zk-o4t"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="Rte-Nm-bBu">
                             <connections>
-                                <segue destination="tYr-Ew-GFa" kind="unwind" unwindAction="saveConfigurationEditor:" id="Doq-sE-ROW"/>
+                                <action selector="save:" destination="MiS-9C-Oq0" id="tYG-rZ-kPe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSS-3E-btO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="tYr-Ew-GFa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1811" y="1306"/>
         </scene>

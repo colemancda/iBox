@@ -21,16 +21,4 @@ class ConfigurationsViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    // MARK: - Unwind Segues
-    
-    @IBAction func cancelConfigurationEditor(segue: UIStoryboardSegue) {
-        
-        
-    }
-    
-    @IBAction func saveConfigurationEditor(segue: UIStoryboardSegue) {
-        
-        
-    }
-    
 }

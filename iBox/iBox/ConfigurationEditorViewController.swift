@@ -20,5 +20,17 @@ class ConfigurationEditorViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func cancel(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    @IBAction func save(sender: AnyObject) {
+        
+        
+    }
         
 }

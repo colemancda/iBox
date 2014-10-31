@@ -110,8 +110,8 @@
 		6EB5A7011A03397A00CA31B8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
+				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
