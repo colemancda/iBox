@@ -14,6 +14,8 @@
 		6ECAC6ED19FF0C3700D94D6C /* iBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6EC19FF0C3700D94D6C /* iBoxTests.swift */; };
 		6ECAC6F719FF0E5900D94D6C /* ConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */; };
 		6ECAC6FA19FF0F7900D94D6C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6F819FF0F7900D94D6C /* Model.xcdatamodeld */; };
+		6EE7150619FF45930078BEEA /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC72719FF107500D94D6C /* BochsKit.framework */; };
+		6EE7150719FF45930078BEEA /* BochsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC72719FF107500D94D6C /* BochsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,28 @@
 			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
 			remoteInfo = bochs;
 		};
+		6EE7150819FF45930078BEEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ECAC70419FF107400D94D6C;
+			remoteInfo = BochsKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6EE7150B19FF45930078BEEA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6EE7150719FF45930078BEEA /* BochsKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6ECAC6D119FF0C3600D94D6C /* iBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE7150619FF45930078BEEA /* BochsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,10 +191,12 @@
 				6ECAC6CD19FF0C3600D94D6C /* Sources */,
 				6ECAC6CE19FF0C3600D94D6C /* Frameworks */,
 				6ECAC6CF19FF0C3600D94D6C /* Resources */,
+				6EE7150B19FF45930078BEEA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6EE7150919FF45930078BEEA /* PBXTargetDependency */,
 			);
 			name = iBox;
 			productName = iBox;
@@ -313,6 +339,11 @@
 			target = 6ECAC6D019FF0C3600D94D6C /* iBox */;
 			targetProxy = 6ECAC6E719FF0C3700D94D6C /* PBXContainerItemProxy */;
 		};
+		6EE7150919FF45930078BEEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BochsKit;
+			targetProxy = 6EE7150819FF45930078BEEA /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -418,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = iBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,6 +461,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = iBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

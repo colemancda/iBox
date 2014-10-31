@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CDRom" parentEntity="Drive" syncable="YES">
+        <attribute name="inserted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+    </entity>
     <entity name="Configuration" syncable="YES">
+        <attribute name="boot" attributeType="String" defaultValueString="cdrom" syncable="YES"/>
+        <attribute name="cpuCount" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="2" defaultValueString="1" syncable="YES"/>
+        <attribute name="cpuIps" attributeType="Integer 32" minValueString="1" defaultValueString="0" syncable="YES"/>
+        <attribute name="dmatimer" attributeType="Integer 32" defaultValueString="600000" syncable="YES"/>
+        <attribute name="i440fxsupport" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="keyboardPasteDelay" attributeType="Integer 32" defaultValueString="100000" syncable="YES"/>
+        <attribute name="keyboardSerialDelay" attributeType="Integer 16" defaultValueString="250" syncable="YES"/>
+        <attribute name="midimode" optional="YES" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="New Configuration" syncable="YES"/>
+        <attribute name="ramSize" attributeType="Integer 16" minValueString="16" maxValueString="1024" defaultValueString="256" syncable="YES"/>
+        <attribute name="sb16" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="vgaExtension" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vgaUpdateInterval" attributeType="Integer 64" defaultValueString="80000" syncable="YES"/>
+        <attribute name="wavemode" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
+    </entity>
+    <entity name="Drive" isAbstract="YES" syncable="YES">
+        <attribute name="ata" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="master" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="HardDiskDrive" parentEntity="Drive" syncable="YES">
+        <attribute name="cylinders" attributeType="Integer 16" defaultValueString="812" syncable="YES"/>
+        <attribute name="heads" attributeType="Integer 16" defaultValueString="16" syncable="YES"/>
+        <attribute name="spt" attributeType="Integer 16" defaultValueString="63" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Configuration" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="CDRom" positionX="-54" positionY="9" width="128" height="58"/>
+        <element name="Configuration" positionX="-63" positionY="-18" width="128" height="253"/>
+        <element name="Drive" positionX="-63" positionY="0" width="128" height="88"/>
+        <element name="HardDiskDrive" positionX="-36" positionY="18" width="128" height="88"/>
     </elements>
 </model>
