@@ -545,6 +545,23 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bootDiskSegmentedControl" destination="xfq-Jz-Hd8" id="b2K-Gk-5Fu"/>
+                        <outlet property="configurationNameTextField" destination="Jdq-IY-Hxx" id="3C8-RR-dd2"/>
+                        <outlet property="cpuCoresLabel" destination="EmV-cG-jKK" id="8xs-Dp-GDg"/>
+                        <outlet property="cpuCoresStepper" destination="NJi-a2-X9J" id="2Qv-3Z-K2d"/>
+                        <outlet property="dmaTimerTextField" destination="uYL-66-hu8" id="Sdb-R6-0AB"/>
+                        <outlet property="drivesTableViewCell" destination="X1u-Et-exQ" id="gKO-c3-8TS"/>
+                        <outlet property="i440fxSupportSwitch" destination="YKn-aL-fEQ" id="cYV-uq-IMC"/>
+                        <outlet property="ipsTextField" destination="PEM-tA-lLL" id="Jg1-8K-KRy"/>
+                        <outlet property="keyBoardPasteDelayTextField" destination="8kR-YX-6YI" id="DvP-4h-1fg"/>
+                        <outlet property="keyboardSerialDelayTextField" destination="5yg-yJ-oW3" id="cSd-lR-5fD"/>
+                        <outlet property="ramLabel" destination="poz-9j-Rgq" id="yw8-Hq-YEq"/>
+                        <outlet property="ramSlider" destination="fOD-zM-TJs" id="Q3w-bp-jQJ"/>
+                        <outlet property="soundBlaster16Switch" destination="p66-HZ-Xby" id="pD1-8y-oim"/>
+                        <outlet property="vgaExtensionSegmentedControl" destination="0wS-Lr-vBj" id="Nxz-CL-vZ4"/>
+                        <outlet property="vgaUpdateIntervalTextField" destination="H6t-vw-QyZ" id="5j3-GH-NHk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSS-3E-btO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -960,7 +977,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9kC-4S-DDM"/>
+        <segue reference="EhI-Uh-NhL"/>
         <segue reference="g0g-VT-3vD"/>
     </inferredMetricsTieBreakers>
 </document>

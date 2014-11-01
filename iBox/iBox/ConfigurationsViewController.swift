@@ -147,4 +147,20 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
+    
+    // MARK: - Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "newConfigurationSegue" {
+            
+            // create new configuration
+            
+            let newConfiguration = NSEntityDescription.insertNewObjectForEntityForName("Configuration", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as Configuration
+            
+            let configurationEditorVC = (segue.destinationViewController as UINavigationController).viewControllers.first as ConfigurationEditorViewController
+            
+            configurationEditorVC.configuration = newConfiguration
+        }
+    }
 }

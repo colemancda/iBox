@@ -12,21 +12,96 @@ class ConfigurationEditorViewController: UITableViewController {
     
     // MARK: - IB Outlets
     
+    @IBOutlet weak var configurationNameTextField: UITextField!
     
+    @IBOutlet weak var drivesTableViewCell: UITableViewCell!
     
+    @IBOutlet weak var bootDiskSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var ramLabel: UILabel!
     
+    @IBOutlet weak var ramSlider: UISlider!
     
+    @IBOutlet weak var cpuCoresLabel: UILabel!
+    
+    @IBOutlet weak var cpuCoresStepper: UIStepper!
+    
+    @IBOutlet weak var ipsTextField: UITextField!
+    
+    @IBOutlet weak var i440fxSupportSwitch: UISwitch!
+    
+    @IBOutlet weak var vgaExtensionSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var vgaUpdateIntervalTextField: UITextField!
+    
+    @IBOutlet weak var soundBlaster16Switch: UISwitch!
+    
+    @IBOutlet weak var dmaTimerTextField: UITextField!
+    
+    @IBOutlet weak var keyBoardPasteDelayTextField: UITextField!
+    
+    @IBOutlet weak var keyboardSerialDelayTextField: UITextField!
     
     // MARK: - Properties
     
-    
+    var configuration: Configuration? {
+        didSet{
+            
+            if configuration != nil && self.isViewLoaded() {
+                
+                self.loadUI(forConfiguration: self.configuration!)
+            }
+        }
+    }
     
     // MARK: - Loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if configuration != nil && self.isViewLoaded() {
+            
+            self.loadUI(forConfiguration: self.configuration!)
+        }
+    }
+    
+    private func loadUI(forConfiguration configuration: Configuration) {
+        
+        // setup UI with values from model object...
+        
+        self.configurationNameTextField.text = configuration.name
+        
+        switch configuration.bootDevice {
+            case "cdrom": self.bootDiskSegmentedControl.selectedSegmentIndex = 0
+            case "hdd": self.bootDiskSegmentedControl.selectedSegmentIndex = 1
+        default : self.bootDiskSegmentedControl.selectedSegmentIndex = -1
+        }
+        
+        ramLabel.text = "RAM: \(configuration.ramSize)"
+        
+        ramSlider.value = configuration.ramSize.floatValue
+        
+        cpuCoresLabel.text = NSLocalizedString("CPU Cores: ", comment: "CPU Cores: ") + "\(configuration.cpuCount.integerValue)"
+        
+        ipsTextField.text = "\(configuration.cpuIPS)"
+        
+        i440fxSupportSwitch.on = configuration.i440fxsupport.boolValue
+        
+        switch configuration.vgaExtension {
+            case "vbe": self.vgaExtensionSegmentedControl.selectedSegmentIndex = 1
+        default: self.vgaExtensionSegmentedControl.selectedSegmentIndex = 0
+        }
+        
+        vgaUpdateIntervalTextField.text = "\(configuration.vgaUpdateInterval.integerValue)"
+        
+        soundBlaster16Switch.on = configuration.soundBlaster16.boolValue
+        
+        dmaTimerTextField.text = "\(configuration.dmaTimer.integerValue)"
+        
+        keyBoardPasteDelayTextField.text = "\(configuration.keyboardPasteDelay.integerValue)"
+        
+        keyboardSerialDelayTextField.text = "\(configuration.keyboardSerialDelay.integerValue)"
     }
     
     // MARK: - Actions
@@ -38,10 +113,11 @@ class ConfigurationEditorViewController: UITableViewController {
     
     @IBAction func save(sender: AnyObject) {
         
-        
+        // get values from UI and set them to model object
     }
     
-    // MARK: - UITableViewDataSource
+    // MARK: - UITableViewDelegate
+    
     
     
 }
