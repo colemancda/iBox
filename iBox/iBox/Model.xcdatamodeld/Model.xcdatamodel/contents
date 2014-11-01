@@ -28,8 +28,8 @@
     </entity>
     <entity name="Drive" isAbstract="YES" syncable="YES">
         <attribute name="fileName" attributeType="String" syncable="YES"/>
-        <relationship name="ataInterfaceMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ATAInterface" inverseName="master" inverseEntity="ATAInterface" syncable="YES"/>
-        <relationship name="ataInterfaceSlave" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ATAInterface" inverseName="slave" inverseEntity="ATAInterface" syncable="YES"/>
+        <relationship name="ataInterfaceMaster" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="master" inverseEntity="ATAInterface" syncable="YES"/>
+        <relationship name="ataInterfaceSlave" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="slave" inverseEntity="ATAInterface" syncable="YES"/>
     </entity>
     <entity name="HardDiskDrive" parentEntity="Drive" syncable="YES">
         <attribute name="cylinders" attributeType="Integer 16" defaultValueString="812" syncable="YES"/>
@@ -37,10 +37,10 @@
         <attribute name="spt" attributeType="Integer 16" defaultValueString="63" syncable="YES"/>
     </entity>
     <elements>
+        <element name="ATAInterface" positionX="-36" positionY="108" width="128" height="103"/>
         <element name="CDRom" positionX="-54" positionY="9" width="128" height="58"/>
         <element name="Configuration" positionX="-63" positionY="-18" width="128" height="28"/>
-        <element name="Drive" positionX="-63" positionY="0" width="128" height="88"/>
+        <element name="Drive" positionX="-63" positionY="0" width="128" height="90"/>
         <element name="HardDiskDrive" positionX="-36" positionY="18" width="128" height="88"/>
-        <element name="ATAInterface" positionX="-36" positionY="108" width="128" height="103"/>
     </elements>
 </model>

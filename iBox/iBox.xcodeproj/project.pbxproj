@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6EB5A7031A03505800CA31B8 /* ConfigurationEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */; };
+		6EB5A70A1A03C93200CA31B8 /* BootDiskSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5A7091A03C93200CA31B8 /* BootDiskSelectionViewController.swift */; };
 		6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6D619FF0C3600D94D6C /* AppDelegate.swift */; };
 		6ECAC6DC19FF0C3600D94D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECAC6DA19FF0C3600D94D6C /* Main.storyboard */; };
 		6ECAC6DE19FF0C3600D94D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ECAC6DD19FF0C3600D94D6C /* Images.xcassets */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationEditorViewController.swift; sourceTree = "<group>"; };
+		6EB5A7091A03C93200CA31B8 /* BootDiskSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootDiskSelectionViewController.swift; sourceTree = "<group>"; };
 		6ECAC6D119FF0C3600D94D6C /* iBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC6D519FF0C3600D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECAC6D619FF0C3600D94D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
 				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
+				6EB5A7091A03C93200CA31B8 /* BootDiskSelectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				6ECAC6F719FF0E5900D94D6C /* ConfigurationsViewController.swift in Sources */,
 				6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */,
 				6ECAC6FA19FF0F7900D94D6C /* Model.xcdatamodeld in Sources */,
+				6EB5A70A1A03C93200CA31B8 /* BootDiskSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

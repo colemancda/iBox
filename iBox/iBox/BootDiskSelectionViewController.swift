@@ -1,14 +1,14 @@
 //
-//  ConfigurationsViewController.swift
+//  BootDiskSelectionViewController.swift
 //  iBox
 //
-//  Created by Alsey Coleman Miller on 10/27/14.
+//  Created by Alsey Coleman Miller on 10/31/14.
 //  Copyright (c) 2014 ColemanCDA. All rights reserved.
 //
 
 import UIKit
 
-class ConfigurationsViewController: UITableViewController {
+class BootDiskSelectionViewController: UITableViewController {
     
     // MARK: - Properties
     
@@ -22,6 +22,5 @@ class ConfigurationsViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDataSource
-    
     
 }

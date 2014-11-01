@@ -10,6 +10,14 @@ import UIKit
 
 class ConfigurationEditorViewController: UITableViewController {
     
+    // MARK: - IB Outlets
+    
+    
+    
+    
+    
+    
+    
     // MARK: - Properties
     
     
@@ -32,5 +40,8 @@ class ConfigurationEditorViewController: UITableViewController {
         
         
     }
-        
+    
+    // MARK: - UITableViewDataSource
+    
+    
 }
