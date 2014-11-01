@@ -101,6 +101,30 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // get the model object
+        let configuration = self.configurationAtIndexPath(indexPath)
+        
+        // delete
+        Store.sharedInstance.managedObjectContext.deleteObject(configuration)
+        
+        // save
+        
+        var error: NSError?
+        
+        Store.sharedInstance.managedObjectContext.save(&error)
+        
+        if error != nil {
+            
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("Could not delete configuration.", comment: "Could not delete configuration.") + " \\(\(error!.localizedDescription)\\)", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - UISearchBarDelegate
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

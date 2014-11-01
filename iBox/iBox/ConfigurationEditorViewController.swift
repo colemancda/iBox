@@ -49,14 +49,10 @@ class ConfigurationEditorViewController: UITableViewController {
             
             if configuration != nil && self.isViewLoaded() {
                 
-                self.mode = .Edit
-                
                 self.loadUI(forConfiguration: self.configuration!)
             }
         }
     }
-    
-    private var mode: ConfigurationEditorViewControllerMode = .Create
     
     // MARK: - Loading
     
@@ -67,9 +63,9 @@ class ConfigurationEditorViewController: UITableViewController {
         // create new object if none was created
         
         
-        if configuration != nil && self.isViewLoaded() {
+        if configuration != nil {
             
-            
+            self.loadUI(forConfiguration: self.configuration!)
         }
     }
     
@@ -115,6 +111,8 @@ class ConfigurationEditorViewController: UITableViewController {
     
     @IBAction func cancel(sender: AnyObject) {
         
+        Store.sharedInstance.managedObjectContext.rollback()
+        
         self.dismissViewControllerAnimated(true, completion: nil);
     }
     
@@ -125,6 +123,19 @@ class ConfigurationEditorViewController: UITableViewController {
         // validate
         
         // save
+        
+        var error: NSError?
+        
+        Store.sharedInstance.managedObjectContext.save(&error);
+        
+        if error != nil {
+            
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("Could not save configuration.", comment: "Could not save configuration.") + " \\(\(error!.localizedDescription)\\)", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return
+        }
         
         // dismiss VC
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -139,10 +150,4 @@ class ConfigurationEditorViewController: UITableViewController {
     
     
     
-}
-
-private enum ConfigurationEditorViewControllerMode {
-    
-    case Create
-    case Edit
 }
