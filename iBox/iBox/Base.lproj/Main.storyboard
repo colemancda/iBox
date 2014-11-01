@@ -37,7 +37,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="hlI-Pq-yXv" kind="show" id="68V-gA-kna"/>
-                                    <segue destination="FFW-AK-Hjf" kind="presentation" identifier="configurationInfoSegue" trigger="accessoryAction" modalPresentationStyle="formSheet" id="9kC-4S-DDM"/>
+                                    <segue destination="FFW-AK-Hjf" kind="presentation" identifier="editConfigurationSegue" trigger="accessoryAction" modalPresentationStyle="formSheet" id="9kC-4S-DDM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -977,7 +977,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EhI-Uh-NhL"/>
+        <segue reference="9kC-4S-DDM"/>
         <segue reference="g0g-VT-3vD"/>
     </inferredMetricsTieBreakers>
 </document>

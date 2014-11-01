@@ -3,7 +3,7 @@
     <entity name="ATAInterface" representedClassName="iBox.ATAInterface" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <relationship name="configuration" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="ataInterfaces" inverseEntity="Configuration" syncable="YES"/>
-        <relationship name="master" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Drive" inverseName="ataInterfaceMaster" inverseEntity="Drive" syncable="YES"/>
+        <relationship name="master" maxCount="1" deletionRule="Cascade" destinationEntity="Drive" inverseName="ataInterfaceMaster" inverseEntity="Drive" syncable="YES"/>
         <relationship name="slave" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Drive" inverseName="ataInterfaceSlave" inverseEntity="Drive" syncable="YES"/>
     </entity>
     <entity name="CDRom" representedClassName="iBox.CDRom" parentEntity="Drive" syncable="YES">
@@ -11,7 +11,7 @@
     </entity>
     <entity name="Configuration" representedClassName="iBox.Configuration" syncable="YES">
         <attribute name="bootDevice" attributeType="String" defaultValueString="cdrom" syncable="YES"/>
-        <attribute name="cpuCount" attributeType="Integer 16" minValueString="1" maxValueString="2" defaultValueString="1" syncable="YES"/>
+        <attribute name="cpuCores" attributeType="Integer 16" minValueString="1" maxValueString="2" defaultValueString="1" syncable="YES"/>
         <attribute name="cpuIPS" attributeType="Integer 32" minValueString="1" defaultValueString="5555555" syncable="YES"/>
         <attribute name="dmaTimer" attributeType="Integer 32" minValueString="1" defaultValueString="600000" syncable="YES"/>
         <attribute name="i440fxsupport" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>

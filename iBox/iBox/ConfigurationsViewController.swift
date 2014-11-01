@@ -186,5 +186,17 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
             
             configurationEditorVC.configuration = newConfiguration
         }
+        
+        if segue.identifier == "editConfigurationSegue" {
+            
+            // edit configuration
+            
+            let configuration = self.configurationAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)!)
+            
+            let configurationEditorVC = (segue.destinationViewController as UINavigationController).viewControllers.first as ConfigurationEditorViewController
+            
+            configurationEditorVC.configuration = configuration
+            
+        }
     }
 }

@@ -73,7 +73,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         // setup UI with values from model object...
         
-        self.configurationNameTextField.text = configuration.name
+        configurationNameTextField.text = configuration.name
         
         switch configuration.bootDevice {
             case "cdrom": self.bootDiskSegmentedControl.selectedSegmentIndex = 0
@@ -85,7 +85,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         ramSlider.value = configuration.ramSize.floatValue
         
-        cpuCoresLabel.text = NSLocalizedString("CPU Cores: ", comment: "CPU Cores: ") + "\(configuration.cpuCount.integerValue)"
+        cpuCoresLabel.text = NSLocalizedString("CPU Cores: ", comment: "CPU Cores: ") + "\(configuration.cpuCores.integerValue)"
         
         ipsTextField.text = "\(configuration.cpuIPS)"
         
@@ -109,20 +109,47 @@ class ConfigurationEditorViewController: UITableViewController {
     
     // MARK: - Actions
     
-    @IBAction func cancel(sender: AnyObject) {
-        
-        Store.sharedInstance.managedObjectContext.rollback()
-        
-        self.dismissViewControllerAnimated(true, completion: nil);
-    }
-    
     @IBAction func save(sender: AnyObject) {
+        
+        assert(self.configuration != nil)
+        
+        let configuration = self.configuration!
         
         // get values from UI and set them to model object
         
-        // validate
+        configuration.name = self.configurationNameTextField.text;
         
-        // save
+        switch self.bootDiskSegmentedControl.selectedSegmentIndex {
+        case 0: configuration.bootDevice = "cdrom"
+        case 1: configuration.bootDevice = "hdd"
+        default: configuration.bootDevice = "cdrom"
+        }
+        
+        configuration.ramSize = UInt(self.ramSlider.value)
+        
+        configuration.cpuCores = self.cpuCoresStepper.value
+        
+        configuration.cpuIPS = self.ipsTextField.text!.toInt()!
+        
+        configuration.i440fxsupport = self.i440fxSupportSwitch.on
+        
+        switch self.vgaExtensionSegmentedControl.selectedSegmentIndex {
+        case 0: configuration.vgaExtension = "none"
+        case 1: configuration.vgaExtension = "vbe"
+        default: configuration.vgaExtension = "none"
+        }
+        
+        configuration.vgaUpdateInterval = self.vgaUpdateIntervalTextField.text.toInt()!
+        
+        configuration.soundBlaster16 = self.soundBlaster16Switch.on
+        
+        configuration.dmaTimer = self.dmaTimerTextField.text.toInt()!
+        
+        configuration.keyboardPasteDelay = self.keyBoardPasteDelayTextField.text.toInt()!
+        
+        configuration.keyboardSerialDelay = self.keyboardSerialDelayTextField.text.toInt()!
+        
+        // save (will also validate)
         
         var error: NSError?
         
@@ -139,6 +166,13 @@ class ConfigurationEditorViewController: UITableViewController {
         
         // dismiss VC
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func cancel(sender: AnyObject) {
+        
+        Store.sharedInstance.managedObjectContext.rollback()
+        
+        self.dismissViewControllerAnimated(true, completion: nil);
     }
     
     // MARK: - Segues
