@@ -55,19 +55,10 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="s4q-FN-CTd" id="6Au-0B-lXv"/>
+                        <outlet property="searchBar" destination="IIk-Yy-5jt" id="eg0-Aj-JXL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMV-RM-hWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="s4q-FN-CTd">
-                    <connections>
-                        <outlet property="delegate" destination="T9m-KP-JXh" id="BTD-sp-fLk"/>
-                        <outlet property="searchBar" destination="IIk-Yy-5jt" id="v6g-3d-aRz"/>
-                        <outlet property="searchContentsController" destination="T9m-KP-JXh" id="e48-mt-bwo"/>
-                        <outlet property="searchResultsDataSource" destination="T9m-KP-JXh" id="Cr5-HE-s5V"/>
-                        <outlet property="searchResultsDelegate" destination="T9m-KP-JXh" id="xJc-yI-rpY"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1019" y="462"/>
         </scene>
@@ -137,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="1019" y="1318"/>
         </scene>
-        <!--Configuration-->
+        <!--Configuration Editor-->
         <scene sceneID="IlI-NZ-P2S">
             <objects>
-                <tableViewController title="Configuration" id="MiS-9C-Oq0" customClass="ConfigurationEditorViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Configuration Editor" id="MiS-9C-Oq0" customClass="ConfigurationEditorViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gok-uo-mJ4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

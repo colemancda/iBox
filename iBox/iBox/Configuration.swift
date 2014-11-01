@@ -1,0 +1,38 @@
+//
+//  Configuration.swift
+//  iBox
+//
+//  Created by Alsey Coleman Miller on 11/1/14.
+//  Copyright (c) 2014 ColemanCDA. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+class Configuration: NSManagedObject {
+
+    @NSManaged var bootDevice: String
+    @NSManaged var cpuCount: NSNumber
+    @NSManaged var cpuIPS: NSNumber
+    @NSManaged var dmaTimer: NSNumber
+    @NSManaged var i440fxsupport: NSNumber
+    @NSManaged var keyboardPasteDelay: NSNumber
+    @NSManaged var keyboardSerialDelay: NSNumber
+    @NSManaged var midiMode: NSNumber
+    @NSManaged var name: String
+    @NSManaged var ramSize: NSNumber
+    @NSManaged var soundBlaster16: NSNumber
+    @NSManaged var vgaExtension: String
+    @NSManaged var vgaUpdateInterval: NSNumber
+    @NSManaged var waveMode: NSNumber
+    @NSManaged var ataInterfaces: NSSet
+
+}
+
+internal extension Configuration {
+    
+    func exportBochsConfigurationString() -> String {
+        
+        return ""
+    }
+}
