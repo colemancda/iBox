@@ -28,6 +28,8 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         
         // create fetched results controller
         self.fetchedResultsController = self.fetchedResultsControllerForSearchText(nil)
+        
+        self.fetchedResultsController!.performFetch(nil)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -44,6 +46,8 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         // create fetch request
         let fetchRequest = NSFetchRequest(entityName: "Configuration");
         
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
         // set predicate for search text
         if searchText != nil && searchText != "" {
             
@@ -58,15 +62,15 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         return fetchedResultsController
     }
     
-    private func configureCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) {
+    private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         
         // get model object
-        let configuration = self.configurationForIndexPath(indexPath)
+        let configuration = self.configurationAtIndexPath(indexPath)
         
         cell.textLabel.text = configuration.name;
     }
     
-    private func configurationForIndexPath(indexPath: NSIndexPath) -> Configuration {
+    private func configurationAtIndexPath(indexPath: NSIndexPath) -> Configuration {
         
         return self.fetchedResultsController?.fetchedObjects![indexPath.row] as Configuration
     }
@@ -92,7 +96,7 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         
         let cell = tableView.dequeueReusableCellWithIdentifier(ConfigurationCellIdentier, forIndexPath: indexPath) as UITableViewCell
         
-        self.configureCell(cell, forIndexPath: indexPath)
+        self.configureCell(cell, atIndexPath: indexPath)
         
         return cell
     }
@@ -103,9 +107,44 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         
         // update the fetched results controller
         self.fetchedResultsController = self.fetchedResultsControllerForSearchText(searchText);
+        
+        self.fetchedResultsController!.performFetch(nil)
     }
     
     // MARK: - NSFetchedResultsController
     
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
     
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            return
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        case .Update:
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath)!, atIndexPath: indexPath)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+        default:
+            return
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
+    }
 }

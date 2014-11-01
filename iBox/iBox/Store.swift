@@ -34,9 +34,9 @@ final public class Store {
         self.managedObjectContext.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: NSManagedObjectModel.mergedModelFromBundles(nil)!)
         
         // get file url
-        let appSupportURL = (NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true) as [NSURL]).first
+        let appSupportURL = (NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask) as [NSURL]).last!
         
-        let fileURL = appSupportURL?.URLByAppendingPathComponent("data.sqlite")
+        let fileURL = appSupportURL.URLByAppendingPathComponent("data.sqlite")
         
         // load persistent store
         
@@ -44,7 +44,7 @@ final public class Store {
         
         self.managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: fileURL, options: nil, error: &error)
         
-        assert(error != nil)
+        assert(error == nil)
         
     }
 }
