@@ -49,10 +49,14 @@ class ConfigurationEditorViewController: UITableViewController {
             
             if configuration != nil && self.isViewLoaded() {
                 
+                self.mode = .Edit
+                
                 self.loadUI(forConfiguration: self.configuration!)
             }
         }
     }
+    
+    private var mode: ConfigurationEditorViewControllerMode = .Create
     
     // MARK: - Loading
     
@@ -60,9 +64,12 @@ class ConfigurationEditorViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // create new object if none was created
+        
+        
         if configuration != nil && self.isViewLoaded() {
             
-            self.loadUI(forConfiguration: self.configuration!)
+            
         }
     }
     
@@ -114,10 +121,28 @@ class ConfigurationEditorViewController: UITableViewController {
     @IBAction func save(sender: AnyObject) {
         
         // get values from UI and set them to model object
+        
+        // validate
+        
+        // save
+        
+        // dismiss VC
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+    }
     
     
     
+}
+
+private enum ConfigurationEditorViewControllerMode {
+    
+    case Create
+    case Edit
 }
