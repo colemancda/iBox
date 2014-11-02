@@ -22,10 +22,6 @@ class ConfigurationEditorViewController: UITableViewController {
     
     @IBOutlet weak var ramSlider: UISlider!
     
-    @IBOutlet weak var cpuCoresLabel: UILabel!
-    
-    @IBOutlet weak var cpuCoresStepper: UIStepper!
-    
     @IBOutlet weak var ipsTextField: UITextField!
     
     @IBOutlet weak var i440fxSupportSwitch: UISwitch!
@@ -45,7 +41,7 @@ class ConfigurationEditorViewController: UITableViewController {
     // MARK: - Properties
     
     var configuration: Configuration? {
-        didSet{
+        didSet {
             
             if configuration != nil && self.isViewLoaded() {
                 
@@ -82,8 +78,6 @@ class ConfigurationEditorViewController: UITableViewController {
         ramLabel.text = "RAM: \(configuration.ramSize)"
         
         ramSlider.value = configuration.ramSize.floatValue
-        
-        cpuCoresLabel.text = NSLocalizedString("CPU Cores: ", comment: "CPU Cores: ") + "\(configuration.cpuCores.integerValue)"
         
         ipsTextField.text = "\(configuration.cpuIPS)"
         
@@ -124,9 +118,7 @@ class ConfigurationEditorViewController: UITableViewController {
         }
         
         configuration.ramSize = UInt(self.ramSlider.value)
-        
-        configuration.cpuCores = self.cpuCoresStepper.value
-        
+                
         configuration.cpuIPS = self.ipsTextField.text!.toInt()!
         
         configuration.i440fxsupport = self.i440fxSupportSwitch.on

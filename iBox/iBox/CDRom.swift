@@ -11,6 +11,6 @@ import CoreData
 
 class CDRom: Drive {
 
-    @NSManaged var discInserted: Bool
+    @NSManaged var discInserted: NSNumber
 
 }

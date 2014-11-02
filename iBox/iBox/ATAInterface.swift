@@ -12,8 +12,8 @@ import CoreData
 class ATAInterface: NSManagedObject {
 
     @NSManaged var id: NSNumber
+    @NSManaged var irq: NSNumber
     @NSManaged var configuration: Configuration
-    @NSManaged var master: Drive
-    @NSManaged var slave: Drive
+    @NSManaged var drives: NSSet
 
 }

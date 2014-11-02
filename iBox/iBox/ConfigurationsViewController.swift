@@ -65,14 +65,9 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         
         // get model object
-        let configuration = self.configurationAtIndexPath(indexPath)
+        let configuration = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Configuration
         
         cell.textLabel.text = configuration.name;
-    }
-    
-    private func configurationAtIndexPath(indexPath: NSIndexPath) -> Configuration {
-        
-        return self.fetchedResultsController?.fetchedObjects![indexPath.row] as Configuration
     }
     
     // MARK: - UITableViewDataSource
@@ -106,7 +101,7 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         // get the model object
-        let configuration = self.configurationAtIndexPath(indexPath)
+        let configuration = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Configuration
         
         // delete
         Store.sharedInstance.managedObjectContext.deleteObject(configuration)
@@ -193,7 +188,7 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
             
             // edit configuration
             
-            let configuration = self.configurationAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)!)
+            let configuration = self.fetchedResultsController?.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)!) as Configuration
             
             let configurationEditorVC = (segue.destinationViewController as UINavigationController).viewControllers.first as ConfigurationEditorViewController
             

@@ -100,10 +100,14 @@
         <scene sceneID="kJc-RV-L1R">
             <objects>
                 <navigationController id="1bZ-Lo-H3r" sceneMemberID="viewController">
+                    <keyCommands/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="g90-fs-3Sr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="interactivePopGestureRecognizer.enabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="T9m-KP-JXh" kind="relationship" relationship="rootViewController" id="0Le-d0-hk8"/>
                     </connections>
@@ -249,32 +253,6 @@
                                                 <constraint firstAttribute="centerY" secondItem="fOD-zM-TJs" secondAttribute="centerY" id="Jtb-1Y-Gfz"/>
                                                 <constraint firstItem="poz-9j-Rgq" firstAttribute="leading" secondItem="dIb-6g-8vh" secondAttribute="leading" constant="15" id="MCA-Yf-1sA"/>
                                                 <constraint firstAttribute="centerY" secondItem="poz-9j-Rgq" secondAttribute="centerY" id="nR2-Tn-4Si"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="5KN-tC-9tB">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5KN-tC-9tB" id="jTn-JF-xwK">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="CPU Cores: 8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmV-cG-jKK">
-                                                    <rect key="frame" x="15" y="11" width="170" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="170" id="yYS-7C-VF5"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="NJi-a2-X9J">
-                                                    <rect key="frame" x="498" y="7" width="94" height="29"/>
-                                                </stepper>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="NJi-a2-X9J" firstAttribute="trailing" secondItem="jTn-JF-xwK" secondAttribute="trailingMargin" id="JYM-sd-t0o"/>
-                                                <constraint firstAttribute="centerY" secondItem="EmV-cG-jKK" secondAttribute="centerY" id="OJB-4X-6yn"/>
-                                                <constraint firstAttribute="centerY" secondItem="NJi-a2-X9J" secondAttribute="centerY" id="Qdz-HF-rMU"/>
-                                                <constraint firstItem="EmV-cG-jKK" firstAttribute="leading" secondItem="jTn-JF-xwK" secondAttribute="leading" constant="15" id="wf2-ui-Wi4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -548,8 +526,6 @@
                     <connections>
                         <outlet property="bootDiskSegmentedControl" destination="xfq-Jz-Hd8" id="b2K-Gk-5Fu"/>
                         <outlet property="configurationNameTextField" destination="Jdq-IY-Hxx" id="3C8-RR-dd2"/>
-                        <outlet property="cpuCoresLabel" destination="EmV-cG-jKK" id="8xs-Dp-GDg"/>
-                        <outlet property="cpuCoresStepper" destination="NJi-a2-X9J" id="2Qv-3Z-K2d"/>
                         <outlet property="dmaTimerTextField" destination="uYL-66-hu8" id="Sdb-R6-0AB"/>
                         <outlet property="drivesTableViewCell" destination="X1u-Et-exQ" id="gKO-c3-8TS"/>
                         <outlet property="i440fxSupportSwitch" destination="YKn-aL-fEQ" id="cYV-uq-IMC"/>

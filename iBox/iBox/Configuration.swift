@@ -12,7 +12,6 @@ import CoreData
 class Configuration: NSManagedObject {
 
     @NSManaged var bootDevice: String
-    @NSManaged var cpuCores: NSNumber
     @NSManaged var cpuIPS: NSNumber
     @NSManaged var dmaTimer: NSNumber
     @NSManaged var i440fxsupport: NSNumber

@@ -12,7 +12,8 @@ import CoreData
 class Drive: NSManagedObject {
 
     @NSManaged var fileName: String
-    @NSManaged var ataInterfaceMaster: ATAInterface
-    @NSManaged var ataInterfaceSlave: ATAInterface
+    @NSManaged var master: NSNumber
+    @NSManaged var ioAddress: String
+    @NSManaged var ataInterface: ATAInterface
 
 }
