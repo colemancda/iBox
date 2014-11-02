@@ -21,6 +21,8 @@
 		6EE2488E1A0545BA000942DB /* HardDiskDrive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2488D1A0545BA000942DB /* HardDiskDrive.swift */; };
 		6EE248901A0545BA000942DB /* ATAInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2488F1A0545BA000942DB /* ATAInterface.swift */; };
 		6EE248921A0545BA000942DB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE248911A0545BA000942DB /* Configuration.swift */; };
+		6EE248941A05966D000942DB /* DriveEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE248931A05966D000942DB /* DriveEditorViewController.swift */; };
+		6EE248961A05981F000942DB /* DrivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE248951A05981F000942DB /* DrivesViewController.swift */; };
 		6EE7150619FF45930078BEEA /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC72719FF107500D94D6C /* BochsKit.framework */; };
 		6EE7150719FF45930078BEEA /* BochsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC72719FF107500D94D6C /* BochsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -98,6 +100,8 @@
 		6EE2488D1A0545BA000942DB /* HardDiskDrive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardDiskDrive.swift; sourceTree = "<group>"; };
 		6EE2488F1A0545BA000942DB /* ATAInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATAInterface.swift; sourceTree = "<group>"; };
 		6EE248911A0545BA000942DB /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		6EE248931A05966D000942DB /* DriveEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveEditorViewController.swift; sourceTree = "<group>"; };
+		6EE248951A05981F000942DB /* DrivesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 			children = (
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
 				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
+				6EE248951A05981F000942DB /* DrivesViewController.swift */,
+				6EE248931A05966D000942DB /* DriveEditorViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +372,8 @@
 				6EE2488C1A0545BA000942DB /* Drive.swift in Sources */,
 				6EE248881A049567000942DB /* Store.swift in Sources */,
 				6EB5A7031A03505800CA31B8 /* ConfigurationEditorViewController.swift in Sources */,
+				6EE248941A05966D000942DB /* DriveEditorViewController.swift in Sources */,
+				6EE248961A05981F000942DB /* DrivesViewController.swift in Sources */,
 				6ECAC6F719FF0E5900D94D6C /* ConfigurationsViewController.swift in Sources */,
 				6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */,
 				6EE2488E1A0545BA000942DB /* HardDiskDrive.swift in Sources */,

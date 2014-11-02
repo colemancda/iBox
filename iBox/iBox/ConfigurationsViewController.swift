@@ -133,6 +133,8 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
         self.fetchedResultsController = self.fetchedResultsControllerForSearchText(searchText);
         
         self.fetchedResultsController!.performFetch(nil)
+        
+        self.tableView.reloadData()
     }
     
     // MARK: - NSFetchedResultsController

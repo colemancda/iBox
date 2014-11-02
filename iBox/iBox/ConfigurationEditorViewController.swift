@@ -60,9 +60,7 @@ class ConfigurationEditorViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // create new object if none was created
-        
-        
+        // load UI
         if configuration != nil {
             
             self.loadUI(forConfiguration: self.configuration!)

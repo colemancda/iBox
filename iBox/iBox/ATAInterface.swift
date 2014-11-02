@@ -12,7 +12,7 @@ import CoreData
 class ATAInterface: NSManagedObject {
 
     @NSManaged var id: NSNumber
-    @NSManaged var configuration: NSManagedObject
+    @NSManaged var configuration: Configuration
     @NSManaged var master: Drive
     @NSManaged var slave: Drive
 

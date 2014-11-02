@@ -9,7 +9,7 @@
         <scene sceneID="I0S-DK-WsO">
             <objects>
                 <tableViewController title="Configurations" id="T9m-KP-JXh" customClass="ConfigurationsViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dQ9-pt-QR6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dQ9-pt-QR6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -187,7 +187,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="4FD-qO-1ot" kind="show" id="XB0-6q-XyG"/>
+                                            <segue destination="4FD-qO-1ot" kind="show" identifier="showDrives" id="XB0-6q-XyG"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Ioq-Fh-rZ3">
@@ -571,17 +571,17 @@
         <scene sceneID="ueC-Tt-3hq">
             <objects>
                 <tableViewController title="Drives" id="4FD-qO-1ot" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="idC-eD-jrs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="idC-eD-jrs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DriveCell" textLabel="NS9-pZ-MrW" detailTextLabel="y3Z-Tu-tTV" style="IBUITableViewCellStyleValue1" id="6fI-81-Qdt">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6fI-81-Qdt" id="89Q-Zs-tVO">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="0 - Master" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NS9-pZ-MrW">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Master" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NS9-pZ-MrW">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -596,7 +596,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="p7Q-4W-euz" kind="show" identifier="driveDetailSegue" id="g0g-VT-3vD"/>
+                                    <segue destination="p7Q-4W-euz" kind="show" identifier="editDriveSegue" id="g0g-VT-3vD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -609,7 +609,7 @@
                     <navigationItem key="navigationItem" title="Drives" id="84I-Yc-i2q">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ldw-oM-ES7">
                             <connections>
-                                <segue destination="Ieb-mV-y98" kind="presentation" modalPresentationStyle="currentContext" id="FqW-qY-4tO"/>
+                                <segue destination="Ieb-mV-y98" kind="presentation" identifier="newDriveSegue" modalPresentationStyle="currentContext" id="FqW-qY-4tO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -619,10 +619,10 @@
             </objects>
             <point key="canvasLocation" x="2444" y="1318"/>
         </scene>
-        <!--Drive Info-->
+        <!--Edit Drives-->
         <scene sceneID="IfX-rJ-k66">
             <objects>
-                <tableViewController title="Drive Info" id="p7Q-4W-euz" sceneMemberID="viewController">
+                <tableViewController title="Edit Drives" id="p7Q-4W-euz" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Thc-AY-mgj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -658,7 +658,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="wUz-1x-SN4" kind="show" id="3QF-le-inC"/>
+                                    <segue destination="wUz-1x-SN4" kind="show" trigger="accessoryAction" id="DGu-ny-0oe"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BootSelectionCell" id="lnt-DG-SwI">
@@ -744,7 +744,7 @@
                             <outlet property="delegate" destination="p7Q-4W-euz" id="oHe-Sc-qGK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Drive Info" id="eol-a2-lpY">
+                    <navigationItem key="navigationItem" title="Edit Drive" id="eol-a2-lpY">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="W1m-z3-4NS"/>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="Acd-xj-YJw"/>
                     </navigationItem>
@@ -811,10 +811,10 @@
             </objects>
             <point key="canvasLocation" x="4069" y="1318"/>
         </scene>
-        <!--Root View Controller-->
+        <!--New HDD Image-->
         <scene sceneID="xif-mH-MVF">
             <objects>
-                <tableViewController id="gxm-C2-jTI" sceneMemberID="viewController">
+                <tableViewController title="New HDD Image" id="gxm-C2-jTI" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="51r-Za-8qH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -950,7 +950,7 @@
                             <outlet property="delegate" destination="gxm-C2-jTI" id="K5w-HD-cUd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="9pz-tp-w7v">
+                    <navigationItem key="navigationItem" title="New Image" id="9pz-tp-w7v">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XWL-Su-dRk"/>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="luf-1l-z6L"/>
                     </navigationItem>
