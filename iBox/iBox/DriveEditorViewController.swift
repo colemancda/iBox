@@ -10,5 +10,11 @@ import UIKit
 
 class DriveEditorViewController: UITableViewController {
     
+    // MARK: - IB Outlets
     
+    
+    
+    // MARK: - Properties
+    
+    var drive: Drive?
 }

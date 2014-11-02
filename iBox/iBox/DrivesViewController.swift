@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-private let DriveCellIdentifier = "DriveCell"
-
 class DrivesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
@@ -38,6 +36,9 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // register section header nib
+        self.tableView.registerNib(UINib(nibName: "ATAInterfaceTableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "ATAInterfaceTableViewHeaderView")
+        
         if self.configuration != nil {
             
             // create fetched results controller
@@ -46,6 +47,25 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             // fetch and load UI
             self.fetchedResultsController!.performFetch(nil)
         }
+    }
+    
+    // MARK: - Actions
+    
+    func irqStepperValueDidChange(sender: UIStepper) {
+        
+        // get model object
+        let section = self.fetchedResultsController!.sections![sender.tag] as [Drive]
+        let drive = section.first!
+        let ataInterface = drive.ataInterface
+        
+        // set model object
+        ataInterface.irq = Int(sender.value)
+        
+        // get header view
+        let headerView = self.tableView.headerViewForSection(sender.tag) as ATAInterfaceTableViewHeaderView
+        
+        // set up header view
+        headerView.irqLabel.text = NSLocalizedString("IRQ", comment: "IRQ") + " \(ataInterface.irq.integerValue)"
     }
     
     // MARK: - Private Methods
@@ -97,6 +117,19 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         if let numberOfSections = self.fetchedResultsController?.sections?.count {
             
+            // conditionaly enable add button
+            if let addButton = self.navigationItem.rightBarButtonItem {
+                
+                // also enable or disable add button
+                if numberOfSections < 4 {
+                    self.navigationItem.rightBarButtonItem?.enabled = true
+                }
+                else {
+                    self.navigationItem.rightBarButtonItem?.enabled = false
+                }
+            }
+            
+            // return number of section
             return numberOfSections
         }
         
@@ -112,6 +145,8 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let DriveCellIdentifier = "DriveCell"
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(DriveCellIdentifier, forIndexPath: indexPath) as UITableViewCell
         
         self.configureCell(cell, atIndexPath: indexPath)
@@ -120,6 +155,25 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("ATAInterfaceTableViewHeaderView") as ATAInterfaceTableViewHeaderView
+        
+        // get model object
+        let sectionArray = self.fetchedResultsController!.sections![section] as [Drive]
+        let drive = sectionArray.first!
+        let ataInterface = drive.ataInterface;
+        
+        // configure header view
+        headerView.ataLabel.text = NSLocalizedString("ATA Interface", comment: "ATA Interface") + " \(ataInterface.id.integerValue)"
+        headerView.irqLabel.text = NSLocalizedString("IRQ", comment: "IRQ") + " \(ataInterface.irq.integerValue)"
+        headerView.irqStepper.value = ataInterface.irq.doubleValue
+        headerView.irqStepper.addTarget(self, action: "irqStepperValueDidChange:", forControlEvents: UIControlEvents.ValueChanged)
+        headerView.irqStepper.tag = section
+        
+        return headerView
+    }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -179,4 +233,71 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
+    
+    // MARK: - Segues
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        
+        if identifier == "newDriveSegue" {
+            
+            // only 4 ATA interfaces max
+            if self.configuration!.ataInterfaces?.count > 4 {
+                
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "newDriveSegue" {
+            
+            // find or create ata interface for new drive
+            
+            var ataInterface: ATAInterface?
+            
+            // no interfaces yet
+            if self.configuration!.ataInterfaces?.count == 0 || self.configuration!.ataInterfaces?.count == nil {
+                
+                ataInterface = NSEntityDescription.insertNewObjectForEntityForName("ATAInterface", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as? ATAInterface
+                ataInterface!.configuration = self.configuration!
+            }
+            
+            // only support 1 ATA interface for now...
+            else {
+                
+                // TODO: support multiple ATA interfaces
+            }
+            
+            // create new drive
+            let newDrive = NSEntityDescription.insertNewObjectForEntityForName("Drive", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as Drive
+            
+            // set ATA interface
+            newDrive.ataInterface = ataInterface!
+            
+            // set model object on VC
+            let driveEditorVC = segue.destinationViewController as DriveEditorViewController
+            
+            driveEditorVC.drive = newDrive
+        }
+    }
+    
+    
+}
+
+// MARK: - UI Classes
+
+class ATAInterfaceTableViewHeaderView: UITableViewHeaderFooterView {
+    
+    // Use to bind to IB, but remove for compiling
+    //@IBOutlet var contentView: UIView!
+    
+    @IBOutlet weak var ataLabel: UILabel!
+    
+    @IBOutlet weak var irqLabel: UILabel!
+    
+    @IBOutlet weak var irqStepper: UIStepper!
+    
 }

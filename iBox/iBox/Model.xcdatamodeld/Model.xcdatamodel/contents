@@ -2,9 +2,9 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ATAInterface" representedClassName="iBox.ATAInterface" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="irq" attributeType="Integer 16" defaultValueString="14" syncable="YES"/>
+        <attribute name="irq" attributeType="Integer 16" minValueString="0" defaultValueString="14" syncable="YES"/>
         <relationship name="configuration" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="ataInterfaces" inverseEntity="Configuration" syncable="YES"/>
-        <relationship name="drives" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="ataInterface" inverseEntity="Drive" syncable="YES"/>
+        <relationship name="drives" toMany="YES" maxCount="2" deletionRule="Nullify" destinationEntity="Drive" inverseName="ataInterface" inverseEntity="Drive" syncable="YES"/>
     </entity>
     <entity name="CDRom" representedClassName="iBox.CDRom" parentEntity="Drive" syncable="YES">
         <attribute name="discInserted" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -23,7 +23,7 @@
         <attribute name="vgaExtension" attributeType="String" defaultValueString="vbe" syncable="YES"/>
         <attribute name="vgaUpdateInterval" attributeType="Integer 64" minValueString="1" defaultValueString="80000" syncable="YES"/>
         <attribute name="waveMode" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
-        <relationship name="ataInterfaces" optional="YES" toMany="YES" maxCount="2" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="configuration" inverseEntity="ATAInterface" syncable="YES"/>
+        <relationship name="ataInterfaces" optional="YES" toMany="YES" maxCount="4" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="configuration" inverseEntity="ATAInterface" syncable="YES"/>
     </entity>
     <entity name="Drive" representedClassName="iBox.Drive" isAbstract="YES" syncable="YES">
         <attribute name="fileName" attributeType="String" syncable="YES"/>

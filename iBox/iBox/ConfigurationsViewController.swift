@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-private let ConfigurationCellIdentier = "ConfigurationCell"
-
 class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate {
     
     // MARK: - IB Outlets
@@ -88,6 +86,8 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let ConfigurationCellIdentier = "ConfigurationCell"
         
         let cell = tableView.dequeueReusableCellWithIdentifier(ConfigurationCellIdentier, forIndexPath: indexPath) as UITableViewCell
         

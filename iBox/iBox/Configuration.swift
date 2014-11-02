@@ -24,7 +24,7 @@ class Configuration: NSManagedObject {
     @NSManaged var vgaExtension: String
     @NSManaged var vgaUpdateInterval: NSNumber
     @NSManaged var waveMode: NSNumber
-    @NSManaged var ataInterfaces: NSSet
+    @NSManaged var ataInterfaces: NSSet?
 
 }
 

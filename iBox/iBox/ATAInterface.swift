@@ -14,6 +14,6 @@ class ATAInterface: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var irq: NSNumber
     @NSManaged var configuration: Configuration
-    @NSManaged var drives: NSSet
+    @NSManaged var drives: NSSet?
 
 }

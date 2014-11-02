@@ -169,7 +169,12 @@ class ConfigurationEditorViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        
+        if segue.identifier == "showDrives" {
+            
+            let drivesVC = segue.destinationViewController as DrivesViewController
+            
+            drivesVC.configuration = self.configuration
+        }
     }
     
     

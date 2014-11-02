@@ -105,9 +105,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="interactivePopGestureRecognizer.enabled" value="NO"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="T9m-KP-JXh" kind="relationship" relationship="rootViewController" id="0Le-d0-hk8"/>
                     </connections>
@@ -546,13 +543,13 @@
         <!--Drives-->
         <scene sceneID="ueC-Tt-3hq">
             <objects>
-                <tableViewController title="Drives" id="4FD-qO-1ot" sceneMemberID="viewController">
+                <tableViewController title="Drives" id="4FD-qO-1ot" customClass="DrivesViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="idC-eD-jrs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DriveCell" textLabel="NS9-pZ-MrW" detailTextLabel="y3Z-Tu-tTV" style="IBUITableViewCellStyleValue1" id="6fI-81-Qdt">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DriveCell" textLabel="NS9-pZ-MrW" detailTextLabel="y3Z-Tu-tTV" style="IBUITableViewCellStyleValue1" id="6fI-81-Qdt">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6fI-81-Qdt" id="89Q-Zs-tVO">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -585,7 +582,7 @@
                     <navigationItem key="navigationItem" title="Drives" id="84I-Yc-i2q">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ldw-oM-ES7">
                             <connections>
-                                <segue destination="Ieb-mV-y98" kind="presentation" identifier="newDriveSegue" modalPresentationStyle="currentContext" id="FqW-qY-4tO"/>
+                                <segue destination="p7Q-4W-euz" kind="show" identifier="newDriveSegue" id="00y-z9-HdA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -598,7 +595,7 @@
         <!--Edit Drives-->
         <scene sceneID="IfX-rJ-k66">
             <objects>
-                <tableViewController title="Edit Drives" id="p7Q-4W-euz" sceneMemberID="viewController">
+                <tableViewController title="Edit Drives" id="p7Q-4W-euz" customClass="DriveEditorViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Thc-AY-mgj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -720,30 +717,11 @@
                             <outlet property="delegate" destination="p7Q-4W-euz" id="oHe-Sc-qGK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Edit Drive" id="eol-a2-lpY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="W1m-z3-4NS"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="Acd-xj-YJw"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Edit Drive" id="eol-a2-lpY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSU-LE-HQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3314" y="1318"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fof-ib-gj3">
-            <objects>
-                <navigationController modalPresentationStyle="currentContext" id="Ieb-mV-y98" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DcT-qv-8zW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="p7Q-4W-euz" kind="relationship" relationship="rootViewController" id="J0e-xu-RKM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LOb-gL-Zu7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2444" y="2126"/>
         </scene>
         <!--File Selection-->
         <scene sceneID="KAy-WS-mhd">
@@ -954,6 +932,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9kC-4S-DDM"/>
-        <segue reference="g0g-VT-3vD"/>
+        <segue reference="00y-z9-HdA"/>
     </inferredMetricsTieBreakers>
 </document>
