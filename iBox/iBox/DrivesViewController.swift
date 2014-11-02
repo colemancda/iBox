@@ -31,6 +31,10 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     
     private var fetchedResultsController: NSFetchedResultsController?
     
+    private let maxATAInterfaces = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Configuration"] as NSEntityDescription).relationshipsByName["ataInterfaces"] as NSRelationshipDescription).maxCount
+    
+    private let maxDrivesPerATAInterface = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["ATAInterface"] as NSEntityDescription).relationshipsByName["drives"] as NSRelationshipDescription).maxCount
+    
     // MARK: - Loading
     
     override func viewDidLoad() {
@@ -54,7 +58,9 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     func irqStepperValueDidChange(sender: UIStepper) {
         
         // get model object
-        let section = self.fetchedResultsController!.sections![sender.tag] as [Drive]
+        let sectionInfo = self.fetchedResultsController!.sections![sender.tag] as NSFetchedResultsSectionInfo
+        
+        let section = sectionInfo.objects as [Drive]
         let drive = section.first!
         let ataInterface = drive.ataInterface
         
@@ -106,7 +112,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         // set media label
         switch drive.entity.name! {
         case "CDRom": cell.detailTextLabel?.text = NSLocalizedString("CDROM", comment: "CDROM")
-        case "HardDiscDrive": cell.detailTextLabel?.text = NSLocalizedString("HDD", comment: "HDD")
+        case "HardDiskDrive": cell.detailTextLabel?.text = NSLocalizedString("HDD", comment: "HDD")
         default: cell.detailTextLabel?.text = NSLocalizedString("Unknown", comment: "Unknown")
         }
     }
@@ -121,7 +127,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             if let addButton = self.navigationItem.rightBarButtonItem {
                 
                 // also enable or disable add button
-                if numberOfSections < 4 {
+                if numberOfSections < self.maxATAInterfaces {
                     self.navigationItem.rightBarButtonItem?.enabled = true
                 }
                 else {
@@ -138,9 +144,9 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let section = self.fetchedResultsController!.sections![section] as [Drive]
+        let sectionInfo = self.fetchedResultsController!.sections![section] as NSFetchedResultsSectionInfo
         
-        return section.count
+        return sectionInfo.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -161,7 +167,8 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("ATAInterfaceTableViewHeaderView") as ATAInterfaceTableViewHeaderView
         
         // get model object
-        let sectionArray = self.fetchedResultsController!.sections![section] as [Drive]
+        let sectionInfo = self.fetchedResultsController!.sections![section] as NSFetchedResultsSectionInfo
+        let sectionArray = sectionInfo.objects as [Drive]
         let drive = sectionArray.first!
         let ataInterface = drive.ataInterface;
         
@@ -182,19 +189,6 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // delete
         Store.sharedInstance.managedObjectContext.deleteObject(drive)
-        
-        // save
-        
-        var error: NSError?
-        
-        Store.sharedInstance.managedObjectContext.save(&error)
-        
-        if error != nil {
-            
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("Could not delete drive.", comment: "Could not delete drive.") + " \\(\(error!.localizedDescription)\\)", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
     }
     
     // MARK: - NSFetchedResultsController
@@ -241,7 +235,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         if identifier == "newDriveSegue" {
             
             // only 4 ATA interfaces max
-            if self.configuration!.ataInterfaces?.count > 4 {
+            if self.configuration!.ataInterfaces?.count > self.maxATAInterfaces {
                 
                 return false
             }
@@ -254,6 +248,9 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         if segue.identifier == "newDriveSegue" {
             
+            // create new drive
+            let newDrive = NSEntityDescription.insertNewObjectForEntityForName("Drive", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as Drive
+            
             // find or create ata interface for new drive
             
             var ataInterface: ATAInterface?
@@ -265,16 +262,59 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
                 ataInterface!.configuration = self.configuration!
             }
             
-            // only support 1 ATA interface for now...
+            // ATA interfaces exist
             else {
                 
-                // TODO: support multiple ATA interfaces
+                // find latest ATA interface
+                
+                let fetchRequest = NSFetchRequest(entityName: "ATAInterface")
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+                fetchRequest.predicate = NSPredicate(format: "configuration == %@", self.configuration!)
+                
+                var fetchError: NSError?
+                let fetchResult = Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
+                
+                assert(fetchError == nil, "Error occurred while fetching from store. (\(fetchError?.localizedDescription))")
+                
+                let newestATAInterface = fetchResult!.last as ATAInterface
+                
+                // get number of existing drives
+                var numberOfDrivesInNewestATAInterface = 0
+                
+                if newestATAInterface.drives != nil {
+                    
+                    numberOfDrivesInNewestATAInterface = newestATAInterface.drives!.count
+                }
+                
+                // set or create ATA interface
+                switch numberOfDrivesInNewestATAInterface {
+                    
+                    // already has slave and master
+                case maxDrivesPerATAInterface:
+                    
+                    // create new ATA interface
+                    ataInterface = NSEntityDescription.insertNewObjectForEntityForName("ATAInterface", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as? ATAInterface
+                    ataInterface!.configuration = self.configuration!
+                    ataInterface!.id = self.configuration!.ataInterfaces!.count
+                    
+                    // doesnt have any drives
+                case 0:
+                    
+                    ataInterface = newestATAInterface
+                    
+                    // newly created drives are master by default
+                    
+                    // add as slave
+                default:
+                    
+                    ataInterface = newestATAInterface
+                    
+                    newDrive.master = false
+                }
+                
             }
-            
-            // create new drive
-            let newDrive = NSEntityDescription.insertNewObjectForEntityForName("Drive", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as Drive
-            
-            // set ATA interface
+                
+            // set drive interface
             newDrive.ataInterface = ataInterface!
             
             // set model object on VC

@@ -26,7 +26,7 @@
         <relationship name="ataInterfaces" optional="YES" toMany="YES" maxCount="4" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="configuration" inverseEntity="ATAInterface" syncable="YES"/>
     </entity>
     <entity name="Drive" representedClassName="iBox.Drive" isAbstract="YES" syncable="YES">
-        <attribute name="fileName" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" attributeType="String" defaultValueString="c.img" syncable="YES"/>
         <attribute name="ioAddress" attributeType="String" defaultValueString="0x1f0" syncable="YES"/>
         <attribute name="master" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <relationship name="ataInterface" maxCount="1" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="drives" inverseEntity="ATAInterface" syncable="YES"/>
