@@ -111,6 +111,8 @@ class NewDriveViewController: UITableViewController {
             let driveEditorVC = segue.destinationViewController as DriveEditorViewController
             
             driveEditorVC.drive = newDrive
+            
+            driveEditorVC.navigationItem.hidesBackButton = true
         }
         
         if segue.identifier == "newHDDSegue" {
@@ -122,6 +124,8 @@ class NewDriveViewController: UITableViewController {
             let driveEditorVC = segue.destinationViewController as DriveEditorViewController
             
             driveEditorVC.drive = newDrive
+            
+            driveEditorVC.navigationItem.hidesBackButton = true
         }
         
     }
