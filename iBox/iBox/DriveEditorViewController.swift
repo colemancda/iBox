@@ -17,4 +17,11 @@ class DriveEditorViewController: UITableViewController {
     // MARK: - Properties
     
     var drive: Drive?
+    
+    // MARK: - Actions
+    
+    @IBAction func done(sender: UIBarButtonItem) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

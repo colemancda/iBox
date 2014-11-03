@@ -4,7 +4,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="irq" attributeType="Integer 16" minValueString="0" defaultValueString="14" syncable="YES"/>
         <relationship name="configuration" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="ataInterfaces" inverseEntity="Configuration" syncable="YES"/>
-        <relationship name="drives" toMany="YES" maxCount="2" deletionRule="Nullify" destinationEntity="Drive" inverseName="ataInterface" inverseEntity="Drive" syncable="YES"/>
+        <relationship name="drives" toMany="YES" maxCount="2" deletionRule="Cascade" destinationEntity="Drive" inverseName="ataInterface" inverseEntity="Drive" syncable="YES"/>
     </entity>
     <entity name="CDRom" representedClassName="iBox.CDRom" parentEntity="Drive" syncable="YES">
         <attribute name="discInserted" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -29,7 +29,7 @@
         <attribute name="fileName" attributeType="String" defaultValueString="c.img" syncable="YES"/>
         <attribute name="ioAddress" attributeType="String" defaultValueString="0x1f0" syncable="YES"/>
         <attribute name="master" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <relationship name="ataInterface" maxCount="1" deletionRule="Cascade" destinationEntity="ATAInterface" inverseName="drives" inverseEntity="ATAInterface" syncable="YES"/>
+        <relationship name="ataInterface" maxCount="1" deletionRule="Nullify" destinationEntity="ATAInterface" inverseName="drives" inverseEntity="ATAInterface" syncable="YES"/>
     </entity>
     <entity name="HardDiskDrive" representedClassName="iBox.HardDiskDrive" parentEntity="Drive" syncable="YES">
         <attribute name="cylinders" attributeType="Integer 16" defaultValueString="812" syncable="YES"/>

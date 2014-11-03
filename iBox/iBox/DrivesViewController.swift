@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+internal let maxATAInterfacesPerConfiguration = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Configuration"] as NSEntityDescription).relationshipsByName["ataInterfaces"] as NSRelationshipDescription).maxCount
+
+internal let maxDrivesPerATAInterface = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["ATAInterface"] as NSEntityDescription).relationshipsByName["drives"] as NSRelationshipDescription).maxCount
+
 class DrivesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
@@ -30,10 +34,6 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Private Properties
     
     private var fetchedResultsController: NSFetchedResultsController?
-    
-    private let maxATAInterfaces = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Configuration"] as NSEntityDescription).relationshipsByName["ataInterfaces"] as NSRelationshipDescription).maxCount
-    
-    private let maxDrivesPerATAInterface = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["ATAInterface"] as NSEntityDescription).relationshipsByName["drives"] as NSRelationshipDescription).maxCount
     
     // MARK: - Loading
     
@@ -81,7 +81,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         // create fetch request
         let fetchRequest = NSFetchRequest(entityName: "Drive");
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "master", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "ataInterface.id", ascending: true), NSSortDescriptor(key: "master", ascending: false)]
         
         fetchRequest.predicate = NSPredicate(format: "ataInterface.configuration == %@", configuration)
         
@@ -127,7 +127,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             if let addButton = self.navigationItem.rightBarButtonItem {
                 
                 // also enable or disable add button
-                if numberOfSections < self.maxATAInterfaces {
+                if numberOfSections < maxATAInterfacesPerConfiguration {
                     self.navigationItem.rightBarButtonItem?.enabled = true
                 }
                 else {
@@ -184,11 +184,20 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        // get the model object
-        let drive = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Drive
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            // get the model object
+            let drive = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Drive
+            
+            // delete
+            Store.sharedInstance.managedObjectContext.deleteObject(drive)
+
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        // delete
-        Store.sharedInstance.managedObjectContext.deleteObject(drive)
+        return 95
     }
     
     // MARK: - NSFetchedResultsController
@@ -235,7 +244,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         if identifier == "newDriveSegue" {
             
             // only 4 ATA interfaces max
-            if self.configuration!.ataInterfaces?.count > self.maxATAInterfaces {
+            if self.configuration!.ataInterfaces?.count > maxATAInterfacesPerConfiguration {
                 
                 return false
             }
@@ -248,82 +257,27 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         if segue.identifier == "newDriveSegue" {
             
-            // create new drive
-            let newDrive = NSEntityDescription.insertNewObjectForEntityForName("Drive", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as Drive
+            // get VC
+            let newDriveVC = (segue.destinationViewController as UINavigationController).viewControllers.first as NewDriveViewController
             
-            // find or create ata interface for new drive
+            // set model object on VC
+            newDriveVC.configuration = self.configuration!
+        }
+        
+        if segue.identifier == "editDriveSegue" {
             
-            var ataInterface: ATAInterface?
-            
-            // no interfaces yet
-            if self.configuration!.ataInterfaces?.count == 0 || self.configuration!.ataInterfaces?.count == nil {
-                
-                ataInterface = NSEntityDescription.insertNewObjectForEntityForName("ATAInterface", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as? ATAInterface
-                ataInterface!.configuration = self.configuration!
-            }
-            
-            // ATA interfaces exist
-            else {
-                
-                // find latest ATA interface
-                
-                let fetchRequest = NSFetchRequest(entityName: "ATAInterface")
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-                fetchRequest.predicate = NSPredicate(format: "configuration == %@", self.configuration!)
-                
-                var fetchError: NSError?
-                let fetchResult = Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
-                
-                assert(fetchError == nil, "Error occurred while fetching from store. (\(fetchError?.localizedDescription))")
-                
-                let newestATAInterface = fetchResult!.last as ATAInterface
-                
-                // get number of existing drives
-                var numberOfDrivesInNewestATAInterface = 0
-                
-                if newestATAInterface.drives != nil {
-                    
-                    numberOfDrivesInNewestATAInterface = newestATAInterface.drives!.count
-                }
-                
-                // set or create ATA interface
-                switch numberOfDrivesInNewestATAInterface {
-                    
-                    // already has slave and master
-                case maxDrivesPerATAInterface:
-                    
-                    // create new ATA interface
-                    ataInterface = NSEntityDescription.insertNewObjectForEntityForName("ATAInterface", inManagedObjectContext: Store.sharedInstance.managedObjectContext) as? ATAInterface
-                    ataInterface!.configuration = self.configuration!
-                    ataInterface!.id = self.configuration!.ataInterfaces!.count
-                    
-                    // doesnt have any drives
-                case 0:
-                    
-                    ataInterface = newestATAInterface
-                    
-                    // newly created drives are master by default
-                    
-                    // add as slave
-                default:
-                    
-                    ataInterface = newestATAInterface
-                    
-                    newDrive.master = false
-                }
-                
-            }
-                
-            // set drive interface
-            newDrive.ataInterface = ataInterface!
+            // get selected drive
+            let selectedDrive = self.fetchedResultsController!.objectAtIndexPath(self.tableView.indexPathForSelectedRow()!) as Drive
             
             // set model object on VC
             let driveEditorVC = segue.destinationViewController as DriveEditorViewController
             
-            driveEditorVC.drive = newDrive
+            driveEditorVC.drive = selectedDrive
+            
+            // hide done button
+            driveEditorVC.navigationItem.rightBarButtonItem = nil
         }
     }
-    
     
 }
 

@@ -25,6 +25,7 @@
 		6EE248A21A05C5A2000942DB /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE248A11A05C5A2000942DB /* Drive.swift */; };
 		6EE248A41A05CF06000942DB /* FileSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE248A31A05CF06000942DB /* FileSelectionViewController.swift */; };
 		6EE248A71A05E6E9000942DB /* ATAInterfaceTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE248A61A05E6E9000942DB /* ATAInterfaceTableViewHeaderView.xib */; };
+		6EE248A91A0703FD000942DB /* NewDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE248A81A0703FD000942DB /* NewDriveViewController.swift */; };
 		6EE7150619FF45930078BEEA /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC72719FF107500D94D6C /* BochsKit.framework */; };
 		6EE7150719FF45930078BEEA /* BochsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC72719FF107500D94D6C /* BochsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		6EE248A11A05C5A2000942DB /* Drive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		6EE248A31A05CF06000942DB /* FileSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSelectionViewController.swift; sourceTree = "<group>"; };
 		6EE248A61A05E6E9000942DB /* ATAInterfaceTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATAInterfaceTableViewHeaderView.xib; sourceTree = "<group>"; };
+		6EE248A81A0703FD000942DB /* NewDriveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDriveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
 				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
 				6EE248951A05981F000942DB /* DrivesViewController.swift */,
+				6EE248A81A0703FD000942DB /* NewDriveViewController.swift */,
 				6EE248931A05966D000942DB /* DriveEditorViewController.swift */,
 				6EE248A31A05CF06000942DB /* FileSelectionViewController.swift */,
 			);
@@ -395,6 +398,7 @@
 				6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */,
 				6ECAC6FA19FF0F7900D94D6C /* Model.xcdatamodeld in Sources */,
 				6EE2489E1A05C5A2000942DB /* HardDiskDrive.swift in Sources */,
+				6EE248A91A0703FD000942DB /* NewDriveViewController.swift in Sources */,
 				6EE248921A0545BA000942DB /* Configuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

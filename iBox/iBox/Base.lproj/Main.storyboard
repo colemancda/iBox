@@ -582,7 +582,7 @@
                     <navigationItem key="navigationItem" title="Drives" id="84I-Yc-i2q">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ldw-oM-ES7">
                             <connections>
-                                <segue destination="p7Q-4W-euz" kind="show" identifier="newDriveSegue" id="00y-z9-HdA"/>
+                                <segue destination="YHM-fm-0iT" kind="presentation" identifier="newDriveSegue" modalPresentationStyle="currentContext" id="gHf-Qm-8rF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -631,7 +631,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="wUz-1x-SN4" kind="show" trigger="accessoryAction" id="DGu-ny-0oe"/>
+                                    <segue destination="wUz-1x-SN4" kind="show" identifier="fileSelectionSegue" trigger="accessoryAction" id="DGu-ny-0oe"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BootSelectionCell" id="lnt-DG-SwI">
@@ -717,11 +717,92 @@
                             <outlet property="delegate" destination="p7Q-4W-euz" id="oHe-Sc-qGK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Edit Drive" id="eol-a2-lpY"/>
+                    <navigationItem key="navigationItem" title="Edit Drive" id="eol-a2-lpY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="eqX-co-TWc">
+                            <connections>
+                                <action selector="done:" destination="p7Q-4W-euz" id="vMc-sA-TfK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSU-LE-HQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3314" y="1318"/>
+        </scene>
+        <!--New Drive-->
+        <scene sceneID="hs3-FS-Hnw">
+            <objects>
+                <tableViewController title="New Drive" id="Yfh-5I-KRx" customClass="NewDriveViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="trk-L8-rWd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="U99-LF-hiY">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="wIg-2T-Fnh" style="IBUITableViewCellStyleDefault" id="DW7-dD-oIT">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DW7-dD-oIT" id="sFb-s7-nnS">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="CDROM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wIg-2T-Fnh">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="p7Q-4W-euz" kind="show" identifier="newCDROMSegue" id="GNm-7d-v9i"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="47S-hs-owO" style="IBUITableViewCellStyleDefault" id="4qJ-E3-FWK">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4qJ-E3-FWK" id="ABZ-Rq-KFC">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="HDD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="47S-hs-owO">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="p7Q-4W-euz" kind="show" identifier="newHDDSegue" id="qxk-Th-dLJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Yfh-5I-KRx" id="dd1-Q7-LNH"/>
+                            <outlet property="delegate" destination="Yfh-5I-KRx" id="uux-IU-2dY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Drive" id="aYD-eJ-bGs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3b6-ls-jpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444" y="2869"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dIN-hT-yaz">
+            <objects>
+                <navigationController id="YHM-fm-0iT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uv3-k4-UVD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Yfh-5I-KRx" kind="relationship" relationship="rootViewController" id="erh-Z3-jlh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGx-9Z-he4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444" y="2070"/>
         </scene>
         <!--File Selection-->
         <scene sceneID="KAy-WS-mhd">
@@ -756,7 +837,7 @@
                     <navigationItem key="navigationItem" title="File Selection" id="4Bp-KM-gXD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qe2-GF-dTL">
                             <connections>
-                                <segue destination="FbF-LJ-STK" kind="presentation" identifier="CreateHDDSegue" id="8VY-TO-cnC"/>
+                                <segue destination="FbF-LJ-STK" kind="presentation" identifier="CreateHDDSegue" modalPresentationStyle="currentContext" id="8VY-TO-cnC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -932,6 +1013,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9kC-4S-DDM"/>
-        <segue reference="00y-z9-HdA"/>
+        <segue reference="GNm-7d-v9i"/>
     </inferredMetricsTieBreakers>
 </document>
