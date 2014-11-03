@@ -117,6 +117,41 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
+    private func canCreateNewDrive() -> Bool {
+        
+        if self.configuration!.ataInterfaces?.count > 0 {
+            
+            // only 4 ATA interfaces max
+            if self.configuration!.ataInterfaces?.count > maxATAInterfacesPerConfiguration {
+                
+                return false
+            }
+            
+            // cannot create ATA interface with id higher than max...
+            
+            // find latest ATA interface
+            
+            let fetchRequest = NSFetchRequest(entityName: "ATAInterface")
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+            fetchRequest.predicate = NSPredicate(format: "configuration == %@", self.configuration!)
+            
+            var fetchError: NSError?
+            let fetchResult = Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
+            
+            assert(fetchError == nil, "Error occurred while fetching from store. (\(fetchError?.localizedDescription))")
+            
+            let newestATAInterface = fetchResult!.last as ATAInterface
+            
+            // max number of interfaces and drives
+            if newestATAInterface.id == maxATAInterfacesPerConfiguration - 1 && newestATAInterface.drives?.count == maxDrivesPerATAInterface {
+                
+                return false
+            }
+        }
+        
+        return true
+    }
+    
     // MARK: - UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -126,13 +161,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             // conditionaly enable add button
             if let addButton = self.navigationItem.rightBarButtonItem {
                 
-                // also enable or disable add button
-                if numberOfSections < maxATAInterfacesPerConfiguration {
-                    self.navigationItem.rightBarButtonItem?.enabled = true
-                }
-                else {
-                    self.navigationItem.rightBarButtonItem?.enabled = false
-                }
+                self.navigationItem.rightBarButtonItem?.enabled = self.canCreateNewDrive()
             }
             
             // return number of section
@@ -188,9 +217,17 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             
             // get the model object
             let drive = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Drive
+            let ataInterface = drive.ataInterface
             
-            // delete
+            // delete drive
             Store.sharedInstance.managedObjectContext.deleteObject(drive)
+            
+            // also delete ATA interface if it is empty...
+            
+            if ataInterface.drives!.count == 0 {
+                
+                Store.sharedInstance.managedObjectContext.deleteObject(ataInterface)
+            }
 
         }
     }
@@ -243,11 +280,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         
         if identifier == "newDriveSegue" {
             
-            // only 4 ATA interfaces max
-            if self.configuration!.ataInterfaces?.count > maxATAInterfacesPerConfiguration {
-                
-                return false
-            }
+            return self.canCreateNewDrive()
         }
         
         return true

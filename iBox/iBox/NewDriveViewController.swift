@@ -63,7 +63,7 @@ class NewDriveViewController: UITableViewController {
             // set or create ATA interface
             switch numberOfDrivesInNewestATAInterface {
                 
-                // already has slave and master
+            // already has slave and master
             case maxDrivesPerATAInterface:
                 
                 // create new ATA interface
@@ -72,14 +72,17 @@ class NewDriveViewController: UITableViewController {
                 ataInterface!.configuration = self.configuration!
                 ataInterface!.id = newIndex
                 
-                // doesnt have any drives
+                // set IRQ
+                ataInterface!.irq = 14 + newIndex
+                
+            // doesnt have any drives
             case 0:
                 
                 ataInterface = newestATAInterface
                 
                 // newly created drives are master by default
                 
-                // add as slave
+            // add as slave
             default:
                 
                 ataInterface = newestATAInterface
