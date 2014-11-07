@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1bZ-Lo-H3r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1bZ-Lo-H3r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -643,16 +643,16 @@
             </objects>
             <point key="canvasLocation" x="2444" y="1318"/>
         </scene>
-        <!--Edit Drives-->
+        <!--Edit Drive-->
         <scene sceneID="IfX-rJ-k66">
             <objects>
-                <tableViewController title="Edit Drives" id="p7Q-4W-euz" customClass="DriveEditorViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Edit Drive" id="p7Q-4W-euz" customClass="DriveEditorViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Thc-AY-mgj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileNameCell" id="LPV-6V-87M">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileNameCell" id="LPV-6V-87M" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LPV-6V-87M" id="6Dm-Gh-j8q">
@@ -682,29 +682,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="fileNameLabel" destination="3E0-Pb-OmC" id="3kR-yz-4Jy"/>
+                                    <outlet property="fileNameTextField" destination="mES-d3-ijD" id="rIZ-Zh-DiJ"/>
                                     <segue destination="wUz-1x-SN4" kind="show" identifier="fileSelectionSegue" trigger="accessoryAction" id="DGu-ny-0oe"/>
                                 </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BootSelectionCell" id="lnt-DG-SwI">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lnt-DG-SwI" id="VCz-7h-QmW">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Sf9-5D-PkK">
-                                            <rect key="frame" x="15" y="8" width="577" height="29"/>
-                                            <segments>
-                                                <segment title="CDROM"/>
-                                                <segment title="HDD"/>
-                                            </segments>
-                                        </segmentedControl>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Sf9-5D-PkK" firstAttribute="trailing" secondItem="VCz-7h-QmW" secondAttribute="trailingMargin" id="M52-6t-ruB"/>
-                                        <constraint firstAttribute="centerY" secondItem="Sf9-5D-PkK" secondAttribute="centerY" id="Qwa-5O-TEk"/>
-                                        <constraint firstItem="Sf9-5D-PkK" firstAttribute="leading" secondItem="VCz-7h-QmW" secondAttribute="leading" constant="15" id="vyo-Db-7bo"/>
-                                    </constraints>
-                                </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" id="jpa-EA-nip">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -714,6 +695,9 @@
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqN-3O-8f4">
                                             <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchFlipped:" destination="p7Q-4W-euz" eventType="valueChanged" id="E8A-br-RpV"/>
+                                            </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disc Inserted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBa-qy-XGB">
                                             <rect key="frame" x="15" y="11" width="170" height="21"/>
@@ -730,8 +714,13 @@
                                         <constraint firstAttribute="centerY" secondItem="GBa-qy-XGB" secondAttribute="centerY" id="fjr-1f-7YL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="accessoryView" destination="iqN-3O-8f4" id="DrL-KP-cUx"/>
+                                    <outlet property="switchView" destination="iqN-3O-8f4" id="6lL-Qz-Mz1"/>
+                                    <outlet property="titleLabel" destination="GBa-qy-XGB" id="uOD-o2-Xw4"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NumberInputCell" id="knF-L8-Hv8">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NumberInputCell" id="knF-L8-Hv8" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="knF-L8-Hv8" id="Mk2-mb-EFt">
@@ -750,6 +739,9 @@
                                             <rect key="frame" x="205" y="7" width="387" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="p7Q-4W-euz" id="aQc-Cv-lrM"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -760,6 +752,10 @@
                                         <constraint firstItem="xnp-Ml-vGD" firstAttribute="leading" secondItem="Mk2-mb-EFt" secondAttribute="leading" constant="15" id="uzj-RI-qCw"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="bwm-c7-db8" id="Z2T-kd-0cD"/>
+                                    <outlet property="titleLabel" destination="xnp-Ml-vGD" id="Vbq-6j-MEj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
