@@ -44,7 +44,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .HardDiskDrive:
             
-            self.tableViewCellLayout = [[.FileName], [.Headers, .Cylinders, .TracksPerSector]]
+            self.tableViewCellLayout = [[.FileName], [.Heads, .Cylinders, .SectorsPerTrack]]
         }
         
         // reload UI
@@ -110,17 +110,38 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             */
             
             (cell.accessoryView as UISwitch).on = (self.drive as CDRom).discInserted.boolValue
+            
+            return cell
 
-        case .Headers:
+        case .Heads:
             
             let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Headers", comment: "Headers")
             
-            cell.
+            cell.textField.text = "\((self.drive as HardDiskDrive).heads)"
             
-        default:
-            return tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell)!) as UITableViewCell
+            return cell
+            
+        case .Cylinders:
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            
+            cell.titleLabel.text = NSLocalizedString("Cylinders", comment: "Cylinders")
+            
+            cell.textField.text = "\((self.drive as HardDiskDrive).cylinders)"
+            
+            return cell
+            
+        case .SectorsPerTrack:
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            
+            cell.titleLabel.text = NSLocalizedString("Sectors per Track", comment: "Sectors per Track")
+            
+            cell.textField.text = "\((self.drive as HardDiskDrive).sectorsPerTrack)"
+            
+            return cell
         }
     }
     
@@ -142,8 +163,6 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
                 
             case .HardDiskDrive : return NSLocalizedString("HDD Configuration", comment: "HDD Configuration")
                 
-            default: return "Drive"
-                
             }
             
         default: return "Section"
@@ -151,18 +170,16 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        
-        
-    }
-    
     // MARK: - UITextFieldDelegate
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        
     }
 }
 
@@ -176,7 +193,7 @@ private enum DriveEditorViewControllerDriveEntity: String {
 
 private enum DriveEditorViewControllerTableViewCellItem {
     
-    case FileName, DiscInserted, Headers, Cylinders, TracksPerSector
+    case FileName, DiscInserted, Heads, Cylinders, SectorsPerTrack
 }
 
 private enum DriveEditorViewControllerTableViewCellReusableIdentifier: String {

@@ -682,8 +682,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="fileNameLabel" destination="3E0-Pb-OmC" id="3kR-yz-4Jy"/>
-                                    <outlet property="fileNameTextField" destination="mES-d3-ijD" id="rIZ-Zh-DiJ"/>
+                                    <outlet property="textField" destination="mES-d3-ijD" id="tOM-0U-pR8"/>
+                                    <outlet property="titleLabel" destination="3E0-Pb-OmC" id="5yN-n9-RiG"/>
                                     <segue destination="wUz-1x-SN4" kind="show" identifier="fileSelectionSegue" trigger="accessoryAction" id="DGu-ny-0oe"/>
                                 </connections>
                             </tableViewCell>
@@ -699,25 +699,10 @@
                                                 <action selector="switchFlipped:" destination="p7Q-4W-euz" eventType="valueChanged" id="E8A-br-RpV"/>
                                             </connections>
                                         </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disc Inserted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBa-qy-XGB">
-                                            <rect key="frame" x="15" y="11" width="170" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="170" id="X7K-jB-ebs"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="GBa-qy-XGB" firstAttribute="leading" secondItem="Y0f-QS-J1T" secondAttribute="leading" constant="15" id="MPh-BO-UoZ"/>
-                                        <constraint firstAttribute="centerY" secondItem="GBa-qy-XGB" secondAttribute="centerY" id="fjr-1f-7YL"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="accessoryView" destination="iqN-3O-8f4" id="DrL-KP-cUx"/>
-                                    <outlet property="switchView" destination="iqN-3O-8f4" id="6lL-Qz-Mz1"/>
-                                    <outlet property="titleLabel" destination="GBa-qy-XGB" id="uOD-o2-Xw4"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NumberInputCell" id="knF-L8-Hv8" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
@@ -726,7 +711,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="knF-L8-Hv8" id="Mk2-mb-EFt">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnp-Ml-vGD">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heads" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnp-Ml-vGD">
                                             <rect key="frame" x="15" y="11" width="170" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="170" id="uMz-uH-6X7"/>
@@ -910,7 +895,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PKe-fb-TEv" id="gsX-6S-2wN">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7L-0c-mid">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heads" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7L-0c-mid">
                                                     <rect key="frame" x="15" y="11" width="170" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="170" id="TKP-7N-8eg"/>
