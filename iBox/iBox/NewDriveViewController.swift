@@ -134,7 +134,7 @@ class NewDriveViewController: UITableViewController {
 
 // MARK: - Public Functions
 
-func isSubEntity(entityNamed entityName: String, ofEntityNamed parentEntityName: String, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> Bool {
+public func isSubEntity(entityNamed entityName: String, ofEntityNamed parentEntityName: String, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> Bool {
     
     let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext)
     

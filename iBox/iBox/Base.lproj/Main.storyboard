@@ -652,7 +652,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileNameCell" id="LPV-6V-87M" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="FileNameCell" id="LPV-6V-87M" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LPV-6V-87M" id="6Dm-Gh-j8q">
@@ -668,7 +668,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MyFile.img" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mES-d3-ijD">
-                                            <rect key="frame" x="205" y="7" width="354" height="30"/>
+                                            <rect key="frame" x="205" y="7" width="320" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no"/>
                                         </textField>
@@ -687,7 +687,7 @@
                                     <segue destination="wUz-1x-SN4" kind="show" identifier="fileSelectionSegue" trigger="accessoryAction" id="DGu-ny-0oe"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" id="jpa-EA-nip">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SwitchCell" id="jpa-EA-nip">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jpa-EA-nip" id="Y0f-QS-J1T">
@@ -705,7 +705,7 @@
                                     <outlet property="accessoryView" destination="iqN-3O-8f4" id="DrL-KP-cUx"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NumberInputCell" id="knF-L8-Hv8" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NumberInputCell" id="knF-L8-Hv8" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="knF-L8-Hv8" id="Mk2-mb-EFt">
@@ -858,6 +858,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="KBP-xr-9V4" kind="unwind" unwindAction="unwindFromFileSelection:" id="yCx-58-zAh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -875,6 +878,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlZ-ED-cEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KBP-xr-9V4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4069" y="1318"/>
         </scene>
@@ -1019,10 +1023,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="New Image" id="9pz-tp-w7v">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XWL-Su-dRk"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="luf-1l-z6L"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="luf-1l-z6L">
+                            <connections>
+                                <segue destination="XMf-s1-Vb3" kind="unwind" unwindAction="unwindFromNewHDD:" id="N7P-r5-BMd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkc-c1-bix" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XMf-s1-Vb3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4880" y="2077"/>
         </scene>

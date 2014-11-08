@@ -19,7 +19,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
             if drive != nil {
                 
-                let driveEntity = DriveEditorViewControllerDriveEntity(rawValue: drive!.entity.name!)!
+                let driveEntity = DriveEntity(rawValue: drive!.entity.name!)!
                 
                 self.updateTableViewCellLayoutForEntity(driveEntity)
             }
@@ -28,11 +28,11 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Private Properties
     
-    private var tableViewCellLayout = [[DriveEditorViewControllerTableViewCellItem]]()
+    private var tableViewCellLayout = [[TableViewCellItem]]()
     
     // MARK: - Private Methods
     
-    private func updateTableViewCellLayoutForEntity(entity: DriveEditorViewControllerDriveEntity) {
+    private func updateTableViewCellLayoutForEntity(entity: DriveEntity) {
         
         // create layout based on entity
         
@@ -60,7 +60,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func switchFlipped(sender: UISwitch) {
         
-        
+        (self.drive as CDRom).discInserted = sender.on
     }
     
     // MARK: - UITableViewDataSource
@@ -89,7 +89,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .FileName:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.FileNameCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.FileNameCell.rawValue, forIndexPath: indexPath) as TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("File Name", comment: "File Name")
             
@@ -99,7 +99,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .DiscInserted:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.SwitchCell.rawValue, forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.SwitchCell.rawValue, forIndexPath: indexPath) as UITableViewCell
             
             cell.textLabel.text = NSLocalizedString("Disc Inserted", comment: "Disc Inserted")
             
@@ -115,7 +115,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
 
         case .Heads:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Headers", comment: "Headers")
             
@@ -125,7 +125,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .Cylinders:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Cylinders", comment: "Cylinders")
             
@@ -135,7 +135,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .SectorsPerTrack:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(DriveEditorViewControllerTableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Sectors per Track", comment: "Sectors per Track")
             
@@ -155,7 +155,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case 1:
             
-            let driveEntity = DriveEditorViewControllerDriveEntity(rawValue: drive!.entity.name!)!
+            let driveEntity = DriveEntity(rawValue: drive!.entity.name!)!
             
             switch driveEntity {
                 
@@ -179,24 +179,53 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         
+        // get index path of enclosing cell
+        let indexPath = self.tableView.indexPathForRowAtPoint(textField.convertPoint(textField.frame.origin, toView: self.tableView))!
+        
+        // get model object
+        let sectionArray = self.tableViewCellLayout[indexPath.section]
+        let cellItem = sectionArray[indexPath.row]
+        
+        switch cellItem {
+            
+        case .FileName: self.drive!.fileName = textField.text
+        case .Heads: (self.drive as HardDiskDrive).heads = textField.text.toInt()!
+        case .Cylinders: (self.drive as HardDiskDrive).cylinders = textField.text.toInt()!
+        case .SectorsPerTrack: (self.drive as HardDiskDrive).sectorsPerTrack = textField.text.toInt()!
+        default:
+            debugPrintln("Text edited in cell with identifer (\(cellItem)) without a implemented case in " + __FUNCTION__)
+            abort()
+        }
+    }
+    
+    // MARK: - Segues
+    
+    @IBAction func unwindFromFileSelection(segue: UIStoryboardSegue) {
+        
         
     }
+    
+    @IBAction func unwindFromNewHDD(segue: UIStoryboardSegue) {
+        
+        
+    }
+
 }
 
-// MARK: - Enumerations
+// MARK: - Private Enumerations
 
-private enum DriveEditorViewControllerDriveEntity: String {
+private enum DriveEntity: String {
     
     case CDRom = "CDRom"
     case HardDiskDrive = "HardDiskDrive"
 }
 
-private enum DriveEditorViewControllerTableViewCellItem {
+private enum TableViewCellItem {
     
     case FileName, DiscInserted, Heads, Cylinders, SectorsPerTrack
 }
 
-private enum DriveEditorViewControllerTableViewCellReusableIdentifier: String {
+private enum TableViewCellReusableIdentifier: String {
     
     case FileNameCell = "FileNameCell"
     case SwitchCell = "SwitchCell"

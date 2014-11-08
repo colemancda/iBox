@@ -8,8 +8,101 @@
 
 import UIKit
 
-class FileSelectionViewController: UIViewController {
+private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
+
+class FileSelectionViewController: UITableViewController, NSFilePresenter {
     
+    // MARK: - Private Properties
     
+    private var files = [NSURL]()
     
+    private var fileCoordinator: NSFileCoordinator?
+    
+    // MARK: - Initialization
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.fileCoordinator = NSFileCoordinator(filePresenter: self as NSFilePresenter)
+    }
+    
+    // MARK: - Methods
+    
+    func selectedFile() -> NSURL? {
+        
+        if let selectedIndexPath = self.tableView.indexPathForSelectedRow() {
+            
+            return self.files[selectedIndexPath.row]
+        }
+        
+        return nil
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func refresh(sender: AnyObject) {
+        
+        self.files = NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles | .SkipsPackageDescendants | .SkipsSubdirectoryDescendants, error: nil)! as [NSURL]
+        
+        self.tableView.reloadData()
+    }
+    
+    // MARK: - UITableViewDataSource
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return self.files.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.FileNameCell.rawValue, forIndexPath: indexPath) as UITableViewCell
+        
+        // get model object
+        let file = self.files[indexPath.row]
+        
+        // configure cell
+        cell.textLabel.text = file.lastPathComponent
+        
+        return cell
+    }
+    
+    // MARK: - NSFilePresenter
+    
+    @NSCopying var presentedItemURL: NSURL? = documentsURL
+    
+    var presentedItemOperationQueue = NSOperationQueue()
+    
+    func accommodatePresentedSubitemDeletionAtURL(url: NSURL, completionHandler: (NSError!) -> Void) {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            
+            self.refresh(self)
+        }
+        
+        completionHandler in {
+            
+            
+        }
+    }
+    
+    func presentedSubitemDidAppearAtURL(url: NSURL) {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            
+            self.refresh(self)
+        }
+    }
+}
+
+// MARK: - Private Enumerations
+
+private enum TableViewCellReusableIdentifier: String {
+    
+    case FileNameCell = "FileNameCell"
 }
