@@ -10,20 +10,18 @@ import UIKit
 
 private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
 
-class FileSelectionViewController: UITableViewController, NSFilePresenter {
+class FileSelectionViewController: UITableViewController {
     
     // MARK: - Private Properties
     
     private var files = [NSURL]()
-    
-    private var fileCoordinator: NSFileCoordinator?
     
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.fileCoordinator = NSFileCoordinator(filePresenter: self as NSFilePresenter)
+        self.refresh(self)
     }
     
     // MARK: - Methods
@@ -70,33 +68,6 @@ class FileSelectionViewController: UITableViewController, NSFilePresenter {
         cell.textLabel.text = file.lastPathComponent
         
         return cell
-    }
-    
-    // MARK: - NSFilePresenter
-    
-    @NSCopying var presentedItemURL: NSURL? = documentsURL
-    
-    var presentedItemOperationQueue = NSOperationQueue()
-    
-    func accommodatePresentedSubitemDeletionAtURL(url: NSURL, completionHandler: (NSError!) -> Void) {
-        
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            
-            self.refresh(self)
-        }
-        
-        completionHandler in {
-            
-            
-        }
-    }
-    
-    func presentedSubitemDidAppearAtURL(url: NSURL) {
-        
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            
-            self.refresh(self)
-        }
     }
 }
 

@@ -1056,7 +1056,7 @@
         <image name="SettingsIcon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="g0g-VT-3vD"/>
         <segue reference="9kC-4S-DDM"/>
-        <segue reference="GNm-7d-v9i"/>
     </inferredMetricsTieBreakers>
 </document>
