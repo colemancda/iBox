@@ -32,7 +32,7 @@
         <relationship name="ataInterface" maxCount="1" deletionRule="Nullify" destinationEntity="ATAInterface" inverseName="drives" inverseEntity="ATAInterface" syncable="YES"/>
     </entity>
     <entity name="HardDiskDrive" representedClassName="iBox.HardDiskDrive" parentEntity="Drive" syncable="YES">
-        <attribute name="cylinders" attributeType="Integer 16" defaultValueString="812" syncable="YES"/>
+        <attribute name="cylinders" attributeType="Integer 16" minValueString="1" maxValueString="262144" defaultValueString="1" syncable="YES"/>
         <attribute name="heads" attributeType="Integer 16" defaultValueString="16" syncable="YES"/>
         <attribute name="sectorsPerTrack" attributeType="Integer 16" defaultValueString="63" syncable="YES"/>
     </entity>
@@ -41,6 +41,6 @@
         <element name="CDRom" positionX="-54" positionY="9" width="128" height="58"/>
         <element name="Configuration" positionX="-63" positionY="-18" width="128" height="253"/>
         <element name="Drive" positionX="-63" positionY="0" width="128" height="103"/>
-        <element name="HardDiskDrive" positionX="-36" positionY="18" width="128" height="88"/>
+        <element name="HardDiskDrive" positionX="-36" positionY="18" width="128" height="90"/>
     </elements>
 </model>

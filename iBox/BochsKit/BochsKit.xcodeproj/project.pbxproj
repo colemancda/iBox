@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E2DD8D51A0EE3FB00774727 /* bximage.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8C91A0EE3FB00774727 /* bximage.c */; };
+		6E2DD8D51A0EE3FB00774727 /* BXImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8C91A0EE3FB00774727 /* BXImage.m */; };
 		6E2DD8E81A0EEB5400774727 /* BXImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8E61A0EEB5400774727 /* BXImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E2DD8E91A0EEB5400774727 /* BXImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8E71A0EEB5400774727 /* BXImage.mm */; };
 		6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2DD8F01A0F337F00774727 /* BXEmulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EE1A0F337F00774727 /* BXEmulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2DD8F11A0F337F00774727 /* BXEmulator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */; };
@@ -302,9 +301,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E2DD8C91A0EE3FB00774727 /* bximage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bximage.c; sourceTree = "<group>"; };
+		6E2DD8C91A0EE3FB00774727 /* BXImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXImage.m; sourceTree = "<group>"; };
 		6E2DD8E61A0EEB5400774727 /* BXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXImage.h; sourceTree = "<group>"; };
-		6E2DD8E71A0EEB5400774727 /* BXImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BXImage.mm; sourceTree = "<group>"; };
 		6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXRenderView.h; sourceTree = "<group>"; };
 		6E2DD8EE1A0F337F00774727 /* BXEmulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXEmulator.h; sourceTree = "<group>"; };
 		6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BXEmulator.mm; sourceTree = "<group>"; };
@@ -644,7 +642,7 @@
 		6E2DD8C61A0EE3FB00774727 /* misc */ = {
 			isa = PBXGroup;
 			children = (
-				6E2DD8C91A0EE3FB00774727 /* bximage.c */,
+				6E2DD8C91A0EE3FB00774727 /* BXImage.m */,
 			);
 			path = misc;
 			sourceTree = "<group>";
@@ -674,9 +672,8 @@
 				6ECAC70A19FF107500D94D6C /* BochsKit.h */,
 				6E2DD8EE1A0F337F00774727 /* BXEmulator.h */,
 				6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */,
-				6E2DD8E61A0EEB5400774727 /* BXImage.h */,
-				6E2DD8E71A0EEB5400774727 /* BXImage.mm */,
 				6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */,
+				6E2DD8E61A0EEB5400774727 /* BXImage.h */,
 				6EE7132419FF40D00078BEEA /* sources */,
 				6ECAC70819FF107500D94D6C /* Supporting Files */,
 			);
@@ -1401,7 +1398,6 @@
 				6EE714BA19FF41780078BEEA /* bcd.cc in Sources */,
 				6EE714BB19FF41780078BEEA /* bit.cc in Sources */,
 				6EE714BC19FF41780078BEEA /* bit16.cc in Sources */,
-				6E2DD8E91A0EEB5400774727 /* BXImage.mm in Sources */,
 				6EE714BD19FF41780078BEEA /* bit32.cc in Sources */,
 				6EE714BE19FF41780078BEEA /* call_far.cc in Sources */,
 				6EE714BF19FF41780078BEEA /* cpu.cc in Sources */,
@@ -1419,7 +1415,7 @@
 				6EE714CB19FF41780078BEEA /* exception.cc in Sources */,
 				6EE714CC19FF41780078BEEA /* fetchdecode.cc in Sources */,
 				6EE714CD19FF41780078BEEA /* fetchdecode64.cc in Sources */,
-				6E2DD8D51A0EE3FB00774727 /* bximage.c in Sources */,
+				6E2DD8D51A0EE3FB00774727 /* BXImage.m in Sources */,
 				6EE714CE19FF41780078BEEA /* flag_ctrl.cc in Sources */,
 				6EE714CF19FF41780078BEEA /* flag_ctrl_pro.cc in Sources */,
 				6EE714D019FF41780078BEEA /* fpu_emu.cc in Sources */,
