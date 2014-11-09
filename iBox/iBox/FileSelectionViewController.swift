@@ -75,49 +75,48 @@ class FileSelectionViewController: UITableViewController {
             
             // TODO: should probably validate file name (e.g. no spaces or invalid characters) and size text
             
-            // dismiss and show progress view
-            alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+            // dismiss alert controller and show progress view
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+            
+            let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            // configure HUD
+            progressHUD.labelText = NSLocalizedString("Creating image...", comment: "'Creating image...' Progress HUD text")
+            
+            // create image...
+            
+            let textField = alertController.textFields!.first as UITextField
+            
+            let fileName = textField.text + ".img"
+            
+            let fileURL = documentsURL.URLByAppendingPathComponent(fileName)
+            
+            let size = (alertController.textFields![1] as UITextField).text.toInt()!
+            
+            BXImage.createImageWithURL(fileURL, sizeInMB: UInt(size), completion: { (success: Bool) -> Void in
                 
-                let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                
-                // configure HUD
-                progressHUD.labelText = NSLocalizedString("Creating image...", comment: "'Creating image...' Progress HUD text")
-                
-                // create image... 
-                
-                let textField = alertController.textFields!.first as UITextField
-                
-                let fileName = textField.text + ".img"
-                
-                let fileURL = documentsURL.URLByAppendingPathComponent(fileName)
-                
-                let size = (alertController.textFields![1] as UITextField).text.toInt()!
-                
-                BXImage.createImageWithURL(fileURL, sizeInMB: UInt(size), completion: { (success: Bool) -> Void in
+                if !success {
                     
-                    if !success {
-                        
-                        // hide progress HUD and show alert view
-                        MBProgressHUD.hideHUDForView(self.view, animated: true)
-                        
-                        let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                            message: NSLocalizedString("Could not create the image", comment: "Could not create the image"),
-                            preferredStyle: UIAlertControllerStyle.Alert)
-                        
-                        alertView.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
-                            
-                            alertView.dismissViewControllerAnimated(true, completion: nil)
-                        }))
-                        
-                        return
-                    }
-                    
-                    // create new entity
-                    
-                    
-                    // hide progress HUD
+                    // hide progress HUD and show alert view
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
-                })
+                    
+                    let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
+                        message: NSLocalizedString("Could not create the image", comment: "Could not create the image"),
+                        preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    alertView.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+                        
+                        alertView.dismissViewControllerAnimated(true, completion: nil)
+                    }))
+                    
+                    return
+                }
+                
+                // create new entity
+                
+                
+                // hide progress HUD
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
             })
         }))
         

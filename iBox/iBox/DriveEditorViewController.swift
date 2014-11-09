@@ -225,6 +225,8 @@ private enum DriveEntity: String {
     case HardDiskDrive = "HardDiskDrive"
 }
 
+// TODO: Add IO Address support
+
 private enum TableViewCellItem {
     
     case FileName, DiscInserted, Heads, Cylinders, SectorsPerTrack
