@@ -179,7 +179,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         
-        // get index path of enclosing cell
+        // get index path of enclosing cel
         let indexPath = self.tableView.indexPathForRowAtPoint(textField.convertPoint(textField.frame.origin, toView: self.tableView))!
         
         // get model object
@@ -205,11 +205,16 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func unwindFromNewHDD(segue: UIStoryboardSegue) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        
+        if segue.identifier == "fileSelectionSegue" {
+            
+            if self.drive!.entity.name != DriveEntity.HardDiskDrive.rawValue {
+                
+                segue.destinationViewController.navigationItem.rightBarButtonItem = nil
+            }
+        }
     }
-
 }
 
 // MARK: - Private Enumerations

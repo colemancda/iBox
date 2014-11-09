@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E2DD8C31A0EDEFB00774727 /* CreateDiskImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8C21A0EDEFB00774727 /* CreateDiskImageViewController.swift */; };
-		6E71FEBE1A0C80AB00E44DFC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71FEBD1A0C80AB00E44DFC /* TableViewCell.swift */; };
+		6E2DD8F31A0F459300774727 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8F21A0F459300774727 /* TableViewCell.swift */; };
 		6EB5A7031A03505800CA31B8 /* ConfigurationEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */; };
 		6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6D619FF0C3600D94D6C /* AppDelegate.swift */; };
 		6ECAC6DC19FF0C3600D94D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECAC6DA19FF0C3600D94D6C /* Main.storyboard */; };
@@ -85,8 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6E2DD8C21A0EDEFB00774727 /* CreateDiskImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDiskImageViewController.swift; sourceTree = "<group>"; };
-		6E71FEBD1A0C80AB00E44DFC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		6E2DD8F21A0F459300774727 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationEditorViewController.swift; sourceTree = "<group>"; };
 		6ECAC6D119FF0C3600D94D6C /* iBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC6D519FF0C3600D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,12 +136,11 @@
 			children = (
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
 				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
-				6E71FEBD1A0C80AB00E44DFC /* TableViewCell.swift */,
+				6E2DD8F21A0F459300774727 /* TableViewCell.swift */,
 				6EE248951A05981F000942DB /* DrivesViewController.swift */,
 				6EE248A81A0703FD000942DB /* NewDriveViewController.swift */,
 				6EE248931A05966D000942DB /* DriveEditorViewController.swift */,
 				6EE248A31A05CF06000942DB /* FileSelectionViewController.swift */,
-				6E2DD8C21A0EDEFB00774727 /* CreateDiskImageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -392,14 +389,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E71FEBE1A0C80AB00E44DFC /* TableViewCell.swift in Sources */,
+				6E2DD8F31A0F459300774727 /* TableViewCell.swift in Sources */,
 				6EE248A21A05C5A2000942DB /* Drive.swift in Sources */,
 				6EE248881A049567000942DB /* Store.swift in Sources */,
 				6EB5A7031A03505800CA31B8 /* ConfigurationEditorViewController.swift in Sources */,
 				6EE2489C1A05C5A2000942DB /* CDRom.swift in Sources */,
 				6EE248A01A05C5A2000942DB /* ATAInterface.swift in Sources */,
 				6EE248941A05966D000942DB /* DriveEditorViewController.swift in Sources */,
-				6E2DD8C31A0EDEFB00774727 /* CreateDiskImageViewController.swift in Sources */,
 				6EE248961A05981F000942DB /* DrivesViewController.swift in Sources */,
 				6EE248A41A05CF06000942DB /* FileSelectionViewController.swift in Sources */,
 				6ECAC6F719FF0E5900D94D6C /* ConfigurationsViewController.swift in Sources */,

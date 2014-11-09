@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BochsKit
 
 private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
 
@@ -43,6 +44,23 @@ class FileSelectionViewController: UITableViewController {
         self.files = NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles | .SkipsPackageDescendants | .SkipsSubdirectoryDescendants, error: nil)! as [NSURL]
         
         self.tableView.reloadData()
+    }
+    
+    @IBAction func createNewImage(sender: AnyObject) {
+        
+        // create alert controller
+        let alertController = UIAlertController(title: NSLocalizedString("Create New HDD Image", comment: "Create New HDD Image Alert Controller Title"),
+            message: NSLocalizedString("Specify the filename (without the extension)", comment: "Create New HDD Image Alert Controller Message"),
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        // add text field
+        alertController.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            
+            textField.text = "hddImage"
+        }
+        
+        // set completion
+        
     }
     
     // MARK: - UITableViewDataSource
