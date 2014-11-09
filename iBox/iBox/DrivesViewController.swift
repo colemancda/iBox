@@ -312,6 +312,11 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
+    @IBAction func unwindFromNewHDDImage(segue: UIStoryboardSegue) {
+        
+        
+    }
+    
 }
 
 // MARK: - UI Classes

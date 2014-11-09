@@ -79,6 +79,7 @@ class FileSelectionViewController: UITableViewController {
             alertController.dismissViewControllerAnimated(true, completion: nil)
             
             let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            self.tableView.userInteractionEnabled = false
             
             // configure HUD
             progressHUD.labelText = NSLocalizedString("Creating image...", comment: "'Creating image...' Progress HUD text")
@@ -95,28 +96,72 @@ class FileSelectionViewController: UITableViewController {
             
             BXImage.createImageWithURL(fileURL, sizeInMB: UInt(size), completion: { (success: Bool) -> Void in
                 
-                if !success {
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     
-                    // hide progress HUD and show alert view
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    self.tableView.userInteractionEnabled = true
                     
-                    let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                        message: NSLocalizedString("Could not create the image", comment: "Could not create the image"),
-                        preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    alertView.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+                    if !success {
                         
-                        alertView.dismissViewControllerAnimated(true, completion: nil)
-                    }))
+                        // hide progress HUD and show alert view
+                        MBProgressHUD.hideHUDForView(self.view, animated: true)
+                        
+                        let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
+                            message: NSLocalizedString("Could not create the image", comment: "Could not create the image"),
+                            preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        alertView.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+                            
+                            alertView.dismissViewControllerAnimated(true, completion: nil)
+                        }))
+                        
+                        return
+                    }
                     
-                    return
-                }
+                    // highlight file name row for existing file if the file already exists...
+                    
+                    var fileNames = [String]()
+                    
+                    for url in self.files {
+                        
+                        fileNames.append(url.lastPathComponent)
+                    }
+                    
+                    if (fileNames as NSArray).containsObject(fileName) {
+                        
+                        let existingRowIndex = (self.files as NSArray).indexOfObject(fileURL)
+                        
+                        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: existingRowIndex, inSection: 0))
+                        
+                        cell?.selectionStyle = UITableViewCellSelectionStyle.Default
+                        
+                        cell?.setHighlighted(true, animated: false)
+                    }
+                    // add file name to table with animation with it doesn't already exist...
+                    else {
+                        
+                        self.files.append(fileURL)
+                        self.files = (self.files as NSArray).sortedArrayUsingDescriptors([NSSortDescriptor(key: "lastPathComponent", ascending: true)]) as [NSURL]
+                        let index = find(self.files, fileURL)!
+                        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+                    }
+                    
+                    // perform segue and hide HUD after delay (segue will modify entity)
+                    
+                    let delayInSeconds = 2
+                    let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, (Int64(delayInSeconds) * Int64(NSEC_PER_SEC)))
+                    
+                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                        
+                        // hide progress HUD
+                        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                        
+                        // perform segue
+                        self.performSegueWithIdentifier("unwindFromNewHDDImageSegue", sender: self)
+                        
+                        return
+                    })
+                })
                 
-                // create new entity
-                
-                
-                // hide progress HUD
-                MBProgressHUD.hideHUDForView(self.view, animated: true)
             })
         }))
         
@@ -147,6 +192,47 @@ class FileSelectionViewController: UITableViewController {
         cell.textLabel.text = file.lastPathComponent
         
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // get file
+        let fileURL = self.files[indexPath.row]
+        
+        switch editingStyle {
+            
+        case .Delete:
+            
+            var error: NSError?
+            NSFileManager.defaultManager().removeItemAtURL(fileURL, error: &error)
+            
+            if error != nil {
+                
+                let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
+                    message: error!.localizedDescription,
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alertView.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+                    
+                    alertView.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                
+                return
+            }
+            
+            // update table view data source
+            self.files.removeAtIndex(indexPath.row)
+            
+            // remove table view cell row with animation
+            tableView.beginUpdates()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.endUpdates()
+            
+        default:
+            abort()
+        }
     }
 }
 

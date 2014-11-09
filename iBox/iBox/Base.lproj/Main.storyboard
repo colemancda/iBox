@@ -876,6 +876,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="KBP-xr-9V4" kind="unwind" identifier="unwindFromNewHDDImageSegue" unwindAction="unwindFromNewHDDImage:" id="KdI-5K-QzJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlZ-ED-cEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KBP-xr-9V4" userLabel="Exit" sceneMemberID="exit"/>
