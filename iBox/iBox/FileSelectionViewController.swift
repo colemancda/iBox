@@ -14,9 +14,13 @@ private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.Docu
 
 class FileSelectionViewController: UITableViewController {
     
+    // MARK: - 
+    
+    internal var newHDDImageSizeInMB: UInt?
+    
     // MARK: - Private Properties
     
-    private var files = [NSURL]()
+    private var files = [String]()
     
     // MARK: - Initialization
     
@@ -28,7 +32,7 @@ class FileSelectionViewController: UITableViewController {
     
     // MARK: - Methods
     
-    func selectedFile() -> NSURL? {
+    func selectedFile() -> String? {
         
         if let selectedIndexPath = self.tableView.indexPathForSelectedRow() {
             
@@ -42,7 +46,16 @@ class FileSelectionViewController: UITableViewController {
     
     @IBAction func refresh(sender: AnyObject) {
         
-        self.files = NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles | .SkipsPackageDescendants | .SkipsSubdirectoryDescendants, error: nil)! as [NSURL]
+        let URLs = NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles | .SkipsPackageDescendants | .SkipsSubdirectoryDescendants, error: nil)! as [NSURL]
+        
+        var fileNames = [String]()
+        
+        for url in URLs {
+            
+            fileNames.append(url.lastPathComponent)
+        }
+        
+        self.files = fileNames
         
         self.tableView.reloadData()
     }
@@ -119,31 +132,25 @@ class FileSelectionViewController: UITableViewController {
                     
                     // highlight file name row for existing file if the file already exists...
                     
-                    var fileNames = [String]()
-                    
-                    for url in self.files {
-                        
-                        fileNames.append(url.lastPathComponent)
-                    }
-                    
-                    if (fileNames as NSArray).containsObject(fileName) {
+                    if (self.files as NSArray).containsObject(fileName) {
                         
                         let existingRowIndex = (self.files as NSArray).indexOfObject(fileURL)
                         
                         let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: existingRowIndex, inSection: 0))
                         
-                        cell?.selectionStyle = UITableViewCellSelectionStyle.Default
-                        
-                        cell?.setHighlighted(true, animated: false)
+                        cell?.setSelected(true, animated: true)
                     }
-                    // add file name to table with animation with it doesn't already exist...
+                    // add file name to table with animation if doesn't already exist...
                     else {
                         
-                        self.files.append(fileURL)
-                        self.files = (self.files as NSArray).sortedArrayUsingDescriptors([NSSortDescriptor(key: "lastPathComponent", ascending: true)]) as [NSURL]
-                        let index = find(self.files, fileURL)!
+                        self.files.append(fileName)
+                        self.files = (self.files as NSArray).sortedArrayUsingSelector("compare:") as [String]
+                        let index = find(self.files, fileName)!
                         self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
                     }
+                    
+                    // save size
+                    self.newHDDImageSizeInMB = UInt(size)
                     
                     // perform segue and hide HUD after delay (segue will modify entity)
                     
@@ -199,7 +206,9 @@ class FileSelectionViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         // get file
-        let fileURL = self.files[indexPath.row]
+        let fileName = self.files[indexPath.row]
+        
+        let fileURL = documentsURL.URLByAppendingPathComponent(fileName)
         
         switch editingStyle {
             

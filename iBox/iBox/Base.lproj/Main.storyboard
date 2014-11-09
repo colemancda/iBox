@@ -670,7 +670,10 @@
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MyFile.img" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mES-d3-ijD">
                                             <rect key="frame" x="205" y="7" width="320" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="p7Q-4W-euz" id="fGL-Ks-Wc5"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>

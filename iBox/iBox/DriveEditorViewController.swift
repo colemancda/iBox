@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import BochsKit
 
 class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
@@ -44,7 +45,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .HardDiskDrive:
             
-            self.tableViewCellLayout = [[.FileName], [.Heads, .Cylinders, .SectorsPerTrack]]
+            self.tableViewCellLayout = [[.FileName], [.Cylinders, .Heads, .SectorsPerTrack]]
         }
         
         // reload UI
@@ -117,7 +118,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
             
-            cell.titleLabel.text = NSLocalizedString("Headers", comment: "Headers")
+            cell.titleLabel.text = NSLocalizedString("Heads", comment: "Heads")
             
             cell.textField.text = "\((self.drive as HardDiskDrive).heads)"
             
@@ -202,7 +203,11 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func unwindFromFileSelection(segue: UIStoryboardSegue) {
         
+        let fileSelectionVC = segue.sourceViewController as FileSelectionViewController
         
+        self.drive!.fileName = fileSelectionVC.selectedFile()!
+        
+        self.tableView.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -214,6 +219,25 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
                 segue.destinationViewController.navigationItem.rightBarButtonItem = nil
             }
         }
+        
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        
+        if identifier == "unwindFromNewHDDImageSegue" {
+            
+            let fileSelectionVC = segue.sourceViewController as FileSelectionViewController
+            
+            self.drive!.fileName = fileSelectionVC.selectedFile()!
+            
+            (self.drive as HardDiskDrive).heads = 16
+            
+            (self.drive as HardDiskDrive).heads = 63
+            
+            (self.drive as HardDiskDrive).cylinders = BXImage.numberOfCylindersForImageWithSizeInMB(fileSelectionVC.newHDDImageSizeInMB!)
+        }
+        
+        return true
     }
 }
 
