@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @interface BXRenderView : UIView
 {
@@ -20,7 +20,7 @@
 
 - (void)addToWindow:(UIWindow*)window;
 
-- (int*)imageData;
+- (int *)imageData;
 - (CGContextRef)imageContext;
 - (void)recreateImageContextWithX:(int)x y:(int)y bpp:(int)bpp;
 

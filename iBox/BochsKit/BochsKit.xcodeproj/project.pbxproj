@@ -10,7 +10,7 @@
 		6E2DD8D51A0EE3FB00774727 /* bximage.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8C91A0EE3FB00774727 /* bximage.c */; };
 		6E2DD8E81A0EEB5400774727 /* BXImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8E61A0EEB5400774727 /* BXImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2DD8E91A0EEB5400774727 /* BXImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8E71A0EEB5400774727 /* BXImage.mm */; };
-		6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */; };
+		6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ECAC70B19FF107500D94D6C /* BochsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECAC70A19FF107500D94D6C /* BochsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ECAC71119FF107500D94D6C /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC70519FF107500D94D6C /* BochsKit.framework */; };
 		6ECAC71819FF107500D94D6C /* BochsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC71719FF107500D94D6C /* BochsKitTests.m */; };

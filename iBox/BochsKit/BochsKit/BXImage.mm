@@ -11,10 +11,12 @@
 
 @implementation BXImage
 
-+(BOOL)createImageWithURL:(NSURL *)url sizeInMB:(NSUInteger)sizeInMB heads:(NSUInteger)heads
++(BOOL)createImageWithURL:(NSURL *)url sizeInMB:(NSUInteger)sizeInMB heads:(NSUInteger)heads cylinders:(NSUInteger)cylinders tracksPerSector:(NSUInteger)tracksPerSector
 {
     
-    BXImageMain("", <#char **argv#>)
+    //BXImageMain("", <#char **argv#>)
+    
+    return true;
 }
 
 @end
