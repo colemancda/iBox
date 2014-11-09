@@ -216,15 +216,15 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             // get the model object
-            let drive = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Drive
+            let drive = self.fetchedResultsController!.objectAtIndexPath(indexPath) as Drive
             let ataInterface = drive.ataInterface
             
             // delete drive
             Store.sharedInstance.managedObjectContext.deleteObject(drive)
             
-            // also delete ATA interface if it is empty...
+            // also delete ATA interface if it is empty or deleted drive is master...
             
-            if ataInterface.drives!.count == 0 {
+            if ataInterface.drives!.count == 0 || drive.master.boolValue {
                 
                 Store.sharedInstance.managedObjectContext.deleteObject(ataInterface)
             }
@@ -312,10 +312,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    @IBAction func unwindFromNewHDDImage(segue: UIStoryboardSegue) {
-        
-        
-    }
+    @IBAction func unwindFromNewHDDImage(segue: UIStoryboardSegue) { }
     
 }
 
