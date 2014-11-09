@@ -165,6 +165,11 @@ class ConfigurationEditorViewController: UITableViewController {
         self.dismissViewControllerAnimated(true, completion: nil);
     }
     
+    @IBAction func ramSliderValueChanged(sender: UISlider) {
+                
+        ramLabel.text = "RAM: \(UInt(sender.value))"
+    }
+    
     // MARK: - Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

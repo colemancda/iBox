@@ -293,6 +293,9 @@
                                                 </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="256" minValue="16" maxValue="1024" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-zM-TJs">
                                                     <rect key="frame" x="203" y="7" width="391" height="31"/>
+                                                    <connections>
+                                                        <action selector="ramSliderValueChanged:" destination="MiS-9C-Oq0" eventType="valueChanged" id="uAW-st-aNZ"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
                                             <constraints>
