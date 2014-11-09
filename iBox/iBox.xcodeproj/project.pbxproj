@@ -10,6 +10,7 @@
 		6E2DD8F31A0F459300774727 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8F21A0F459300774727 /* TableViewCell.swift */; };
 		6E2DD93C1A0F57B800774727 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2DD9391A0F57A800774727 /* MBProgressHUD.framework */; };
 		6E2DD93D1A0F57B800774727 /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2DD9391A0F57A800774727 /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6E878E3B1A10104F008D3FBC /* EmulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E878E3A1A10104F008D3FBC /* EmulatorViewController.swift */; };
 		6EB5A7031A03505800CA31B8 /* ConfigurationEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */; };
 		6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6D619FF0C3600D94D6C /* AppDelegate.swift */; };
 		6ECAC6DC19FF0C3600D94D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECAC6DA19FF0C3600D94D6C /* Main.storyboard */; };
@@ -117,6 +118,7 @@
 /* Begin PBXFileReference section */
 		6E2DD8F21A0F459300774727 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = ../MBProgressHUD/MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
+		6E878E3A1A10104F008D3FBC /* EmulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorViewController.swift; sourceTree = "<group>"; };
 		6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationEditorViewController.swift; sourceTree = "<group>"; };
 		6ECAC6D119FF0C3600D94D6C /* iBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC6D519FF0C3600D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECAC6F619FF0E5900D94D6C /* ConfigurationsViewController.swift */,
+				6E878E3A1A10104F008D3FBC /* EmulatorViewController.swift */,
 				6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */,
 				6E2DD8F21A0F459300774727 /* TableViewCell.swift */,
 				6EE248951A05981F000942DB /* DrivesViewController.swift */,
@@ -474,6 +477,7 @@
 				6EE2489E1A05C5A2000942DB /* HardDiskDrive.swift in Sources */,
 				6EE248A91A0703FD000942DB /* NewDriveViewController.swift in Sources */,
 				6EE248921A0545BA000942DB /* Configuration.swift in Sources */,
+				6E878E3B1A10104F008D3FBC /* EmulatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

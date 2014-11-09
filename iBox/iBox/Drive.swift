@@ -17,3 +17,11 @@ class Drive: NSManagedObject {
     @NSManaged var ataInterface: ATAInterface
 
 }
+
+// MARK: - Enumerations
+
+enum DriveEntity: String {
+    
+    case CDRom = "CDRom"
+    case HardDiskDrive = "HardDiskDrive"
+}

@@ -27,11 +27,3 @@ class Configuration: NSManagedObject {
     @NSManaged var ataInterfaces: NSSet?
 
 }
-
-internal extension Configuration {
-    
-    func exportBochsConfigurationString() -> String {
-        
-        return ""
-    }
-}

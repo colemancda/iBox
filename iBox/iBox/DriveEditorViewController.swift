@@ -242,12 +242,6 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
 
 // MARK: - Private Enumerations
 
-private enum DriveEntity: String {
-    
-    case CDRom = "CDRom"
-    case HardDiskDrive = "HardDiskDrive"
-}
-
 private enum TableViewCellItem {
     
     case FileName, IOAddress, DiscInserted, Heads, Cylinders, SectorsPerTrack

@@ -36,7 +36,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hlI-Pq-yXv" kind="show" id="68V-gA-kna"/>
+                                    <segue destination="hlI-Pq-yXv" kind="show" identifier="startEmulatorSegue" id="68V-gA-kna"/>
                                     <segue destination="FFW-AK-Hjf" kind="presentation" identifier="editConfigurationSegue" trigger="accessoryAction" modalPresentationStyle="formSheet" id="9kC-4S-DDM"/>
                                 </connections>
                             </tableViewCell>
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuE-xa-Trk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="462"/>
+            <point key="canvasLocation" x="1839" y="452"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kJc-RV-L1R">

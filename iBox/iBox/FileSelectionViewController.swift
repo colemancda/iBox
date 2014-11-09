@@ -99,12 +99,12 @@ class FileSelectionViewController: UITableViewController {
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     
-                    self.tableView.userInteractionEnabled = true
-                    
                     if !success {
                         
                         // hide progress HUD and show alert view
                         MBProgressHUD.hideHUDForView(self.view, animated: true)
+                        
+                        self.tableView.userInteractionEnabled = true
                         
                         let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                             message: NSLocalizedString("Could not create the image", comment: "Could not create the image"),
@@ -153,6 +153,8 @@ class FileSelectionViewController: UITableViewController {
                     let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, (Int64(delayInSeconds) * Int64(NSEC_PER_SEC)))
                     
                     dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                        
+                        self.tableView.userInteractionEnabled = true
                         
                         // hide progress HUD
                         MBProgressHUD.hideAllHUDsForView(self.view, animated: true)

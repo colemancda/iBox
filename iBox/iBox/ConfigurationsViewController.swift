@@ -195,5 +195,13 @@ class ConfigurationsViewController: UITableViewController, UISearchBarDelegate, 
             configurationEditorVC.configuration = configuration
             
         }
+        
+        if segue.identifier == "startEmulatorSegue" {
+            
+            // set emulator configuraion
+            let configuration = self.fetchedResultsController?.objectAtIndexPath(self.tableView.indexPathForCell(sender as UITableViewCell)!) as Configuration
+            
+            (segue.destinationViewController as EmulatorViewController).configuration = configuration
+        }
     }
 }

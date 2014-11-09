@@ -12,6 +12,8 @@
 		6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2DD8F01A0F337F00774727 /* BXEmulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EE1A0F337F00774727 /* BXEmulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2DD8F11A0F337F00774727 /* BXEmulator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */; };
+		6E878E401A103383008D3FBC /* BIOS-bochs-latest in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E878E3E1A10336D008D3FBC /* BIOS-bochs-latest */; };
+		6E878E411A103383008D3FBC /* VGABIOS-lgpl-latest in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E878E3F1A103379008D3FBC /* VGABIOS-lgpl-latest */; };
 		6ECAC70B19FF107500D94D6C /* BochsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECAC70A19FF107500D94D6C /* BochsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ECAC71119FF107500D94D6C /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC70519FF107500D94D6C /* BochsKit.framework */; };
 		6ECAC71819FF107500D94D6C /* BochsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC71719FF107500D94D6C /* BochsKitTests.m */; };
@@ -300,12 +302,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6E878E3C1A103315008D3FBC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				6E878E401A103383008D3FBC /* BIOS-bochs-latest in CopyFiles */,
+				6E878E411A103383008D3FBC /* VGABIOS-lgpl-latest in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6E2DD8C91A0EE3FB00774727 /* BXImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXImage.m; sourceTree = "<group>"; };
 		6E2DD8E61A0EEB5400774727 /* BXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXImage.h; sourceTree = "<group>"; };
 		6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXRenderView.h; sourceTree = "<group>"; };
 		6E2DD8EE1A0F337F00774727 /* BXEmulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXEmulator.h; sourceTree = "<group>"; };
 		6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BXEmulator.mm; sourceTree = "<group>"; };
+		6E878E3E1A10336D008D3FBC /* BIOS-bochs-latest */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BIOS-bochs-latest"; path = "../../../bochs-iphone/bios/BIOS-bochs-latest"; sourceTree = "<group>"; };
+		6E878E3F1A103379008D3FBC /* VGABIOS-lgpl-latest */ = {isa = PBXFileReference; lastKnownFileType = file; name = "VGABIOS-lgpl-latest"; path = "../../../bochs-iphone/bios/VGABIOS-lgpl-latest"; sourceTree = "<group>"; };
 		6ECAC70519FF107500D94D6C /* BochsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BochsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC70919FF107500D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECAC70A19FF107500D94D6C /* BochsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BochsKit.h; sourceTree = "<group>"; };
@@ -647,6 +665,15 @@
 			path = misc;
 			sourceTree = "<group>";
 		};
+		6E878E3D1A103336008D3FBC /* bios */ = {
+			isa = PBXGroup;
+			children = (
+				6E878E3E1A10336D008D3FBC /* BIOS-bochs-latest */,
+				6E878E3F1A103379008D3FBC /* VGABIOS-lgpl-latest */,
+			);
+			name = bios;
+			sourceTree = "<group>";
+		};
 		6ECAC6FB19FF107400D94D6C = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +702,7 @@
 				6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */,
 				6E2DD8E61A0EEB5400774727 /* BXImage.h */,
 				6EE7132419FF40D00078BEEA /* sources */,
+				6E878E3D1A103336008D3FBC /* bios */,
 				6ECAC70819FF107500D94D6C /* Supporting Files */,
 			);
 			path = BochsKit;
@@ -1207,6 +1235,7 @@
 				6ECAC70119FF107400D94D6C /* Frameworks */,
 				6ECAC70219FF107400D94D6C /* Headers */,
 				6ECAC70319FF107400D94D6C /* Resources */,
+				6E878E3C1A103315008D3FBC /* CopyFiles */,
 			);
 			buildRules = (
 			);
