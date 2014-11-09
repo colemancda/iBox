@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-// BXImage main funtion
-int BXImageMain(int argc, char *argv[]);
-
 @interface BXImage : NSObject
 
-+(BOOL)createImageWithURL:(NSURL *)url sizeInMB:(NSUInteger)sizeInMB heads:(NSUInteger)heads cylinders:(NSUInteger)cylinders tracksPerSector:(NSUInteger)tracksPerSector;
++(void)createImageWithURL:(NSURL *)url sizeInMB:(NSUInteger)sizeInMB completion:(void (^)(BOOL success))completion;
+
++(NSUInteger)numberOfCylindersForImageWithSizeInMB:(NSUInteger)sizeInMB;
 
 @end

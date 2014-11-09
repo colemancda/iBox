@@ -7,16 +7,31 @@
 //
 
 #import "BXImage.h"
-#import "bochs.h"
 
 @implementation BXImage
 
-+(BOOL)createImageWithURL:(NSURL *)url sizeInMB:(NSUInteger)sizeInMB heads:(NSUInteger)heads cylinders:(NSUInteger)cylinders tracksPerSector:(NSUInteger)tracksPerSector
+int main(int, char *[]);
+
++(void)createImageWithURL:(NSURL *)url sizeInMB:(NSUInteger)sizeInMB completion:(void (^)(BOOL success))completion
 {
-    
-    //BXImageMain("", <#char **argv#>)
-    
-    return true;
+    // execute on background operation queue
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        
+        // number of arguments
+        int argc = 5;
+        
+        char *argv[] = {(char *)"-q", (char *)"-hd", (char *)"-mode=flat", (char *)url.path.UTF8String, (char *)[NSString stringWithFormat:@"-size=%ld", (unsigned long)sizeInMB].UTF8String};
+        
+        int exitCode = main(argc, argv);
+        
+        completion(!exitCode);
+        
+    }];
+}
+
++(NSUInteger)numberOfCylindersForImageWithSizeInMB:(NSUInteger)sizeInMB
+{
+    return ((int)sizeInMB) * 1024.0 * 1024.0 / 16.0 / 63.0 / 512.0;
 }
 
 @end

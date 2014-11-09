@@ -11,6 +11,8 @@
 		6E2DD8E81A0EEB5400774727 /* BXImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8E61A0EEB5400774727 /* BXImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2DD8E91A0EEB5400774727 /* BXImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8E71A0EEB5400774727 /* BXImage.mm */; };
 		6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2DD8F01A0F337F00774727 /* BXEmulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EE1A0F337F00774727 /* BXEmulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2DD8F11A0F337F00774727 /* BXEmulator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */; };
 		6ECAC70B19FF107500D94D6C /* BochsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECAC70A19FF107500D94D6C /* BochsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ECAC71119FF107500D94D6C /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC70519FF107500D94D6C /* BochsKit.framework */; };
 		6ECAC71819FF107500D94D6C /* BochsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC71719FF107500D94D6C /* BochsKitTests.m */; };
@@ -304,6 +306,8 @@
 		6E2DD8E61A0EEB5400774727 /* BXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXImage.h; sourceTree = "<group>"; };
 		6E2DD8E71A0EEB5400774727 /* BXImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BXImage.mm; sourceTree = "<group>"; };
 		6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXRenderView.h; sourceTree = "<group>"; };
+		6E2DD8EE1A0F337F00774727 /* BXEmulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXEmulator.h; sourceTree = "<group>"; };
+		6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BXEmulator.mm; sourceTree = "<group>"; };
 		6ECAC70519FF107500D94D6C /* BochsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BochsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC70919FF107500D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECAC70A19FF107500D94D6C /* BochsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BochsKit.h; sourceTree = "<group>"; };
@@ -668,6 +672,8 @@
 			isa = PBXGroup;
 			children = (
 				6ECAC70A19FF107500D94D6C /* BochsKit.h */,
+				6E2DD8EE1A0F337F00774727 /* BXEmulator.h */,
+				6E2DD8EF1A0F337F00774727 /* BXEmulator.mm */,
 				6E2DD8E61A0EEB5400774727 /* BXImage.h */,
 				6E2DD8E71A0EEB5400774727 /* BXImage.mm */,
 				6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */,
@@ -1156,6 +1162,7 @@
 				6EE713DB19FF40D20078BEEA /* bochs.h in Headers */,
 				6EE713C019FF40D10078BEEA /* slowdown_timer.h in Headers */,
 				6EE713B819FF40D10078BEEA /* scsi_commands.h in Headers */,
+				6E2DD8F01A0F337F00774727 /* BXEmulator.h in Headers */,
 				6EE7141819FF40D30078BEEA /* fetchdecode.h in Headers */,
 				6EE7135A19FF40D00078BEEA /* sdl.h in Headers */,
 				6EE713D019FF40D10078BEEA /* virt_timer.h in Headers */,
@@ -1336,6 +1343,7 @@
 				6EE7148119FF41780078BEEA /* keyboard.cc in Sources */,
 				6EE7148219FF41780078BEEA /* ne2k.cc in Sources */,
 				6EE7148319FF41780078BEEA /* parallel.cc in Sources */,
+				6E2DD8F11A0F337F00774727 /* BXEmulator.mm in Sources */,
 				6EE7148419FF41780078BEEA /* pci.cc in Sources */,
 				6EE7148519FF41780078BEEA /* pci2isa.cc in Sources */,
 				6EE7148619FF41780078BEEA /* pci_ide.cc in Sources */,
