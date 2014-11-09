@@ -690,6 +690,43 @@
                                     <segue destination="wUz-1x-SN4" kind="show" identifier="fileSelectionSegue" trigger="accessoryAction" id="DGu-ny-0oe"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextInputCell" id="ayG-zI-tnY" customClass="TextFieldCell" customModule="iBox" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ayG-zI-tnY" id="Lu6-IL-Tgu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IO Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iws-5b-VzF">
+                                            <rect key="frame" x="15" y="11" width="170" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="170" id="6lV-5V-3UV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="999" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-5m-Qh9">
+                                            <rect key="frame" x="205" y="7" width="387" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="p7Q-4W-euz" id="t9y-Hq-ONf"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="TLd-5m-Qh9" secondAttribute="centerY" id="7Id-nN-08x"/>
+                                        <constraint firstAttribute="centerY" secondItem="Iws-5b-VzF" secondAttribute="centerY" id="Sbu-sh-EHg"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="TLd-5m-Qh9" secondAttribute="trailing" id="WIc-yz-YLR"/>
+                                        <constraint firstItem="Iws-5b-VzF" firstAttribute="leading" secondItem="Lu6-IL-Tgu" secondAttribute="leading" constant="15" id="Z8G-EN-3Rv"/>
+                                        <constraint firstItem="TLd-5m-Qh9" firstAttribute="leading" secondItem="Iws-5b-VzF" secondAttribute="trailing" constant="20" id="fHR-QU-ir3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="TLd-5m-Qh9" id="bL5-B4-7U8"/>
+                                    <outlet property="titleLabel" destination="Iws-5b-VzF" id="kti-dw-EzH"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SwitchCell" id="jpa-EA-nip">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>

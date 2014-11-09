@@ -37,16 +37,22 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         
         // create layout based on entity
         
+        let infoSectionLayout: [TableViewCellItem] = [.FileName, .IOAddress]
+        
+        var driveConfigurationSectionLayout: [TableViewCellItem]?
+        
         switch entity {
             
         case .CDRom:
             
-            self.tableViewCellLayout = [[.FileName], [.DiscInserted]]
+            driveConfigurationSectionLayout = [.DiscInserted]
             
         case .HardDiskDrive:
             
-            self.tableViewCellLayout = [[.FileName], [.Cylinders, .Heads, .SectorsPerTrack]]
+            driveConfigurationSectionLayout = [.Cylinders, .Heads, .SectorsPerTrack]
         }
+        
+        self.tableViewCellLayout = [infoSectionLayout, driveConfigurationSectionLayout!]
         
         // reload UI
         self.tableView.reloadData()
@@ -95,6 +101,16 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             cell.titleLabel.text = NSLocalizedString("File Name", comment: "File Name")
             
             cell.textField.text = self.drive!.fileName
+            
+            return cell
+            
+        case .IOAddress:
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.TextInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            
+            cell.titleLabel.text = NSLocalizedString("IO Address", comment: "IO Address")
+            
+            cell.textField.text = self.drive!.ioAddress
             
             return cell
             
@@ -190,6 +206,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         switch cellItem {
             
         case .FileName: self.drive!.fileName = textField.text
+        case .IOAddress: self.drive!.ioAddress = textField.text
         case .Heads: (self.drive as HardDiskDrive).heads = textField.text.toInt()!
         case .Cylinders: (self.drive as HardDiskDrive).cylinders = textField.text.toInt()!
         case .SectorsPerTrack: (self.drive as HardDiskDrive).sectorsPerTrack = textField.text.toInt()!
@@ -231,11 +248,9 @@ private enum DriveEntity: String {
     case HardDiskDrive = "HardDiskDrive"
 }
 
-// TODO: Add IO Address support
-
 private enum TableViewCellItem {
     
-    case FileName, DiscInserted, Heads, Cylinders, SectorsPerTrack
+    case FileName, IOAddress, DiscInserted, Heads, Cylinders, SectorsPerTrack
 }
 
 private enum TableViewCellReusableIdentifier: String {
@@ -243,4 +258,5 @@ private enum TableViewCellReusableIdentifier: String {
     case FileNameCell = "FileNameCell"
     case SwitchCell = "SwitchCell"
     case NumberInputCell = "NumberInputCell"
+    case TextInputCell = "TextInputCell"
 }
