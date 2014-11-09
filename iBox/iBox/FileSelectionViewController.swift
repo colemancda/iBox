@@ -8,6 +8,7 @@
 
 import UIKit
 import BochsKit
+import MBProgressHUD
 
 private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
 
@@ -50,7 +51,7 @@ class FileSelectionViewController: UITableViewController {
         
         // create alert controller
         let alertController = UIAlertController(title: NSLocalizedString("Create New HDD Image", comment: "Create New HDD Image Alert Controller Title"),
-            message: NSLocalizedString("Specify the filename (without the extension)", comment: "Create New HDD Image Alert Controller Message"),
+            message: NSLocalizedString("Specify a name", comment: "Create New HDD Image Alert Controller Message"),
             preferredStyle: UIAlertControllerStyle.Alert)
         
         // add text field
@@ -59,8 +60,26 @@ class FileSelectionViewController: UITableViewController {
             textField.text = "hddImage"
         }
         
-        // set completion
+        // add create and cancel button
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+            
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }))
         
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Create", comment: "Create"), style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) -> Void in
+            
+            // dismiss and show progress view
+            alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+                let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                
+                // configure HUD
+                progressHUD.mode = 
+            })
+        }))
+        
+        // show
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     // MARK: - UITableViewDataSource

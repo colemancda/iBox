@@ -12,6 +12,8 @@
 	<dict>
 		<key>3A4C546CE4203EACA3F734FB11AAB186160D553C</key>
 		<string>https://github.com/colemancda/bochs</string>
+		<key>4182765C525509B305166AB949D5935FD5C85212</key>
+		<string>https://github.com/colemancda/MBProgressHUD.git</string>
 		<key>C8A5252DEA871148F9707A22B6332292DFED9A4A</key>
 		<string>https://github.com/colemancda/iBox.git</string>
 		<key>E276827A363ADE2ED71CE50DADAFE07C0E887F87</key>
@@ -23,6 +25,8 @@
 	<dict>
 		<key>3A4C546CE4203EACA3F734FB11AAB186160D553C</key>
 		<string>../../..bochs</string>
+		<key>4182765C525509B305166AB949D5935FD5C85212</key>
+		<string>../../../MBProgressHUD/</string>
 		<key>C8A5252DEA871148F9707A22B6332292DFED9A4A</key>
 		<string>../../..</string>
 		<key>E276827A363ADE2ED71CE50DADAFE07C0E887F87</key>
@@ -59,6 +63,14 @@
 			<string>3A4C546CE4203EACA3F734FB11AAB186160D553C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iBoxbochs</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4182765C525509B305166AB949D5935FD5C85212</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MBProgressHUD</string>
 		</dict>
 	</array>
 </dict>

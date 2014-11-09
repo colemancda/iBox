@@ -4,3 +4,6 @@
 [submodule "bochs-iphone"]
 	path = bochs-iphone
 	url = https://github.com/colemancda/bochs-iphone
+[submodule "MBProgressHUD"]
+	path = MBProgressHUD
+	url = https://github.com/colemancda/MBProgressHUD.git

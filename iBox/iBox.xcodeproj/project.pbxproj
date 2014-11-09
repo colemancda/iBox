@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6E2DD8F31A0F459300774727 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8F21A0F459300774727 /* TableViewCell.swift */; };
+		6E2DD93C1A0F57B800774727 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2DD9391A0F57A800774727 /* MBProgressHUD.framework */; };
+		6E2DD93D1A0F57B800774727 /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2DD9391A0F57A800774727 /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6EB5A7031A03505800CA31B8 /* ConfigurationEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */; };
 		6ECAC6D719FF0C3600D94D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC6D619FF0C3600D94D6C /* AppDelegate.swift */; };
 		6ECAC6DC19FF0C3600D94D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECAC6DA19FF0C3600D94D6C /* Main.storyboard */; };
@@ -32,6 +34,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6E2DD9361A0F57A800774727 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D286A7491518C70F00E13FB8;
+			remoteInfo = "MBProgressHUD-StaticLibrary";
+		};
+		6E2DD9381A0F57A800774727 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E2DD8FD1A0F54B700774727;
+			remoteInfo = MBProgressHUD;
+		};
+		6E2DD93A1A0F57A800774727 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E2DD9071A0F54B700774727;
+			remoteInfo = MBProgressHUDTests;
+		};
+		6E2DD93E1A0F57B800774727 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E2DD8FC1A0F54B700774727;
+			remoteInfo = MBProgressHUD;
+		};
 		6ECAC6E719FF0C3700D94D6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6ECAC6C919FF0C3600D94D6C /* Project object */;
@@ -76,6 +106,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6E2DD93D1A0F57B800774727 /* MBProgressHUD.framework in Embed Frameworks */,
 				6EE7150719FF45930078BEEA /* BochsKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -85,6 +116,7 @@
 
 /* Begin PBXFileReference section */
 		6E2DD8F21A0F459300774727 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = ../MBProgressHUD/MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		6EB5A7021A03505800CA31B8 /* ConfigurationEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationEditorViewController.swift; sourceTree = "<group>"; };
 		6ECAC6D119FF0C3600D94D6C /* iBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC6D519FF0C3600D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E2DD93C1A0F57B800774727 /* MBProgressHUD.framework in Frameworks */,
 				6EE7150619FF45930078BEEA /* BochsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +164,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E2DD9311A0F57A800774727 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E2DD9371A0F57A800774727 /* libMBProgressHUD.a */,
+				6E2DD9391A0F57A800774727 /* MBProgressHUD.framework */,
+				6E2DD93B1A0F57A800774727 /* MBProgressHUDTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6EB5A7011A03397A00CA31B8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +191,7 @@
 		6ECAC6C819FF0C3600D94D6C = {
 			isa = PBXGroup;
 			children = (
+				6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */,
 				6ECAD32019FF20A800D94D6C /* bochs.xcodeproj */,
 				6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */,
 				6ECAC6D319FF0C3600D94D6C /* iBox */,
@@ -268,6 +312,7 @@
 			);
 			dependencies = (
 				6EE7150919FF45930078BEEA /* PBXTargetDependency */,
+				6E2DD93F1A0F57B800774727 /* PBXTargetDependency */,
 			);
 			name = iBox;
 			productName = iBox;
@@ -330,6 +375,10 @@
 					ProductGroup = 6ECAC72219FF107500D94D6C /* Products */;
 					ProjectRef = 6ECAC72119FF107500D94D6C /* BochsKit.xcodeproj */;
 				},
+				{
+					ProductGroup = 6E2DD9311A0F57A800774727 /* Products */;
+					ProjectRef = 6E2DD9301A0F57A800774727 /* MBProgressHUD.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -340,6 +389,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		6E2DD9371A0F57A800774727 /* libMBProgressHUD.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMBProgressHUD.a;
+			remoteRef = 6E2DD9361A0F57A800774727 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E2DD9391A0F57A800774727 /* MBProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MBProgressHUD.framework;
+			remoteRef = 6E2DD9381A0F57A800774727 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E2DD93B1A0F57A800774727 /* MBProgressHUDTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MBProgressHUDTests.xctest;
+			remoteRef = 6E2DD93A1A0F57A800774727 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6ECAC72719FF107500D94D6C /* BochsKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -418,6 +488,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6E2DD93F1A0F57B800774727 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MBProgressHUD;
+			targetProxy = 6E2DD93E1A0F57B800774727 /* PBXContainerItemProxy */;
+		};
 		6ECAC6E819FF0C3700D94D6C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6ECAC6D019FF0C3600D94D6C /* iBox */;
