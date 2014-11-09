@@ -14,9 +14,9 @@ private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.Docu
 
 class FileSelectionViewController: UITableViewController {
     
-    // MARK: - 
+    // MARK: - Properties
     
-    internal var newHDDImageSizeInMB: UInt?
+    var drive: Drive?
     
     // MARK: - Private Properties
     
@@ -149,8 +149,15 @@ class FileSelectionViewController: UITableViewController {
                         self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
                     }
                     
-                    // save size
-                    self.newHDDImageSizeInMB = UInt(size)
+                    // save values
+                    
+                    self.drive!.fileName = fileName
+                    
+                    (self.drive as HardDiskDrive).heads = 16
+                    
+                    (self.drive as HardDiskDrive).sectorsPerTrack = 63
+                    
+                    (self.drive as HardDiskDrive).cylinders = BXImage.numberOfCylindersForImageWithSizeInMB(UInt(size))
                     
                     // perform segue and hide HUD after delay (segue will modify entity)
                     

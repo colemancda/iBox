@@ -214,30 +214,16 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         
         if segue.identifier == "fileSelectionSegue" {
             
+            // set drive
+            (segue.destinationViewController as FileSelectionViewController).drive = self.drive
+            
+            // conditionally disable add button
             if self.drive!.entity.name != DriveEntity.HardDiskDrive.rawValue {
                 
                 segue.destinationViewController.navigationItem.rightBarButtonItem = nil
             }
         }
         
-    }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        
-        if identifier == "unwindFromNewHDDImageSegue" {
-            
-            let fileSelectionVC = segue.sourceViewController as FileSelectionViewController
-            
-            self.drive!.fileName = fileSelectionVC.selectedFile()!
-            
-            (self.drive as HardDiskDrive).heads = 16
-            
-            (self.drive as HardDiskDrive).heads = 63
-            
-            (self.drive as HardDiskDrive).cylinders = BXImage.numberOfCylindersForImageWithSizeInMB(fileSelectionVC.newHDDImageSizeInMB!)
-        }
-        
-        return true
     }
 }
 
