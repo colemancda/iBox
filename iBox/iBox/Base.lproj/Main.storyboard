@@ -862,7 +862,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="KBP-xr-9V4" kind="unwind" unwindAction="unwindFromFileSelection:" id="yCx-58-zAh"/>
+                                    <segue destination="KBP-xr-9V4" kind="unwind" identifier="unwindFromFileSelectionSegue" unwindAction="unwindFromFileSelection:" id="yCx-58-zAh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

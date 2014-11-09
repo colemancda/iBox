@@ -30,18 +30,6 @@ class FileSelectionViewController: UITableViewController {
         self.refresh(self)
     }
     
-    // MARK: - Methods
-    
-    func selectedFile() -> String? {
-        
-        if let selectedIndexPath = self.tableView.indexPathForSelectedRow() {
-            
-            return self.files[selectedIndexPath.row]
-        }
-        
-        return nil
-    }
-    
     // MARK: - Actions
     
     @IBAction func refresh(sender: AnyObject) {
@@ -249,6 +237,21 @@ class FileSelectionViewController: UITableViewController {
         default:
             abort()
         }
+    }
+    
+    // MARK: - Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "unwindFromFileSelectionSegue" {
+            
+            // save values...
+            
+            let cell = sender as UITableViewCell
+            
+            self.drive?.fileName = self.files[self.tableView.indexPathForCell(cell)!.row]
+        }
+        
     }
 }
 

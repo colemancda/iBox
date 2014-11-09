@@ -203,10 +203,6 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func unwindFromFileSelection(segue: UIStoryboardSegue) {
         
-        let fileSelectionVC = segue.sourceViewController as FileSelectionViewController
-        
-        self.drive!.fileName = fileSelectionVC.selectedFile()!
-        
         self.tableView.reloadData()
     }
     
