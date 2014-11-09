@@ -14,5 +14,5 @@ FOUNDATION_EXPORT double BochsKitVersionNumber;
 //! Project version string for BochsKit.
 FOUNDATION_EXPORT const unsigned char BochsKitVersionString[];
 
-#import <BochsKit/bochs.h>
-
+#import <BochsKit/BXImage.h>
+#import <BochsKit/BXRenderView.h>

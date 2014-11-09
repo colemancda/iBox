@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E2DD8D51A0EE3FB00774727 /* bximage.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8C91A0EE3FB00774727 /* bximage.c */; };
+		6E2DD8E81A0EEB5400774727 /* BXImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8E61A0EEB5400774727 /* BXImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2DD8E91A0EEB5400774727 /* BXImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2DD8E71A0EEB5400774727 /* BXImage.mm */; };
+		6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */; };
 		6ECAC70B19FF107500D94D6C /* BochsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECAC70A19FF107500D94D6C /* BochsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ECAC71119FF107500D94D6C /* BochsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECAC70519FF107500D94D6C /* BochsKit.framework */; };
 		6ECAC71819FF107500D94D6C /* BochsKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECAC71719FF107500D94D6C /* BochsKitTests.m */; };
@@ -296,6 +300,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E2DD8C91A0EE3FB00774727 /* bximage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bximage.c; sourceTree = "<group>"; };
+		6E2DD8E61A0EEB5400774727 /* BXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXImage.h; sourceTree = "<group>"; };
+		6E2DD8E71A0EEB5400774727 /* BXImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BXImage.mm; sourceTree = "<group>"; };
+		6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXRenderView.h; sourceTree = "<group>"; };
 		6ECAC70519FF107500D94D6C /* BochsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BochsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAC70919FF107500D94D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6ECAC70A19FF107500D94D6C /* BochsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BochsKit.h; sourceTree = "<group>"; };
@@ -629,6 +637,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E2DD8C61A0EE3FB00774727 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				6E2DD8C91A0EE3FB00774727 /* bximage.c */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
 		6ECAC6FB19FF107400D94D6C = {
 			isa = PBXGroup;
 			children = (
@@ -652,6 +668,9 @@
 			isa = PBXGroup;
 			children = (
 				6ECAC70A19FF107500D94D6C /* BochsKit.h */,
+				6E2DD8E61A0EEB5400774727 /* BXImage.h */,
+				6E2DD8E71A0EEB5400774727 /* BXImage.mm */,
+				6E2DD8EA1A0EF52E00774727 /* BXRenderView.h */,
 				6EE7132419FF40D00078BEEA /* sources */,
 				6ECAC70819FF107500D94D6C /* Supporting Files */,
 			);
@@ -1043,6 +1062,7 @@
 				6EE7132119FF40D00078BEEA /* cpu */,
 				6EE7132219FF40D00078BEEA /* osdep.h */,
 				6EE7132319FF40D00078BEEA /* config.h */,
+				6E2DD8C61A0EE3FB00774727 /* misc */,
 			);
 			name = sources;
 			path = "../../../bochs-iphone";
@@ -1074,6 +1094,7 @@
 				6EE713A819FF40D10078BEEA /* pcidev.h in Headers */,
 				6EE713A219FF40D10078BEEA /* pci.h in Headers */,
 				6EE7140B19FF40D20078BEEA /* crregs.h in Headers */,
+				6E2DD8EC1A0EF52E00774727 /* BXRenderView.h in Headers */,
 				6EE7132C19FF40D00078BEEA /* floppya.h in Headers */,
 				6EE7139919FF40D10078BEEA /* iodebug.h in Headers */,
 				6EE713C419FF40D10078BEEA /* soundosx.h in Headers */,
@@ -1120,6 +1141,7 @@
 				6EE7138D19FF40D10078BEEA /* floppy.h in Headers */,
 				6EE7141519FF40D20078BEEA /* descriptor.h in Headers */,
 				6EE7143E19FF40D30078BEEA /* smm.h in Headers */,
+				6E2DD8E81A0EEB5400774727 /* BXImage.h in Headers */,
 				6EE7137719FF40D00078BEEA /* cmos.h in Headers */,
 				6EE7136E19FF40D00078BEEA /* aspi-win32.h in Headers */,
 				6EE7133419FF40D00078BEEA /* power.h in Headers */,
@@ -1371,6 +1393,7 @@
 				6EE714BA19FF41780078BEEA /* bcd.cc in Sources */,
 				6EE714BB19FF41780078BEEA /* bit.cc in Sources */,
 				6EE714BC19FF41780078BEEA /* bit16.cc in Sources */,
+				6E2DD8E91A0EEB5400774727 /* BXImage.mm in Sources */,
 				6EE714BD19FF41780078BEEA /* bit32.cc in Sources */,
 				6EE714BE19FF41780078BEEA /* call_far.cc in Sources */,
 				6EE714BF19FF41780078BEEA /* cpu.cc in Sources */,
@@ -1388,6 +1411,7 @@
 				6EE714CB19FF41780078BEEA /* exception.cc in Sources */,
 				6EE714CC19FF41780078BEEA /* fetchdecode.cc in Sources */,
 				6EE714CD19FF41780078BEEA /* fetchdecode64.cc in Sources */,
+				6E2DD8D51A0EE3FB00774727 /* bximage.c in Sources */,
 				6EE714CE19FF41780078BEEA /* flag_ctrl.cc in Sources */,
 				6EE714CF19FF41780078BEEA /* flag_ctrl_pro.cc in Sources */,
 				6EE714D019FF41780078BEEA /* fpu_emu.cc in Sources */,
@@ -1555,6 +1579,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = 3;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../bochs-iphone",
 					"$(inherited)",
