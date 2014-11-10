@@ -22,6 +22,8 @@
 
 - (void)addToWindow:(UIWindow*)window;
 
+- (void)doRedraw;
+
 - (int *)imageData;
 - (CGContextRef)imageContext;
 - (void)recreateImageContextWithX:(int)x y:(int)y bpp:(int)bpp;

@@ -71,7 +71,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         switch configuration.bootDevice {
             case "cdrom": self.bootDiskSegmentedControl.selectedSegmentIndex = 0
-            case "hdd": self.bootDiskSegmentedControl.selectedSegmentIndex = 1
+            case "disk": self.bootDiskSegmentedControl.selectedSegmentIndex = 1
         default : self.bootDiskSegmentedControl.selectedSegmentIndex = -1
         }
         
@@ -113,7 +113,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         switch self.bootDiskSegmentedControl.selectedSegmentIndex {
         case 0: configuration.bootDevice = "cdrom"
-        case 1: configuration.bootDevice = "hdd"
+        case 1: configuration.bootDevice = "disk"
         default: configuration.bootDevice = "cdrom"
         }
         

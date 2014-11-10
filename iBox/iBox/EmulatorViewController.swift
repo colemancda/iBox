@@ -27,14 +27,35 @@ class EmulatorViewController: UIViewController {
         BXRenderView((UIApplication.sharedApplication().delegate as AppDelegate).window)
         
         // start emulator
-        let configFilePath = self.exportConfigurationToTemporaryFile(self.configuration!)
         
-        NSThread.detachNewThreadSelector("startBochsWithConfigPath:", toTarget: BXEmulator.self, withObject: configFilePath)
+        NSThread.detachNewThreadSelector("startEmulator", toTarget: self, withObject: nil)
+        
+        NSThread.detachNewThreadSelector("startRendering", toTarget: self, withObject: nil)
     }
     
-    // MARK: - Private Methods
+    // MARK: - Methods
     
-    private func exportConfigurationToTemporaryFile(configuration: Configuration) -> String {
+    func startEmulator() {
+        
+        let configFilePath = self.exportConfigurationToTemporaryFile(self.configuration!)
+        
+        BXEmulator.startBochsWithConfigPath(configFilePath);
+    }
+    
+    func startRendering() {
+        
+        let timer = NSTimer(timeInterval: 0.1, target: self, selector: "redrawRenderer", userInfo: nil, repeats: true)
+        
+        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        NSRunLoop.currentRunLoop().run()
+    }
+    
+    func redrawRenderer() {
+        
+        BXRenderView.sharedInstance().doRedraw()
+    }
+    
+    func exportConfigurationToTemporaryFile(configuration: Configuration) -> String {
         
         var configString = "config_interface: textconfig\n"
         configString += "display_library: nogui\n"
@@ -150,7 +171,7 @@ class EmulatorViewController: UIViewController {
         configString += "cpu: count=1, ips=\(configuration.cpuIPS.integerValue)" + "\n"
         configString += "mouse: enabled=1, type=ps2" + "\n"
         configString += "clock: sync=none, time0=local" + "\n"
-        configString += "log: /tmp/log.log\n"
+        configString += "log: " + documentsURL.URLByAppendingPathComponent("log.txt").path! + "\n"
         configString += "logprefix: %i - %e%d" + "\n"
         configString += "debugger_log: -" + "\n"
         configString += "panic: action=ask"  + "\n"
