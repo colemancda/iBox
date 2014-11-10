@@ -14,11 +14,10 @@ int bochs_main (const char*);
 
 +(void)startBochsWithConfigPath:(NSString *)configPath
 {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    
-    bochs_main([configPath UTF8String]);
-    
-    [pool release];
+    @autoreleasepool {
+        
+        bochs_main([configPath UTF8String]);
+    }
 }
 
 @end

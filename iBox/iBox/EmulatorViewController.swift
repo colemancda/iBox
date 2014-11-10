@@ -14,6 +14,10 @@ private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.Docu
 
 class EmulatorViewController: UIViewController {
     
+    // MARK: - IB Outlets
+    
+    @IBOutlet weak var renderContainerView: UIView!
+    
     // MARK: - Properties
     
     var configuration: Configuration?
@@ -23,14 +27,33 @@ class EmulatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // render view
-        BXRenderView((UIApplication.sharedApplication().delegate as AppDelegate).window)
+        // add render view
+        
+        self.view.addSubview(BXRenderView.sharedInstance())
         
         // start emulator
         
         NSThread.detachNewThreadSelector("startEmulator", toTarget: self, withObject: nil)
         
         NSThread.detachNewThreadSelector("startRendering", toTarget: self, withObject: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // hide navigation bar
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    // MARK: - View Layout
+    
+    override func viewDidLayoutSubviews() {
+        
+        BXRenderView.sharedInstance().frame.size.width = self.renderContainerView.bounds.size.width;
+        
+        BXRenderView.sharedInstance().frame.size.height = self.renderContainerView.bounds.size.height;
+        
+        BXRenderView.sharedInstance().recreateImageContextWithX(Int32(self.renderContainerView.bounds.size.width), y:Int32(self.renderContainerView.bounds.size.height), bpp: 16)
     }
     
     // MARK: - Methods
@@ -44,7 +67,7 @@ class EmulatorViewController: UIViewController {
     
     func startRendering() {
         
-        let timer = NSTimer(timeInterval: 0.1, target: self, selector: "redrawRenderer", userInfo: nil, repeats: true)
+        let timer = NSTimer(timeInterval: 0.01, target: self, selector: "redrawRenderer", userInfo: nil, repeats: true)
         
         NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         NSRunLoop.currentRunLoop().run()

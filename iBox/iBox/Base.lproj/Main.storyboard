@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1bZ-Lo-H3r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -130,8 +131,20 @@
                                     <barButtonItem title="Item" id="7Op-V5-ega"/>
                                 </items>
                             </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AzL-C1-Bzj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AzL-C1-Bzj" secondAttribute="height" multiplier="800:600" id="CNY-WR-ZPw"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AzL-C1-Bzj" secondAttribute="trailing" id="ElC-1v-hff"/>
+                            <constraint firstItem="AzL-C1-Bzj" firstAttribute="top" secondItem="0mr-xJ-FQ3" secondAttribute="topMargin" id="Lbv-Wz-KTd"/>
+                            <constraint firstItem="AzL-C1-Bzj" firstAttribute="leading" secondItem="0mr-xJ-FQ3" secondAttribute="leading" id="Tnq-7v-mh2"/>
+                        </constraints>
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="action" id="YDT-rk-Cry"/>
@@ -141,6 +154,9 @@
                         <barButtonItem systemItem="stop" id="pTk-ql-iZy"/>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="renderContainerView" destination="AzL-C1-Bzj" id="BS7-qj-nFi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuE-xa-Trk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

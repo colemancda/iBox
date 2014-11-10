@@ -16,9 +16,9 @@
     CGContextRef imageContext;
 }
 
-+ (id)sharedInstance;
++ (BXRenderView *)sharedInstance;
 
-- (id)init:(UIWindow*)window;
+- (instancetype)init:(UIWindow*)window;
 
 - (void)addToWindow:(UIWindow*)window;
 
