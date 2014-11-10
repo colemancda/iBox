@@ -144,19 +144,27 @@
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="AzL-C1-Bzj" secondAttribute="trailing" id="1RB-o1-yIN"/>
                             <constraint firstAttribute="centerX" secondItem="AzL-C1-Bzj" secondAttribute="centerX" id="84W-KV-HpU"/>
                             <constraint firstItem="N8m-8q-9Ow" firstAttribute="top" secondItem="AzL-C1-Bzj" secondAttribute="bottom" id="Ay9-1M-lcS"/>
-                            <constraint firstItem="N8m-8q-9Ow" firstAttribute="top" secondItem="AzL-C1-Bzj" secondAttribute="bottom" id="D3E-c5-Rlr"/>
                             <constraint firstAttribute="trailing" secondItem="AzL-C1-Bzj" secondAttribute="trailing" id="IQD-kb-G0n"/>
                             <constraint firstItem="AzL-C1-Bzj" firstAttribute="top" secondItem="0mr-xJ-FQ3" secondAttribute="topMargin" constant="20" id="Lbv-Wz-KTd"/>
                             <constraint firstItem="N8m-8q-9Ow" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AzL-C1-Bzj" secondAttribute="bottom" id="RdZ-Hk-XiS"/>
                             <constraint firstItem="AzL-C1-Bzj" firstAttribute="leading" secondItem="0mr-xJ-FQ3" secondAttribute="leading" id="cBm-wl-s69"/>
-                            <constraint firstItem="AzL-C1-Bzj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0mr-xJ-FQ3" secondAttribute="leadingMargin" id="kVf-W1-bgW"/>
+                            <constraint firstItem="AzL-C1-Bzj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0mr-xJ-FQ3" secondAttribute="leading" id="kVf-W1-bgW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="1RB-o1-yIN"/>
                                 <exclude reference="kVf-W1-bgW"/>
                                 <exclude reference="Ay9-1M-lcS"/>
-                                <exclude reference="D3E-c5-Rlr"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="1RB-o1-yIN"/>
+                                <exclude reference="IQD-kb-G0n"/>
+                                <exclude reference="cBm-wl-s69"/>
+                                <include reference="kVf-W1-bgW"/>
+                                <include reference="Ay9-1M-lcS"/>
+                                <exclude reference="RdZ-Hk-XiS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -165,7 +173,7 @@
                                 <exclude reference="IQD-kb-G0n"/>
                                 <exclude reference="cBm-wl-s69"/>
                                 <include reference="kVf-W1-bgW"/>
-                                <include reference="D3E-c5-Rlr"/>
+                                <include reference="Ay9-1M-lcS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
