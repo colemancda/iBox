@@ -115,7 +115,7 @@
         <!--Emulator-->
         <scene sceneID="Hd6-51-5dU">
             <objects>
-                <viewController title="Emulator" id="hlI-Pq-yXv" sceneMemberID="viewController">
+                <viewController title="Emulator" id="hlI-Pq-yXv" customClass="EmulatorViewController" customModule="iBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X97-3O-9cd"/>
                         <viewControllerLayoutGuide type="bottom" id="N8m-8q-9Ow"/>

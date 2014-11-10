@@ -23,10 +23,13 @@ class EmulatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // render view
+        BXRenderView((UIApplication.sharedApplication().delegate as AppDelegate).window)
+        
         // start emulator
         let configFilePath = self.exportConfigurationToTemporaryFile(self.configuration!)
         
-        
+        NSThread.detachNewThreadSelector("startBochsWithConfigPath:", toTarget: BXEmulator.self, withObject: configFilePath)
     }
     
     // MARK: - Private Methods
@@ -48,7 +51,7 @@ class EmulatorViewController: UIViewController {
                 
             for ataInterface in interfaces {
                 
-                configString += "ata\(ataInterface.id): enabled: 1, "
+                configString += "ata\(ataInterface.id): enabled=1, "
                 
                 let drives = ataInterface.drives!.sortedArrayUsingDescriptors([NSSortDescriptor(key: "master", ascending: false)]) as [Drive]
                 
@@ -95,7 +98,7 @@ class EmulatorViewController: UIViewController {
                     // path and info
                     let driveFilePath = documentsURL.URLByAppendingPathComponent(drive.fileName).path!
                     
-                    configString += "ata\(ataInterface.id)-\(driveMasterString): type:\(driveType), path=\"\(driveFilePath)\", "
+                    configString += "ata\(ataInterface.id)-\(driveMasterString!): type=\(driveType!), path=\"\(driveFilePath)\", "
                     
                     // drive specific info
                     switch driveEntity {
@@ -115,7 +118,7 @@ class EmulatorViewController: UIViewController {
                             insertedString = "ejected"
                         }
                         
-                        configString += "status=\(insertedString)"
+                        configString += "status=\(insertedString!)"
                         
                     case .HardDiskDrive:
                         
@@ -125,30 +128,30 @@ class EmulatorViewController: UIViewController {
                     }
                     
                     // add newline
-                    configString += "/n"
+                    configString += "\n"
                 }
             }
         }
         
         // add other parameters
         
-        configString += "i440fxsupport: enabled=\(configuration.i440fxsupport.boolValue)" + "/n"
+        configString += "i440fxsupport: enabled=\(configuration.i440fxsupport.intValue)" + "\n"
         
         if configuration.soundBlaster16.boolValue {
             
-            configString += "sb16: enabled = 1, midimode=1, wavemode=1, dmatimer=\(configuration.dmaTimer.integerValue)" + "/n"
+            configString += "sb16: enabled = 1, midimode=1, wavemode=1, dmatimer=\(configuration.dmaTimer.integerValue)" + "\n"
         }
         
-        configString += "floppy_bootsig_check: disabled=1" + "/n"
-        configString += "vga_update_interval: \(configuration.vgaUpdateInterval.integerValue)" + "/n"
-        configString += "vga: extension=\(configuration.vgaExtension)" + "/n"
-        configString += "keyboard_serial_delay: \(configuration.keyboardSerialDelay.integerValue)" + "/n"
-        configString += "keyboard_paste_delay: \(configuration.keyboardPasteDelay.integerValue)" + "/n"
-        configString += "cpu: count=1, ips=\(configuration.cpuIPS.integerValue)" + "/n"
-        configString += "mouse: enabled=1, type=ps2" + "/n"
-        configString += "clock: sync=none, time0=local" + "/n"
-        configString += "log: " + documentsURL.URLByAppendingPathComponent("log.txt").path! + "/n"
-        configString += "logprefix: %i - %e%d" + "/n"
+        configString += "floppy_bootsig_check: disabled=1" + "\n"
+        configString += "vga_update_interval: \(configuration.vgaUpdateInterval.integerValue)" + "\n"
+        configString += "vga: extension=\(configuration.vgaExtension)" + "\n"
+        configString += "keyboard_serial_delay: \(configuration.keyboardSerialDelay.integerValue)" + "\n"
+        configString += "keyboard_paste_delay: \(configuration.keyboardPasteDelay.integerValue)" + "\n"
+        configString += "cpu: count=1, ips=\(configuration.cpuIPS.integerValue)" + "\n"
+        configString += "mouse: enabled=1, type=ps2" + "\n"
+        configString += "clock: sync=none, time0=local" + "\n"
+        configString += "log: /tmp/log.log\n"
+        configString += "logprefix: %i - %e%d" + "\n"
         configString += "debugger_log: -" + "\n"
         configString += "panic: action=ask"  + "\n"
         configString += "error: action=report" + "\n"

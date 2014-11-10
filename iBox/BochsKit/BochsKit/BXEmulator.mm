@@ -12,12 +12,13 @@ int bochs_main (const char*);
 
 @implementation BXEmulator
 
--(void)startBochsWithConfigPath:(NSString *)configPath
++(void)startBochsWithConfigPath:(NSString *)configPath
 {
-    @autoreleasepool {
-        
-        bochs_main(configPath.UTF8String);
-    }
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    bochs_main([configPath UTF8String]);
+    
+    [pool release];
 }
 
 @end

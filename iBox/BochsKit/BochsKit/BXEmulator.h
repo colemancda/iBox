@@ -10,4 +10,6 @@
 
 @interface BXEmulator : NSObject
 
++(void)startBochsWithConfigPath:(NSString *)configPath;
+
 @end

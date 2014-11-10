@@ -18,6 +18,8 @@
 
 + (id)sharedInstance;
 
+- (id)init:(UIWindow*)window;
+
 - (void)addToWindow:(UIWindow*)window;
 
 - (int *)imageData;
