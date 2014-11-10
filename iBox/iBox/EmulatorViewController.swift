@@ -49,11 +49,7 @@ class EmulatorViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
-        BXRenderView.sharedInstance().frame.size.width = self.renderContainerView.bounds.size.width;
-        
-        BXRenderView.sharedInstance().frame.size.height = self.renderContainerView.bounds.size.height;
-        
-        BXRenderView.sharedInstance().recreateImageContextWithX(Int32(self.renderContainerView.bounds.size.width), y:Int32(self.renderContainerView.bounds.size.height), bpp: 16)
+        BXRenderView.sharedInstance().frame = self.renderContainerView.frame
     }
     
     // MARK: - Methods
