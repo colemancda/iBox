@@ -1,3 +1,4 @@
+
 //
 //  FileSelectionViewController.swift
 //  iBox
@@ -6,11 +7,12 @@
 //  Copyright (c) 2014 ColemanCDA. All rights reserved.
 //
 
+import Swift
 import UIKit
 import BochsKit
 import MBProgressHUD
 
-private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
+private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
 
 class FileSelectionViewController: UITableViewController {
     
@@ -33,14 +35,16 @@ class FileSelectionViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func refresh(sender: AnyObject) {
-        
-        let URLs = NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsURL, includingPropertiesForKeys: nil, options: .SkipsHiddenFiles | .SkipsPackageDescendants | .SkipsSubdirectoryDescendants, error: nil)! as [NSURL]
-        
+        var URLs:[NSURL] = []
+        do{
+            URLs = try NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsURL, includingPropertiesForKeys: nil, options: [NSDirectoryEnumerationOptions.SkipsHiddenFiles,NSDirectoryEnumerationOptions.SkipsPackageDescendants,NSDirectoryEnumerationOptions.SkipsSubdirectoryDescendants] as NSDirectoryEnumerationOptions) as [NSURL]
+        }catch{
+        }
         var fileNames = [String]()
         
         for url in URLs {
             
-            fileNames.append(url.lastPathComponent)
+            fileNames.append(url.lastPathComponent!)
         }
         
         self.files = fileNames
@@ -87,13 +91,13 @@ class FileSelectionViewController: UITableViewController {
             
             // create image...
             
-            let textField = alertController.textFields!.first as UITextField
+            let textField = alertController.textFields!.first //as UITextField
             
-            let fileName = textField.text + ".img"
+            let fileName = textField!.text! + ".img"
             
             let fileURL = documentsURL.URLByAppendingPathComponent(fileName)
             
-            let size = (alertController.textFields![1] as UITextField).text.toInt()!
+            let size = Int((alertController.textFields![1] as UITextField).text!)!
             
             BXImage.createImageWithURL(fileURL, sizeInMB: UInt(size), completion: { (success: Bool) -> Void in
                 
@@ -132,8 +136,9 @@ class FileSelectionViewController: UITableViewController {
                     else {
                         
                         self.files.append(fileName)
-                        self.files = (self.files as NSArray).sortedArrayUsingSelector("compare:") as [String]
-                        let index = find(self.files, fileName)!
+                        self.files = (self.files as NSArray).sortedArrayUsingSelector("compare:") as!
+                            [String]
+                        let index = self.files.indexOf(fileName)!
                         self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
                     }
                     
@@ -141,11 +146,11 @@ class FileSelectionViewController: UITableViewController {
                     
                     self.drive!.fileName = fileName
                     
-                    (self.drive as HardDiskDrive).heads = 16
+                    (self.drive as! HardDiskDrive).heads = 16
                     
-                    (self.drive as HardDiskDrive).sectorsPerTrack = 63
+                    (self.drive as! HardDiskDrive).sectorsPerTrack = 63
                     
-                    (self.drive as HardDiskDrive).cylinders = BXImage.numberOfCylindersForImageWithSizeInMB(UInt(size))
+                    (self.drive as! HardDiskDrive).cylinders = BXImage.numberOfCylindersForImageWithSizeInMB(UInt(size))
                     
                     // perform segue and hide HUD after delay (segue will modify entity)
                     
@@ -193,7 +198,7 @@ class FileSelectionViewController: UITableViewController {
         let file = self.files[indexPath.row]
         
         // configure cell
-        cell.textLabel.text = file.lastPathComponent
+        cell.textLabel!.text = file.lastPathComponent
         
         return cell
     }
@@ -211,9 +216,11 @@ class FileSelectionViewController: UITableViewController {
             
         case .Delete:
             
-            var error: NSError?
-            NSFileManager.defaultManager().removeItemAtURL(fileURL, error: &error)
-            
+            let error: NSError?
+            do{
+                try NSFileManager.defaultManager().removeItemAtURL(fileURL)
+            }catch{}
+            /*
             if error != nil {
                 
                 let alertView = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
@@ -227,7 +234,7 @@ class FileSelectionViewController: UITableViewController {
                 
                 return
             }
-            
+            */
             // update table view data source
             self.files.removeAtIndex(indexPath.row)
             
@@ -249,7 +256,7 @@ class FileSelectionViewController: UITableViewController {
             
             // save values...
             
-            let cell = sender as UITableViewCell
+            let cell = sender as! UITableViewCell
             
             self.drive?.fileName = self.files[self.tableView.indexPathForCell(cell)!.row]
         }

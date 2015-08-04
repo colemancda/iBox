@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-internal let maxATAInterfacesPerConfiguration = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Configuration"] as NSEntityDescription).relationshipsByName["ataInterfaces"] as NSRelationshipDescription).maxCount
+internal let maxATAInterfacesPerConfiguration = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Configuration"] as NSEntityDescription?)!.relationshipsByName["ataInterfaces"] as NSRelationshipDescription?)!.maxCount
 
-internal let maxDrivesPerATAInterface = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["ATAInterface"] as NSEntityDescription).relationshipsByName["drives"] as NSRelationshipDescription).maxCount
+internal let maxDrivesPerATAInterface = ((Store.sharedInstance.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["ATAInterface"] as NSEntityDescription?)!.relationshipsByName["drives"] as NSRelationshipDescription?)!.maxCount
 
 class DrivesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
@@ -25,8 +25,11 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
                 // create fetched results controller
                 self.fetchedResultsController = self.fetchedResultsControllerForConfiguration(self.configuration!)
                 
-                // fetch and load UI
-                self.fetchedResultsController!.performFetch(nil)
+                do {
+                    // fetch and load UI
+                    try self.fetchedResultsController!.performFetch()
+                } catch _ {
+                }
             }
         }
     }
@@ -48,8 +51,11 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             // create fetched results controller
             self.fetchedResultsController = self.fetchedResultsControllerForConfiguration(self.configuration!)
             
-            // fetch and load UI
-            self.fetchedResultsController!.performFetch(nil)
+            do {
+                // fetch and load UI
+                try self.fetchedResultsController!.performFetch()
+            } catch _ {
+            }
         }
     }
     
@@ -60,7 +66,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         // get model object
         let sectionInfo = self.fetchedResultsController!.sections![sender.tag] as NSFetchedResultsSectionInfo
         
-        let section = sectionInfo.objects as [Drive]
+        let section = sectionInfo.objects as! [Drive]
         let drive = section.first!
         let ataInterface = drive.ataInterface
         
@@ -68,7 +74,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         ataInterface.irq = Int(sender.value)
         
         // get header view
-        let headerView = self.tableView.headerViewForSection(sender.tag) as ATAInterfaceTableViewHeaderView
+        let headerView = self.tableView.headerViewForSection(sender.tag) as! ATAInterfaceTableViewHeaderView
         
         // set up header view
         headerView.irqLabel.text = NSLocalizedString("IRQ", comment: "IRQ") + " \(ataInterface.irq.integerValue)"
@@ -96,16 +102,16 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         
         // get model object
-        let drive = self.fetchedResultsController?.objectAtIndexPath(indexPath) as Drive
+        let drive = self.fetchedResultsController?.objectAtIndexPath(indexPath) as! Drive
         
         // set type label
         if drive.master.boolValue {
             
-            cell.textLabel.text = NSLocalizedString("Master", comment: "Master")
+            cell.textLabel!.text = NSLocalizedString("Master", comment: "Master")
         }
         else {
             
-            cell.textLabel.text = NSLocalizedString("Slave", comment: "Slave")
+            cell.textLabel!.text = NSLocalizedString("Slave", comment: "Slave")
         }
         
         
@@ -136,11 +142,17 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
             fetchRequest.predicate = NSPredicate(format: "configuration == %@", self.configuration!)
             
             var fetchError: NSError?
-            let fetchResult = Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
+            let fetchResult: [AnyObject]?
+            do {
+                fetchResult = try Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest)
+            } catch var error as NSError {
+                fetchError = error
+                fetchResult = nil
+            }
             
             assert(fetchError == nil, "Error occurred while fetching from store. (\(fetchError?.localizedDescription))")
             
-            let newestATAInterface = fetchResult!.last as ATAInterface
+            let newestATAInterface = fetchResult!.last as! ATAInterface
             
             // max number of interfaces and drives
             if newestATAInterface.id == maxATAInterfacesPerConfiguration - 1 && newestATAInterface.drives?.count == maxDrivesPerATAInterface {
@@ -193,11 +205,11 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("ATAInterfaceTableViewHeaderView") as ATAInterfaceTableViewHeaderView
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("ATAInterfaceTableViewHeaderView") as! ATAInterfaceTableViewHeaderView
         
         // get model object
         let sectionInfo = self.fetchedResultsController!.sections![section] as NSFetchedResultsSectionInfo
-        let sectionArray = sectionInfo.objects as [Drive]
+        let sectionArray = sectionInfo.objects as! [Drive]
         let drive = sectionArray.first!
         let ataInterface = drive.ataInterface;
         
@@ -216,7 +228,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             // get the model object
-            let drive = self.fetchedResultsController!.objectAtIndexPath(indexPath) as Drive
+            let drive = self.fetchedResultsController!.objectAtIndexPath(indexPath) as! Drive
             let ataInterface = drive.ataInterface
             
             // delete drive
@@ -254,17 +266,17 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         case .Update:
-            self.configureCell(tableView.cellForRowAtIndexPath(indexPath)!, atIndexPath: indexPath)
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
         case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         default:
             return
         }
@@ -276,7 +288,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
     
     // MARK: - Segues
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         
         if identifier == "newDriveSegue" {
             
@@ -291,7 +303,7 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         if segue.identifier == "newDriveSegue" {
             
             // get VC
-            let newDriveVC = (segue.destinationViewController as UINavigationController).viewControllers.first as NewDriveViewController
+            let newDriveVC = (segue.destinationViewController as! UINavigationController).viewControllers.first as! NewDriveViewController
             
             // set model object on VC
             newDriveVC.configuration = self.configuration!
@@ -300,10 +312,10 @@ class DrivesViewController: UITableViewController, NSFetchedResultsControllerDel
         if segue.identifier == "editDriveSegue" {
             
             // get selected drive
-            let selectedDrive = self.fetchedResultsController!.objectAtIndexPath(self.tableView.indexPathForSelectedRow()!) as Drive
+            let selectedDrive = self.fetchedResultsController!.objectAtIndexPath(self.tableView.indexPathForSelectedRow!) as! Drive
             
             // set model object on VC
-            let driveEditorVC = segue.destinationViewController as DriveEditorViewController
+            let driveEditorVC = segue.destinationViewController as! DriveEditorViewController
             
             driveEditorVC.drive = selectedDrive
             
