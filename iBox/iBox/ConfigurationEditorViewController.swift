@@ -109,7 +109,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         // get values from UI and set them to model object
         
-        configuration.name = self.configurationNameTextField.text;
+        configuration.name = self.configurationNameTextField.text!;
         
         switch self.bootDiskSegmentedControl.selectedSegmentIndex {
         case 0: configuration.bootDevice = "cdrom"
@@ -119,7 +119,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         configuration.ramSize = UInt(self.ramSlider.value)
                 
-        configuration.cpuIPS = self.ipsTextField.text!.toInt()!
+        configuration.cpuIPS = Int(self.ipsTextField.text!)!
         
         configuration.i440fxsupport = self.i440fxSupportSwitch.on
         
@@ -129,21 +129,25 @@ class ConfigurationEditorViewController: UITableViewController {
         default: configuration.vgaExtension = "none"
         }
         
-        configuration.vgaUpdateInterval = self.vgaUpdateIntervalTextField.text.toInt()!
+        configuration.vgaUpdateInterval = Int(self.vgaUpdateIntervalTextField.text!)!
         
         configuration.soundBlaster16 = self.soundBlaster16Switch.on
         
-        configuration.dmaTimer = self.dmaTimerTextField.text.toInt()!
+        configuration.dmaTimer = Int(self.dmaTimerTextField.text!)!
         
-        configuration.keyboardPasteDelay = self.keyBoardPasteDelayTextField.text.toInt()!
+        configuration.keyboardPasteDelay = Int(self.keyBoardPasteDelayTextField.text!)!
         
-        configuration.keyboardSerialDelay = self.keyboardSerialDelayTextField.text.toInt()!
+        configuration.keyboardSerialDelay = Int(self.keyboardSerialDelayTextField.text!)!
         
         // save (will also validate)
         
         var error: NSError?
         
-        Store.sharedInstance.managedObjectContext.save(&error);
+        do {
+            try Store.sharedInstance.managedObjectContext.save()
+        } catch let error1 as NSError {
+            error = error1
+        };
         
         if error != nil {
             
@@ -176,7 +180,7 @@ class ConfigurationEditorViewController: UITableViewController {
         
         if segue.identifier == "showDrives" {
             
-            let drivesVC = segue.destinationViewController as DrivesViewController
+            let drivesVC = segue.destinationViewController as! DrivesViewController
             
             drivesVC.configuration = self.configuration
         }

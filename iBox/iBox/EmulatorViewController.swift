@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import BochsKit
 
-private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
+private let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL?
 
 class EmulatorViewController: UIViewController {
     
@@ -83,9 +83,9 @@ class EmulatorViewController: UIViewController {
         
         // add drives...
         
-        if configuration.ataInterfaces? != nil {
+        if configuration.ataInterfaces != nil {
             
-            let interfaces = configuration.ataInterfaces!.sortedArrayUsingDescriptors([NSSortDescriptor(key: "id", ascending: true)]) as [ATAInterface]
+            let interfaces = configuration.ataInterfaces!.sortedArrayUsingDescriptors([NSSortDescriptor(key: "id", ascending: true)]) as! [ATAInterface]
             
             // add ATA interfaces
                 
@@ -93,7 +93,7 @@ class EmulatorViewController: UIViewController {
                 
                 configString += "ata\(ataInterface.id): enabled=1, "
                 
-                let drives = ataInterface.drives!.sortedArrayUsingDescriptors([NSSortDescriptor(key: "master", ascending: false)]) as [Drive]
+                let drives = ataInterface.drives!.sortedArrayUsingDescriptors([NSSortDescriptor(key: "master", ascending: false)]) as! [Drive]
                 
                 // add IO Addresses
                 
@@ -136,7 +136,7 @@ class EmulatorViewController: UIViewController {
                     }
                     
                     // path and info
-                    let driveFilePath = documentsURL.URLByAppendingPathComponent(drive.fileName).path!
+                    let driveFilePath = documentsURL!.URLByAppendingPathComponent(drive.fileName).path!
                     
                     configString += "ata\(ataInterface.id)-\(driveMasterString!): type=\(driveType!), path=\"\(driveFilePath)\", "
                     
@@ -145,7 +145,7 @@ class EmulatorViewController: UIViewController {
                         
                     case .CDRom:
                         
-                        let cdrom = drive as CDRom
+                        let cdrom = drive as! CDRom
                         
                         var insertedString: String?
                         
@@ -162,7 +162,7 @@ class EmulatorViewController: UIViewController {
                         
                     case .HardDiskDrive:
                         
-                        let hdd = drive as HardDiskDrive
+                        let hdd = drive as! HardDiskDrive
                         
                         configString += "mode=flat, cylinders=\(hdd.cylinders), heads=\(hdd.heads), spt=\(hdd.sectorsPerTrack)"
                     }
@@ -190,7 +190,7 @@ class EmulatorViewController: UIViewController {
         configString += "cpu: count=1, ips=\(configuration.cpuIPS.integerValue)" + "\n"
         configString += "mouse: enabled=1, type=ps2" + "\n"
         configString += "clock: sync=none, time0=local" + "\n"
-        configString += "log: " + documentsURL.URLByAppendingPathComponent("log.txt").path! + "\n"
+        configString += "log: " + documentsURL!.URLByAppendingPathComponent("log.txt").path! + "\n"
         configString += "logprefix: %i - %e%d" + "\n"
         configString += "debugger_log: -" + "\n"
         configString += "panic: action=ask"  + "\n"
@@ -214,11 +214,15 @@ class EmulatorViewController: UIViewController {
         
         let path = NSTemporaryDirectory().stringByAppendingPathComponent("os.ini")
         
-        println("Writing temporary configuration file:\n\(configString)")
+        print("Writing temporary configuration file:\n\(configString)")
         
         // write to disc
         var error: NSError?
-        configString.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
+        do {
+            try configString.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding)
+        } catch var error1 as NSError {
+            error = error1
+        }
         
         assert(error == nil, "Could not write temporary configuration file to disk. (\(error!.localizedDescription))")
         

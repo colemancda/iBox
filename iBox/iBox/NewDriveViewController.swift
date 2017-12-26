@@ -23,7 +23,7 @@ class NewDriveViewController: UITableViewController {
             "The specified entity is not a sub entity of Drive")
         
         // create new drive
-        let newDrive = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: Store.sharedInstance.managedObjectContext) as Drive
+        let newDrive = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: Store.sharedInstance.managedObjectContext) as! Drive
         
         // find or create ata interface for new drive
         
@@ -46,11 +46,17 @@ class NewDriveViewController: UITableViewController {
             fetchRequest.predicate = NSPredicate(format: "configuration == %@", self.configuration!)
             
             var fetchError: NSError?
-            let fetchResult = Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
+            let fetchResult: [AnyObject]?
+            do {
+                fetchResult = try Store.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest)
+            } catch var error as NSError {
+                fetchError = error
+                fetchResult = nil
+            }
             
             assert(fetchError == nil, "Error occurred while fetching from store. (\(fetchError?.localizedDescription))")
             
-            let newestATAInterface = fetchResult!.last as ATAInterface
+            let newestATAInterface = fetchResult!.last as! ATAInterface
             
             // get number of existing drives
             var numberOfDrivesInNewestATAInterface = 0
@@ -105,10 +111,10 @@ class NewDriveViewController: UITableViewController {
         if segue.identifier == "newCDROMSegue" {
             
             // create new drive
-            let newDrive = self.createNewDriveWithEntityName("CDRom") as CDRom
+            let newDrive = self.createNewDriveWithEntityName("CDRom") as! CDRom
             
             // set model object on VC
-            let driveEditorVC = segue.destinationViewController as DriveEditorViewController
+            let driveEditorVC = segue.destinationViewController as! DriveEditorViewController
             
             driveEditorVC.drive = newDrive
             
@@ -118,10 +124,10 @@ class NewDriveViewController: UITableViewController {
         if segue.identifier == "newHDDSegue" {
             
             // create new drive
-            let newDrive = self.createNewDriveWithEntityName("HardDiskDrive") as HardDiskDrive
+            let newDrive = self.createNewDriveWithEntityName("HardDiskDrive") as! HardDiskDrive
             
             // set model object on VC
-            let driveEditorVC = segue.destinationViewController as DriveEditorViewController
+            let driveEditorVC = segue.destinationViewController as! DriveEditorViewController
             
             driveEditorVC.drive = newDrive
             
@@ -138,7 +144,7 @@ public func isSubEntity(entityNamed entityName: String, ofEntityNamed parentEnti
     
     let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext)
     
-    if let superEntity = entity!.superentity? {
+    if let superEntity = entity!.superentity {
         
         if superEntity.name == parentEntityName {
             

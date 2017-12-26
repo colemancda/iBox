@@ -67,7 +67,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func switchFlipped(sender: UISwitch) {
         
-        (self.drive as CDRom).discInserted = sender.on
+        (self.drive as! CDRom).discInserted = sender.on
     }
     
     // MARK: - UITableViewDataSource
@@ -96,7 +96,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .FileName:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.FileNameCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.FileNameCell.rawValue, forIndexPath: indexPath) as! TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("File Name", comment: "File Name")
             
@@ -106,7 +106,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
         case .IOAddress:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.TextInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.TextInputCell.rawValue, forIndexPath: indexPath) as! TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("IO Address", comment: "IO Address")
             
@@ -118,7 +118,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.SwitchCell.rawValue, forIndexPath: indexPath) as UITableViewCell
             
-            cell.textLabel.text = NSLocalizedString("Disc Inserted", comment: "Disc Inserted")
+            cell.textLabel!.text = NSLocalizedString("Disc Inserted", comment: "Disc Inserted")
             
             /*
             let switchControl = UISwitch()
@@ -126,37 +126,37 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
             cell.accessoryView = switchControl
             */
             
-            (cell.accessoryView as UISwitch).on = (self.drive as CDRom).discInserted.boolValue
+            (cell.accessoryView as! UISwitch).on = (self.drive as! CDRom).discInserted.boolValue
             
             return cell
 
         case .Heads:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as! TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Heads", comment: "Heads")
             
-            cell.textField.text = "\((self.drive as HardDiskDrive).heads)"
+            cell.textField.text = "\((self.drive as! HardDiskDrive).heads)"
             
             return cell
             
         case .Cylinders:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as! TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Cylinders", comment: "Cylinders")
             
-            cell.textField.text = "\((self.drive as HardDiskDrive).cylinders)"
+            cell.textField.text = "\((self.drive as! HardDiskDrive).cylinders)"
             
             return cell
             
         case .SectorsPerTrack:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as TextFieldCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReusableIdentifier.NumberInputCell.rawValue, forIndexPath: indexPath) as! TextFieldCell
             
             cell.titleLabel.text = NSLocalizedString("Sectors per Track", comment: "Sectors per Track")
             
-            cell.textField.text = "\((self.drive as HardDiskDrive).sectorsPerTrack)"
+            cell.textField.text = "\((self.drive as! HardDiskDrive).sectorsPerTrack)"
             
             return cell
         }
@@ -205,13 +205,13 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         
         switch cellItem {
             
-        case .FileName: self.drive!.fileName = textField.text
-        case .IOAddress: self.drive!.ioAddress = textField.text
-        case .Heads: (self.drive as HardDiskDrive).heads = textField.text.toInt()!
-        case .Cylinders: (self.drive as HardDiskDrive).cylinders = textField.text.toInt()!
-        case .SectorsPerTrack: (self.drive as HardDiskDrive).sectorsPerTrack = textField.text.toInt()!
+        case .FileName: self.drive!.fileName = textField.text!
+        case .IOAddress: self.drive!.ioAddress = textField.text!
+        case .Heads: (self.drive as! HardDiskDrive).heads = Int(textField.text!)!
+        case .Cylinders: (self.drive as! HardDiskDrive).cylinders = Int(textField.text!)!
+        case .SectorsPerTrack: (self.drive as! HardDiskDrive).sectorsPerTrack = Int(textField.text!)!
         default:
-            debugPrintln("Text edited in cell with identifer (\(cellItem)) without a implemented case in " + __FUNCTION__)
+            debugPrint("Text edited in cell with identifer (\(cellItem)) without a implemented case in " + __FUNCTION__)
             abort()
         }
     }
@@ -228,7 +228,7 @@ class DriveEditorViewController: UITableViewController, UITextFieldDelegate {
         if segue.identifier == "fileSelectionSegue" {
             
             // set drive
-            (segue.destinationViewController as FileSelectionViewController).drive = self.drive
+            (segue.destinationViewController as! FileSelectionViewController).drive = self.drive
             
             // conditionally disable add button
             if self.drive!.entity.name != DriveEntity.HardDiskDrive.rawValue {

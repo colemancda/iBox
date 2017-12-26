@@ -40,11 +40,11 @@ final public class Store {
         
         // load persistent store
         
-        var error: NSError?
-        
-        self.managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: fileURL, options: nil, error: &error)
-        
-        assert(error == nil)
+        do {
+            try self.managedObjectContext.persistentStoreCoordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: fileURL, options: nil)
+        } catch {
+            
+        }
         
     }
 }
